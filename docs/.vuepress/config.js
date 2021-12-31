@@ -2,15 +2,10 @@ module.exports = {
 	title: 'Hello Web',
 	description: 'Hello Web',
 	base: '/learn-web/',
-	theme: 'reco',
 	head: [
 		['meta', {
 			name: 'viewport',
 			content: 'width=device-width,initial-scale=1,user-scalable=no'
-		}],
-		['link', {
-			rel: 'icon',
-			href: '../assets/20211231154825.jpg'
 		}]
 	],
 	plugins: [
@@ -20,9 +15,25 @@ module.exports = {
 		}],
 		['@vuepress/back-to-top'],
 		['@vuepress/medium-zoom'],
-		['@vuepress/nprogress']
+		['@vuepress/nprogress'],
+		['autobar']
 	],
-	markdown: {
-		lineNumbers: true
+	themeConfig: {
+		nav: [{
+				text: 'HTML',
+				link: '/HTML/'
+			},
+			{
+				text: 'CSS',
+				link: '/CSS/'
+			}
+		],
+		sidebar: {
+			'/HTML/': [''],
+			'/nav.02.api/': [{
+				title: 'Classes',
+				children: ['', 'classes/member']
+			}]
+		},
 	}
 }
