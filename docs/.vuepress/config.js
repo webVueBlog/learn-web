@@ -26,14 +26,41 @@ module.exports = {
 			{
 				text: 'CSS',
 				link: '/CSS/'
+			},
+			{
+				text: 'JavaScript',
+				link: '/JavaScript/'
+			},
+			{
+				text: 'HTTP',
+				link: '/HTTP/'
+			},
+			{
+				text: 'APIs',
+				link: '/APIs/'
+			},
+			{
+				text: 'Browser-Extensions',
+				link: '/Browser-Extensions/'
+			},
+			{
+				text: 'Graphics',
+				link: '/Graphics/'
+			},
+			{
+				text: 'MathML',
+				link: '/MathML/'
 			}
 		],
 		sidebar: {
 			'/HTML/': [''],
-			'/nav.02.api/': [{
-				title: 'Classes',
-				children: ['', 'classes/member']
-			}]
+			'/CSS/': [''],
+			'/JavaScript/': [''],
+			'/HTTP/': [''],
+			'/APIs/': [''],
+			'/Browser-Extensions/': [''],
+			'/Graphics/': [''],
+			'/MathML/': [''],
 		},
 	}
 }
