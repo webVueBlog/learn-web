@@ -16,7 +16,7 @@ module.exports = {
 		['@vuepress/back-to-top'],
 		['@vuepress/medium-zoom'],
 		['@vuepress/nprogress'],
-		['autobar']
+		// ['autobar']
 	],
 	themeConfig: {
 		nav: [{
@@ -53,14 +53,54 @@ module.exports = {
 			}
 		],
 		sidebar: {
-			'/HTML/': [''],
-			'/CSS/': [''],
-			'/JavaScript/': [''],
-			'/HTTP/': [''],
-			'/APIs/': [''],
-			'/Browser-Extensions/': [''],
-			'/Graphics/': [''],
-			'/MathML/': [''],
-		},
+			'/HTML/': [
+				{
+					title: 'HTML',
+					path: '/HTML/'
+				}
+			],
+			'/CSS/': [
+				{
+					title: 'CSS',
+					path: '/CSS/'
+				}
+			],
+			'/JavaScript/': [
+				{
+					title: 'JavaScript',
+					path: '/JavaScript/'
+				}
+			],
+			'/HTTP/': [
+				{
+					title: 'HTTP',
+					path: '/HTTP/'
+				}
+			],
+			'/APIs/': [
+				{
+					title: 'APIs',
+					path: '/APIs/'
+				}
+			],
+			'/Browser-Extensions/': [
+				{
+					title: 'Browser-Extensions',
+					path: '/Browser-Extensions/'
+				}
+			],
+			'/Graphics/': [
+				{
+					title: 'Graphics',
+					path: '/Graphics/'
+				}
+			],
+			'/MathML/': [
+				{
+					title: 'MathML',
+					path: '/MathML/'
+				}
+			],
+		}
 	}
 }
