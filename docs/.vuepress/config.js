@@ -9,10 +9,10 @@ module.exports = {
 		}]
 	],
 	plugins: [
-		['@vuepress/active-header-links', {
-			sidebarLinkSelector: '.sidebar-link',
-			headerAnchorSelector: '.header-anchor'
-		}],
+		// ['@vuepress/active-header-links', {
+		// 	sidebarLinkSelector: '.sidebar-link',
+		// 	headerAnchorSelector: '.header-anchor'
+		// }],
 		['@vuepress/back-to-top'],
 		['@vuepress/medium-zoom'],
 		['@vuepress/nprogress'],
@@ -68,7 +68,17 @@ module.exports = {
 			'/JavaScript/': [
 				{
 					title: 'JavaScript',
-					path: '/JavaScript/'
+					collapsable: true,
+					children: [
+						{
+							title: '函数-可复用代码块',
+							path: '函数-可复用代码块'
+						},
+						{
+							title: '创建您自己的函数',
+							path: '创建您自己的函数'
+						},
+					]
 				}
 			],
 			'/HTTP/': [
