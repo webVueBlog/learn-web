@@ -78,6 +78,10 @@ module.exports = {
 							title: '创建您自己的函数',
 							path: '创建您自己的函数'
 						},
+						{
+							title: '对象原型',
+							path: '对象原型'
+						},
 					]
 				}
 			],
