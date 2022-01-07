@@ -82,6 +82,10 @@ module.exports = {
 							title: '对象原型',
 							path: '对象原型'
 						},
+						{
+							title: '45道Promise',
+							path: '45道Promise'
+						},
 					]
 				}
 			],

@@ -5,3 +5,4 @@
 - [函数-可复用代码块](/JavaScript/函数-可复用代码块.html)
 - [创建您自己的函数](/JavaScript/创建您自己的函数.html)
 - [对象原型](/JavaScript/对象原型.html)
+- [45道Promise](/JavaScript/45道Promise.html)
