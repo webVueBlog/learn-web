@@ -16,9 +16,21 @@ module.exports = {
 		['@vuepress/back-to-top'],
 		['@vuepress/medium-zoom'],
 		['@vuepress/nprogress'],
+		[
+			'dynamic-title',
+			{
+			   showIcon: '/favicon.ico',
+			   showText: '(/≧▽≦/)咦！又好了！',
+			   hideIcon: '/failure.ico',
+			   hideText: '(●—●)喔哟，崩溃啦！',
+			   recoverTime: 2000,
+			},
+		 ],
+		 ['vuepress-plugin-code-copy', true]
 		// ['autobar']
 	],
 	themeConfig: {
+		lastUpdated: '上次更新',
 		nav: [{
 				text: 'HTML',
 				link: '/HTML/'
