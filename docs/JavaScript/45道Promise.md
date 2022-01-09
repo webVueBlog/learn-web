@@ -2138,7 +2138,7 @@ constructor (executor){
 class Promise {
   constructor (executor) {
     // 默认状态是等待
-    this.status = 'panding';
+    this.status = 'pending';
     this.value = undefined;
     this.reason = undefined;
     // 存放成功的回调
@@ -2188,4 +2188,134 @@ then(onFulFilled, onRejected) {
   }
 }
 ```
+
+```js
+let p = new Promise(function() {
+  resolve('我是成功');
+})
+p.then((data) => {console.log(data);},(err) => {});
+p.then((data) => {console.log(data);},(err) => {});
+p.then((data) => {console.log(data);},(err) => {});
+```
+
+返回的结果是：
+
+```js
+我是成功
+我是成功
+我是成功
+```
+
+为了实现这样的效果，则上一次的代码将要重新写过，我们可以把每次调用resolve的结果存入一个数组中，每次调用reject的结果存入一个数组。这就是为何会在上面定义两个数组,且分别在resolve()和reject()遍历两个数组的原因。因此，在调用resolve()或者reject()之前，我们在pending状态时，会把多次then中的结果存入数组中，则上面的代码会改变为：
+
+```js
+then(onFulFilled, onRejected) {
+  if (this.status === 'resolved') {
+    onFulFilled(this.value);
+  }
+  if (this.status === 'rejected') {
+    onRejected(this.reason);
+  }
+  // 当前既没有完成 也没有失败
+  if (this.status === 'pending') {
+    // 存放成功的回调
+    this.onResolvedCallbacks.push(() => {
+      onFulFilled(this.value);
+    });
+    // 存放失败的回调
+    this.onRejectedCallbacks.push(() => {
+      onRejected(this.reason);
+    });
+  }
+}
+```
+
+:::tip
+Promise A+规范中规定then方法可以链式调用
+:::
+
+在promise中，要实现链式调用返回的结果是返回一个新的promise，第一次then中返回的结果，无论是成功或失败，都将返回到下一次then中的成功态中，但在第一次then中如果抛出异常错误，则将返回到下一次then中的失败态中
+
+### 链式调用成功时
+
+链式调用成功会返回值，有多种情况，根据举的例子，大致列出可能会发生的结果。因此将链式调用返回的值单独写一个方法。方法中传入四个参数，分别是p2,x,resolve,reject,p2指的是上一次返回的promise，x表示运行promise返回的结果，resolve和reject是p2的方法。则代码写为：
+
+```js
+function resolvePromise(p2,x,resolve,reject){
+    ....
+}
+```
+
+返回结果不能是自己
+
+```js
+var p = new Promise((resovle,reject) => {
+    return p;     //返回的结果不能是自己，
+})
+```
+
+当返回结果是自己时，永远也不会成功或失败，因此当返回自己时，应抛出一个错误
+
+```js
+function resolvePromise(p2,x,resolve,reject){
+    if(px===x){
+        return reject(new TypeError('自己引用自己了'));
+    }
+    ....
+}
+```
+
+## 根据promise A+规范原理
+
+```js
+function resolvePromise(promise2,x,resolve,reject) {
+  // 判断x是不是promise
+  // 规范中规定，我们允许别人乱写，这个代码可以实现我们的promise和别人的promise进行交互
+  if (promise2 === x) {
+    // 不能自己等待自己完成
+  };
+  // x是除了null以外的对象或者函数
+  if (x != null && (typeof x === 'object' ||  typeof x === 'function')) {
+    let called; // 防止成功后调用失败
+    try {
+      // 防止取then是出现异常， object.defineProperty
+      let then = x.then; // 取x的then方法 {then: {}}
+      if (typeof then === 'function') {
+        // 如果then是函数就认为他是promise
+        // call第一个参数是this 后面的是成功的回调和失败的回调
+        then.call(x, y => {
+          // 如果y是promise就继续递归promise
+          if (called) return;
+          called = true;
+          resolvePromise(promise2, y, resolve, reject)
+        }, r => {
+          // 只要失败了就失败了
+          if (called) return;
+          called = true;
+          reject(r);
+        });
+      } else {
+        // then 是一个普通对象，就直接成功即可
+        resolve(x);
+      }
+    } catch (e) {
+      if (called) return;
+      called = true;
+      reject(e)
+    }
+  } else {
+    // x = 123 x 就是一个普通值 作为下个then成功的参数
+    resolve(x)
+  }
+}
+```
+
+## 仔细品读
+
+```js
+
+```
+
+
+
 

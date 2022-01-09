@@ -68,13 +68,13 @@ module.exports = {
 			'/HTML/': [
 				{
 					title: 'HTML',
-					path: '/HTML/'
+					collapsable: true,
 				}
 			],
 			'/CSS/': [
 				{
 					title: 'CSS',
-					path: '/CSS/'
+					collapsable: true,
 				}
 			],
 			'/JavaScript/': [
@@ -104,31 +104,31 @@ module.exports = {
 			'/HTTP/': [
 				{
 					title: 'HTTP',
-					path: '/HTTP/'
+					collapsable: true,
 				}
 			],
 			'/APIs/': [
 				{
 					title: 'APIs',
-					path: '/APIs/'
+					collapsable: true,
 				}
 			],
 			'/Browser-Extensions/': [
 				{
 					title: 'Browser-Extensions',
-					path: '/Browser-Extensions/'
+					collapsable: true,
 				}
 			],
 			'/Graphics/': [
 				{
 					title: 'Graphics',
-					path: '/Graphics/'
+					collapsable: true,
 				}
 			],
 			'/MathML/': [
 				{
 					title: 'MathML',
-					path: '/MathML/'
+					collapsable: true,
 				}
 			],
 		}
