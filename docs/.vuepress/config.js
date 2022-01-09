@@ -1,6 +1,6 @@
 module.exports = {
-	title: 'Hello Web',
-	description: 'Hello Web',
+	title: '哪吒的Hello Web',
+	description: '哪吒的Hello Web',
 	base: '/learn-web/',
 	head: [
 		['meta', {
