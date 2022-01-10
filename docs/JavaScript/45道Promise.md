@@ -2338,7 +2338,51 @@ function loadImg(url) {
 ## 仔细品读
 
 ```js
+function resolvePromise(promise2, x, resolve, reject) {
+  // 判断x是不是promise
+  // 规定中：我们允许别人乱写，这个代码可以实现我们的promise和别人的promise进行交互
+  if (promise2 === x) {
+    // 不能自己等待自己完成
+    return reject(new TypeError('循环引用'));
+  };
+  // x是除了null以外的对象或者函数
+  if (x != null && (typeof x === 'object' || typeof x === 'function')) {
+    let called; // 防止成功后调用失败
+    try {
+      // 防止取then是出现异常 object.defineProperty
+      let then = x.then; // 取x的then方法 {then:{}}
+      if (typeof then === 'function') {
+        // 如果then是函数就认为他是promise
+        // call第一个参数是this，后面的是成功的回调和失败的回调
+        then.call(x, y => {
+          // 如果y是promise就继续递归promise
+          if (called) return;
+          called = true;
+          resolvePromise(promise2, y, resolve, reject)
+        }, r => {
+          // 只是失败了就失败了
+          if (called) return;
+          called = true;
+          reject(r);
+        });
+      } else {
+        // then是一个普通对象，就直接成功即可
+        resolve(x);
+      }
+    } catch (e) {
+      if (called) return;
+      called = true;
+      reject(e)
+    }
+  } else {
+    // x = 123 x 就是一个普通值 作为下一个then成功的参数
+    resolve(x)
+  }
+}
 
+class Promise {
+  constructor
+}
 ```
 
 
