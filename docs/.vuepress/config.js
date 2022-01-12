@@ -1,6 +1,6 @@
 module.exports = {
-	title: '哪吒的Hello Web',
-	description: '哪吒的Hello Web',
+	title: '哪吒的深入理解前端系列',
+	description: '哪吒的深入理解前端系列',
 	base: '/learn-web/',
 	head: [
 		['meta', {
@@ -9,10 +9,6 @@ module.exports = {
 		}]
 	],
 	plugins: [
-		// ['@vuepress/active-header-links', {
-		// 	sidebarLinkSelector: '.sidebar-link',
-		// 	headerAnchorSelector: '.header-anchor'
-		// }],
 		['@vuepress/back-to-top'],
 		['@vuepress/medium-zoom'],
 		['@vuepress/nprogress'],
@@ -58,10 +54,6 @@ module.exports = {
 			{
 				text: 'Graphics',
 				link: '/Graphics/'
-			},
-			{
-				text: 'MathML',
-				link: '/MathML/'
 			}
 		],
 		sidebar: {
@@ -75,6 +67,12 @@ module.exports = {
 				{
 					title: 'CSS',
 					collapsable: true,
+					children: [
+						{
+							title: '盒子模型',
+							path: '盒子模型'
+						},
+					]
 				}
 			],
 			'/JavaScript/': [
@@ -97,6 +95,10 @@ module.exports = {
 						{
 							title: '45道Promise',
 							path: '45道Promise'
+						},
+						{
+							title: '原型链',
+							path: '原型链'
 						},
 					]
 				}
