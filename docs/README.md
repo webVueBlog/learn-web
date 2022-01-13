@@ -1,25 +1,16 @@
-# learn-web文档
-
-> 点击勘误[issues](https://github.com/webVueBlog/learn-web/issues)，哪吒感谢大家的阅读
-
-## 学前必读
-
-哪吒希望能为开发人员提供最大程度的愉悦开发体验。提供便捷的阅读文档，帮助前端开发小团体高效率的工作进度，并维护本站learn-web文档。
-
-## 感谢指正
-
-指正不胜感激，无以回报。
-
-## 声明
-
-学习文档，仅适合本人食用！！!
-
-## 勘误及提问
-
-如果有疑问或者发现错误，可以在相应的 issues 进行提问或勘误。
-
-如果喜欢或者有所启发，欢迎 star，对作者也是一种鼓励。
-
-## License
-
-所有文章采用[知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by-nc-sa/3.0/cn/)进行许可。
+---
+home: true
+lang: zh-CN
+heroText: 🚀learn-web文档
+heroImage: /logo.jpg
+actionText: 开始 →
+actionLink: /HTML/
+features:
+- title: 知识管理
+  details: 包含三种典型的知识管理形态：结构化、碎片化、体系化的知识管理平台
+- title: 简洁高效
+  details: 以 Markdown 为中心的项目结构，内置自动化工具，以更少的配置完成更多的事。配合多维索引快速定位每个知识点
+- title: 沉浸式阅读
+  details: 专为阅读设计的UI，配合多种颜色模式、可关闭的侧边栏和导航栏，带给你一种沉浸式阅读体验
+footer: Copyright © Jekson-learn-web
+---

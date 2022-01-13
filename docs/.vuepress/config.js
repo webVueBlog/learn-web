@@ -1,8 +1,9 @@
 module.exports = {
-	title: '哪吒的深入理解前端系列',
+	title: 'learn-web文档',
 	description: '哪吒的深入理解前端系列',
 	base: '/learn-web/',
 	head: [
+		['link', { rel: 'icon', href: '/logo.jpg' }],
 		['meta', {
 			name: 'viewport',
 			content: 'width=device-width,initial-scale=1,user-scalable=no'
@@ -26,6 +27,10 @@ module.exports = {
 		// ['autobar']
 	],
 	themeConfig: {
+		repo: 'https://github.com/webVueBlog/learn-web',
+		repoLabel: 'Github',
+		editLinks: true,
+		editLinkText: '编辑此页',
 		lastUpdated: '上次更新',
 		nav: [{
 				text: 'HTML',
