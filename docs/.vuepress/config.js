@@ -52,6 +52,10 @@ module.exports = {
 				link: '/HTTP/'
 			},
 			{
+				text: '前端工程化',
+				link: '/front-end-engineering/'
+			},
+			{
 				text: '其他',
 				items: [{
 					text: '帮助',
@@ -111,6 +115,10 @@ module.exports = {
 			}],
 			'/HTTP/': [{
 				title: 'HTTP',
+				collapsable: true,
+			}],
+			'/front-end-engineering/': [{
+				title: '前端工程化',
 				collapsable: true,
 			}],
 			'/APIs/': [{
