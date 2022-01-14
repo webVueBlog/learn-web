@@ -70,6 +70,22 @@ module.exports = {
                 }, ]
             },
             {
+                text: '书籍',
+                items: [{
+                    text: 'JavaScript书籍',
+                    items: [{
+                        text: 'JavaScript高级程序设计（第3版）',
+                        link: '/JavaScript-advanced-programming/'
+                    }, ]
+                }, {
+                    text: 'webpack',
+                    items: [{
+                        text: 'Webpack 中文指南',
+                        link: '/Webpack-Chinese-guide/'
+                    }, ]
+                }]
+            },
+            {
                 text: '其他',
                 items: [{
                     text: '进阶',
@@ -171,6 +187,14 @@ module.exports = {
             }],
             '/Programming/': [{
                 title: '编程题',
+                collapsable: true,
+            }],
+            '/JavaScript-advanced-programming/': [{
+                title: 'JavaScript高级程序设计（第3版）',
+                collapsable: true,
+            }],
+            '/Webpack-Chinese-guide/': [{
+                title: 'Webpack 中文指南',
                 collapsable: true,
             }],
             '/APIs/': [{
