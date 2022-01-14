@@ -52,13 +52,17 @@ module.exports = {
 				link: '/HTTP/'
 			},
 			{
-				text: '前端工程化',
+				text: '工程化',
 				link: '/front-end-engineering/'
+			},
+			{
+				text: '浏览器',
+				link: '/browser/'
 			},
 			{
 				text: '其他',
 				items: [{
-					text: '帮助',
+					text: '进阶',
 					items: [{
 							text: 'APIs',
 							link: '/APIs/'
@@ -70,6 +74,13 @@ module.exports = {
 						{
 							text: 'Graphics',
 							link: '/Graphics/'
+						},
+					]
+				},{
+					text: '高阶',
+					items: [{
+							text: '安全系列',
+							link: '/safety/'
 						},
 					]
 				}]
@@ -118,7 +129,11 @@ module.exports = {
 				collapsable: true,
 			}],
 			'/front-end-engineering/': [{
-				title: '前端工程化',
+				title: '工程化',
+				collapsable: true,
+			}],
+			'/browser/': [{
+				title: '浏览器',
 				collapsable: true,
 			}],
 			'/APIs/': [{
@@ -135,6 +150,10 @@ module.exports = {
 			}],
 			'/MathML/': [{
 				title: 'MathML',
+				collapsable: true,
+			}],
+			'/safety/': [{
+				title: '安全系列',
 				collapsable: true,
 			}],
 		}
