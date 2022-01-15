@@ -167,6 +167,10 @@ module.exports = {
                         title: '深浅拷贝',
                         path: '深浅拷贝'
                     },
+					{
+					    title: '继承',
+					    path: '继承'
+					},
                 ]
             }],
             '/HTTP/': [{

@@ -8,7 +8,7 @@
 - [原型链](/JavaScript/原型链)
 - [45道Promise](/JavaScript/45道Promise)
 - [深浅拷贝](/JavaScript/深浅拷贝)
-
+- [继承](/JavaScript/继承)
 
 
 
