@@ -171,6 +171,18 @@ module.exports = {
 					    title: '继承',
 					    path: '继承'
 					},
+					{
+					    title: '执行上下文栈',
+					    path: '执行上下文栈'
+					},
+					{
+					    title: '变量对象',
+					    path: '变量对象'
+					},
+					{
+					    title: '作用域',
+					    path: '作用域'
+					},
                 ]
             }],
             '/HTTP/': [{
