@@ -27,7 +27,6 @@ module.exports = {
             },
         ],
         ['vuepress-plugin-code-copy', true]
-        // ['autobar']
     ],
     themeConfig: {
         repo: 'https://github.com/webVueBlog/learn-web',
@@ -70,6 +69,16 @@ module.exports = {
                 }, ]
             },
             {
+                text: '实践',
+                items: [{
+                    text: 'html-css-js实践',
+                    items: [{
+                        text: 'html-css-js实践',
+                        link: '/html-css-js-coding/'
+                    }, ]
+                }, ]
+            },
+            {
                 text: '书籍',
                 items: [{
                     text: 'JavaScript书籍',
@@ -78,10 +87,16 @@ module.exports = {
                         link: '/JavaScript-advanced-programming/'
                     }, ]
                 }, {
-                    text: 'webpack',
+                    text: 'webpack书籍',
                     items: [{
                         text: 'Webpack 中文指南',
                         link: '/Webpack-Chinese-guide/'
+                    }, ]
+                }, {
+                    text: 'TypeScript书籍',
+                    items: [{
+                        text: 'TypeScript入门与实践',
+                        link: '/Getting-started-with-TypeScript/'
                     }, ]
                 }]
             },
@@ -160,6 +175,10 @@ module.exports = {
                         path: '原型链'
                     },
                     {
+                        title: '词法作用域和动态作用域',
+                        path: '词法作用域和动态作用域'
+                    },
+                    {
                         title: '45道Promise',
                         path: '45道Promise'
                     },
@@ -167,22 +186,22 @@ module.exports = {
                         title: '深浅拷贝',
                         path: '深浅拷贝'
                     },
-					{
-					    title: '继承',
-					    path: '继承'
-					},
-					{
-					    title: '执行上下文栈',
-					    path: '执行上下文栈'
-					},
-					{
-					    title: '变量对象',
-					    path: '变量对象'
-					},
-					{
-					    title: '作用域',
-					    path: '作用域'
-					},
+                    {
+                        title: '继承',
+                        path: '继承'
+                    },
+                    {
+                        title: '执行上下文栈',
+                        path: '执行上下文栈'
+                    },
+                    {
+                        title: '变量对象',
+                        path: '变量对象'
+                    },
+                    {
+                        title: '作用域',
+                        path: '作用域'
+                    },
                 ]
             }],
             '/HTTP/': [{
@@ -205,12 +224,27 @@ module.exports = {
                 title: '编程题',
                 collapsable: true,
             }],
+            '/html-css-js-coding/': [{
+                title: 'html-css-js实践',
+                collapsable: true,
+                children: [{
+                    title: '新年快乐-来一个CSS文字特效',
+                    path: '新年快乐-来一个CSS文字特效'
+                }, {
+                    title: '实现水平垂直居中最便捷的方法',
+                    path: '实现水平垂直居中最便捷的方法'
+                }, ]
+            }],
             '/JavaScript-advanced-programming/': [{
                 title: 'JavaScript高级程序设计（第3版）',
                 collapsable: true,
             }],
             '/Webpack-Chinese-guide/': [{
                 title: 'Webpack 中文指南',
+                collapsable: true,
+            }],
+            '/Getting-started-with-TypeScript/': [{
+                title: 'TypeScript入门与实践',
                 collapsable: true,
             }],
             '/APIs/': [{
