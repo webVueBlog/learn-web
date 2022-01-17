@@ -13,8 +13,8 @@
 - [执行上下文栈](/JavaScript/执行上下文栈)
 - [变量对象](/JavaScript/变量对象)
 - [作用域](/JavaScript/作用域)
-
-
+- [防抖](/JavaScript/防抖)
+- [40道this](/JavaScript/40道this)
 
 
 

@@ -220,6 +220,14 @@ module.exports = {
                         title: '作用域',
                         path: '作用域'
                     },
+					{
+					    title: '防抖',
+					    path: '防抖'
+					},
+					{
+					    title: '40道this',
+					    path: '40道this'
+					},
                 ]
             }],
             '/HTTP/': [{
