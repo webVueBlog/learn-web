@@ -579,14 +579,129 @@ inner.call(obj1)
 
 ## 4.5 题目五
 
+```js
+function foo () {
+  console.log(this.a)
+}
+var obj = { a: 1 }
+var a = 2
 
+foo()
+foo.call(obj)
+foo().call(obj)
+```
 
+也就是使用.call()方法位置的不同。
 
+结果：
 
+```js
+2
+1
+2
+Uncaught TypeError: Cannot read property 'call' of undefined
+```
 
+- foo()会正常打印出window下的a，也就是2
+- foo.call(obj)由于显式绑定了this，所以会打印出obj下的a，也就是1
+- foo().call(obj)开始会执行foo()函数，打印出2，但是会对foo()函数的返回值执行.call(obj)操作，可是我们可以看到foo()函数的返回值是undefined，因此就会报错了。
 
+所以我们可以看到foo.call()和foo().call()的区别了，一个是针对于函数，一个是针对于函数的返回值。
 
+## 4.6 题目六
 
+```js
+function foo () {
+  console.log(this.a)
+  return function () {
+    console.log(this.a)
+  }
+}
+var obj = { a: 1 }
+var a = 2
+
+foo()
+foo.call(obj)
+foo().call(obj)
+```
+
+你能想到现在会输出什么吗？
+
+答案是会输出3个数，还是4个数，亦或者6个数呢？
+
+😁 嘻嘻，不逗你了，结果竟然是：
+
+```js
+2
+1
+2
+1
+```
+
+- 第一个数字2自然是foo()输出的，虽然foo()函数也返回了一个匿名函数，但是并没有调用它呀，只有写成foo()()，这样才算是调用匿名函数。
+- 第二个数字1是foo.call(obj)输出的，由于.call()是紧跟着foo的，所以改变的是foo()内this的指向，并且.call()是会使函数立即执行的，因此打印出1，同理，它也没有调用返回的函数。
+- 第三个数字2是foo().call(obj)先执行foo()时打印出来的，此时foo()内this还是指向window。
+- 在执行完foo()之后，会返回一个匿名函数，并且后面使用了.call(obj)来改变这个匿名函数的this指向并调用了它，所以输出了1。
+
+## 4.7 题目七
+
+```js
+function foo () {
+  console.log(this.a)
+  return function () {
+    console.log(this.a)
+  }
+}
+var obj = { a: 1 }
+var a = 2
+
+foo()
+foo.bind(obj)
+foo().bind(obj)
+```
+
+结果自然就是：
+
+```js
+2
+2
+```
+
+- foo()会执行没错，打印出了2。
+- 但是foo.bind(obj)却不会执行，它返回的是一个新函数。
+- foo().bind(obj)只会执行前面的foo()函数，打印出2，.bind(obj)只是将foo()返回的匿名函数显式绑定this而已，并没有调用。
+
+## 4.8 题目八
+
+说实话，做上面这类题目，会让我有一种疑惑。
+
+这种函数内返回的函数，它的this会和它外层的函数有关吗？
+
+也就是内层函数它的this到底是谁呢？
+
+还是那句话，谁最后调用的它，this就指向谁。
+
+```js
+function foo () {
+  console.log(this.a)
+  return function () {
+    console.log(this.a)
+  }
+}
+var obj = { a: 1 }
+var a = 2
+
+foo.call(obj)()
+```
+
+就像是这道题，foo()函数内的this虽然指定了是为obj，但是调用最后调用匿名函数的却是window。
+
+所以结果为：
+
+```js
+1
+2
+```
 
 
 
