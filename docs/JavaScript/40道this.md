@@ -181,6 +181,404 @@ this.a，而在inner中，this指向的还是window。
 1
 ```
 
+## 2. 隐式绑定
+
+一个简单的规则，this 永远指向最后调用它的那个对象。
+
+谁最后调用的函数，函数内的this指向的就是谁(不考虑箭头函数)。
+
+## 2.1 题目一
+
+```js
+function foo () {
+  console.log(this.a)
+}
+var obj = { a: 1, foo }
+var a = 2
+obj.foo()
+```
+
+(var obj = { foo }就相当于是var obj = { foo: foo }，这个大家应该都知道吧)
+
+在这道题中，函数foo()虽然是定义在window下，但是我在obj对象中引用了它，并将它重新赋值到obj.foo上。
+
+且调用它的是obj对象，因此打印出来的this.a应该是obj中的a。
+
+```js
+var obj = {
+  a: 1,
+  foo: function () {
+    console.log(this.a)
+  }
+}
+var a = 2
+obj.foo()
+```
+
+在这里foo函数内的this指向的就是obj，和题目效果一样。
+
+答案都是：
+
+```js
+1
+```
+
+## 3. 隐式绑定的隐式丢失问题
+
+隐式绑定的基本概念大家应该都清楚了，不过其实有一个关于隐式绑定的常用考点，那就是隐式丢失问题。
+
+隐式丢失其实就是被隐式绑定的函数在特定的情况下会丢失绑定对象。
+
+有两种情况容易发生隐式丢失问题：
+
+- 使用另一个变量来给函数取别名
+- 将函数作为参数传递时会被隐式赋值，回调函数丢失this绑定
+
+## 3.1 题目一
+
+使用另一个变量来给函数取别名会发生隐式丢失。
+
+```js
+function foo () {
+  console.log(this.a)
+};
+var obj = { a: 1, foo };
+var a = 2;
+var foo2 = obj.foo;
+
+obj.foo();
+foo2();
+```
+
+在这里我们已经知道了，obj.foo()中this的指向是为obj的(可以看第二部分隐式绑定)，所以obj.foo()执行的时候，打印出来的是obj对象中的a，也就是1。
+
+但是foo2它不也是obj.foo吗？我只不过是用了一个变量foo2来盛放了它而已。所以你是不是认为它打印的也是1呢？
+
+额 😅，其实这里不是的，它打印出的是window下的a。
+
+这是因为虽然foo2指向的是obj.foo函数，不过调用它的却是window对象，所以它里面this的指向是为window。
+
+其实也就相当于是window.foo2()
+
+## 3.2 题目二
+
+让我们在一个新的变量obj2中也定义一个foo2看看：
+
+```js
+function foo () {
+  console.log(this.a)
+};
+var obj = { a: 1, foo };
+var a = 2;
+var foo2 = obj.foo;
+var obj2 = { a: 3, foo2: obj.foo }
+
+obj.foo();
+foo2();
+obj2.foo2();
+```
+
+这三种不同的foo()打印出来的分别是什么呢？
+
+答案：
+
+```js
+1
+2
+3
+```
+
+- obj.foo()中的this指向调用者obj
+- foo2()发生了隐式丢失，调用者是window，使得foo()中的this指向window
+- foo3()发生了隐式丢失，调用者是obj2，使得foo()中的this指向obj2
+
+## 3.3 题目三
+
+再就是如果你把一个函数当成参数传递时，也会被隐式赋值，发生意想不到的问题。
+
+来看看这道题目：
+
+```js
+function foo () {
+  console.log(this.a)
+}
+function doFoo (fn) {
+  console.log(this)
+  fn()
+}
+var obj = { a: 1, foo }
+var a = 2
+doFoo(obj.foo)
+```
+
+这里我们将obj.foo当成参数传递到doFoo函数中，在传递的过程中，obj.foo()函数内的this发生了改变，指向了window。
+
+因此结果为：
+
+```js
+Window{...}
+2
+```
+
+注意，我这里说的是obj.foo()函数，而不是说doFoo()。doFoo()函数内的this本来就是指向window的，因为这里是window调用的它。
+
+## 3.4 题目四
+
+现在我们不用window调用doFoo，而是放在对象obj2里，用obj2调用：
+
+```js
+function foo () {
+  console.log(this.a)
+}
+function doFoo (fn) {
+  console.log(this)
+  fn()
+}
+var obj = { a: 1, foo }
+var a = 2
+var obj2 = { a: 3, doFoo }
+
+obj2.doFoo(obj.foo)
+```
+
+现在调用obj2.doFoo()函数，里面的this指向的应该是obj2，因为是obj2调用的它。
+
+但是obj.foo()打印出来的a依然是2，也就是window下的。
+
+执行结果为：
+
+```js
+{ a:3, doFoo: f }
+2
+```
+
+所以说，如果你把一个函数当成参数传递到另一个函数的时候，也会发生隐式丢失的问题，且与包裹着它的函数的this指向无关。在非严格模式下，会把该函数的this绑定到window上，严格模式下绑定到undefined。
+
+一样的代码，试试严格模式下：
+
+```js
+"use strict"
+function foo () {
+  console.log(this.a)
+}
+function doFoo (fn) {
+  console.log(this)
+  fn()
+}
+var obj = { a: 1, foo }
+var a = 2
+var obj2 = { a: 3, doFoo }
+
+obj2.doFoo(obj.foo)
+```
+
+执行结果：
+
+```js
+{ a:3, doFoo: f }
+Uncaught TypeError: Cannot read property 'a' of undefined
+```
+
+## 4. 显式绑定
+
+功能如其名，就是强行使用某些方法，改变函数内this的指向。
+
+通过call()、apply()或者bind()方法直接指定this的绑定对象, 如foo.call(obj)。
+
+这里有几个知识点需要注意：
+
+- 使用.call()或者.apply()的函数是会直接执行的
+- bind()是创建一个新的函数，需要手动调用才会执行
+- .call()和.apply()用法基本类似，不过call接收若干个参数，而apply接收的是一个数组
+
+## 4.1 题目一
+
+```js
+function foo () {
+  console.log(this.a)
+}
+var obj = { a: 1 }
+var a = 2
+
+foo()
+foo.call(obj)
+foo.apply(obj)
+foo.bind(obj)
+```
+
+第一个foo() 都很好理解，这不就是默认绑定吗？😁
+
+而第二个和第三个foo都使用了call或apply来改变this的指向，并且是立即执行的。
+
+第四个foo，仅仅是使用bind创建了一个新的函数，且这个新函数也没用别的变量接收并调用，因此并不会执行。
+
+答案：
+
+```js
+2
+1
+1
+```
+
+这里想要提一嘴，如果call、apply、bind接收到的第一个参数是空或者null、undefined的话，则会忽略这个参数。
+
+例如🌰：
+
+```js
+function foo () {
+  console.log(this.a)
+}
+var a = 2
+foo.call()
+foo.call(null)
+foo.call(undefined)
+```
+
+输出的是：
+
+```js
+2
+2
+2
+```
+
+## 4.2 题目二
+
+了解了显式绑定的基本使用之后，让我们来看看它的妙用。
+
+首先，是这个例子🌰：
+
+```js
+var obj1 = {
+  a: 1
+}
+var obj2 = {
+  a: 2,
+  foo1: function () {
+    console.log(this.a)
+  },
+  foo2: function () {
+    setTimeout(function () {
+      console.log(this)
+      console.log(this.a)
+    }, 0)
+  }
+}
+var a = 3
+
+obj2.foo1()
+obj2.foo2()
+```
+
+对于obj2.foo1()，我们很清楚，它就是打印出2。
+
+但是对于obj2.foo2呢？在这个函数里，设置了一个定时器，并要求我们打印出this和this.a。
+
+想想我前面说过的话，谁调用的函数，函数内的this指向的就是谁。
+
+而对于setTimeout中的函数，这里存在隐式绑定的隐式丢失，也就是当我们将函数作为参数传递时会被隐式赋值，回调函数丢失this绑定，因此这时候setTimeout中的函数内的this是指向window的。
+
+所以最终的结果是：
+
+```js
+2
+Window{...}
+3
+```
+
+## 4.3 题目三
+
+面对上面👆这种情况我们就可以使用call、apply 或者bind来改变函数中this的指向，使它绑定到obj1上，从而打印出1。
+
+```js
+var obj1 = {
+  a: 1
+}
+var obj2 = {
+  a: 2,
+  foo1: function () {
+    console.log(this.a)
+  },
+  foo2: function () {
+    setTimeout(function () {
+      console.log(this)
+      console.log(this.a)
+    }.call(obj1), 0)
+  }
+}
+var a = 3
+obj2.foo1()
+obj2.foo2()
+```
+
+现在的执行结果就是：
+
+```js
+2
+{ a: 1 }
+1
+```
+
+但是看看我这里的写法，我是将.call运用到setTimeout里的回调函数上，并不是运用到obj2.foo2()上。
+
+所以有小伙伴就会问了，我下面的这种写法不可以吗？
+
+```js
+obj2.foo2.call(obj1)
+```
+
+复制代码注意⚠️：如果是这种写法的话，我改变的就是foo2函数内的this的指向了，但是我们知道，foo2函数内this的指向和setTimeout里函数的this是没有关系的，因为调用定时器的始终是window。
+
+并且这里使用.bind()也是可以的，因为定时器里的函数在时间到了之后本就是会自动执行的。
+
+## 4.4 题目四
+
+```js
+var obj1 = {
+  a: 1
+}
+var obj2 = {
+  a: 2,
+  foo1: function () {
+    console.log(this.a)
+  },
+  foo2: function () {
+    function inner () {
+      console.log(this)
+      console.log(this.a)
+    }
+    inner()
+  }
+}
+var a = 3
+obj2.foo1()
+obj2.foo2()
+```
+
+调用inner函数的依然是window，所以结果为：
+
+```js
+2
+Window{...}
+3
+```
+
+如果给inner()函数显式绑定的话：
+
+```js
+inner.call(obj1)
+```
+
+结果为
+
+```js
+2
+{ a: 1 }
+1
+```
+
+## 4.5 题目五
+
 
 
 
