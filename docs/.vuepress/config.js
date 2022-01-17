@@ -141,6 +141,18 @@ module.exports = {
                         text: '算法系列',
                         link: '/ALG/'
                     }, ]
+                }, {
+                    text: '推荐',
+                    items: [{
+                        text: 'learn-webpack',
+                        link: 'https://learn-docs.github.io/learn-webpack/'
+                    }, {
+                        text: '1024bibi.com bolg',
+                        link: 'https://1024bibi.com/'
+                    }, {
+                        text: 'vue-docs',
+                        link: 'https://learn-docs.github.io/vue-docs/'
+                    }, ]
                 }]
             }
         ],
