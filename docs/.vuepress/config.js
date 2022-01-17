@@ -66,6 +66,12 @@ module.exports = {
                 }, {
                     text: '编程题',
                     link: '/Programming/'
+                }, {
+                    text: 'Vue',
+                    link: '/Vue/'
+                }, {
+                    text: 'React',
+                    link: '/React/'
                 }, ]
             },
             {
@@ -207,14 +213,26 @@ module.exports = {
             '/HTTP/': [{
                 title: 'HTTP',
                 collapsable: true,
+				children: [{
+				    title: 'MDN-HTTP',
+				    path: 'MDN-HTTP'
+				}, ]
             }],
             '/front-end-engineering/': [{
                 title: '工程化',
                 collapsable: true,
+				children: [{
+				    title: '三分钟了解AST',
+				    path: '三分钟了解AST'
+				}, ]
             }],
             '/browser/': [{
                 title: '浏览器',
                 collapsable: true,
+				children: [{
+				    title: '浏览器解析渲染页面过程',
+				    path: '浏览器解析渲染页面过程'
+				}, ]
             }],
             '/Node/': [{
                 title: 'Node',
@@ -224,6 +242,14 @@ module.exports = {
                 title: '编程题',
                 collapsable: true,
             }],
+			'/Vue/': [{
+			    title: 'Vue',
+			    collapsable: true,
+			}],
+			'/React/': [{
+			    title: 'React',
+			    collapsable: true,
+			}],
             '/html-css-js-coding/': [{
                 title: 'html-css-js实践',
                 collapsable: true,
