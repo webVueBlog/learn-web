@@ -235,6 +235,10 @@ module.exports = {
 						path: '40道this'
 					},
 					{
+						title: '执行上下文',
+						path: '执行上下文'
+					},
+					{
 						title: '闭包',
 						path: '闭包'
 					},
