@@ -703,10 +703,747 @@ foo.call(obj)()
 2
 ```
 
+## 4.9 题目九
 
+```js
+var obj = {
+  a: 'obj',
+  foo: function () {
+    console.log('foo:', this.a)
+    return function () {
+      console.log('inner:', this.a)
+    }
+  }
+}
+var a = 'window'
+var obj2 = { a: 'obj2' }
 
+obj.foo()()
+obj.foo.call(obj2)()
+obj.foo().call(obj2)
+```
 
+- obj.foo()自然是打印出foo: obj和inner: window，这个没什么疑惑的。
+- obj.foo.(obj2)()其实也没啥可疑惑的了，打印出foo: obj2和inner: window(类似4.8)。
+- 那么obj.foo().call(obj2)就更没啥可疑惑的了，打印出foo: obj和inner: obj2。
 
+ ## 4.10 题目十
 
+```js
+var obj = {
+  a: 1,
+  foo: function (b) {
+    b = b || this.a
+    return function (c) {
+      console.log(this.a + b + c)
+    }
+  }
+}
+var a = 2
+var obj2 = { a: 3 }
 
+obj.foo(a).call(obj2, 1)
+obj.foo.call(obj2)(1)
+```
 
+执行结果：
+
+```js
+6
+6
+```
+
+## 5. 显式绑定的其它用法
+
+## 5.1 题目一
+
+```js
+function foo1 () {
+  console.log(this.a)
+}
+var a = 1
+var obj = {
+  a: 2
+}
+
+var foo2 = function () {
+  foo1.call(obj)
+}
+
+foo2()
+foo2.call(window)
+```
+
+这里foo2函数内部的函数foo1我们使用call来显式绑定obj，就算后面再用call来绑定window也没有用了。
+
+结果为：
+
+```js
+2
+2
+```
+
+## 5.2 题目二
+
+```js
+function foo1 (b) {
+  console.log(`${this.a} + ${b}`)
+  return this.a + b
+}
+var a = 1
+var obj = {
+  a: 2
+}
+
+var foo2 = function () {
+  return foo1.call(obj, ...arguments)
+}
+
+var num = foo2(3)
+console.log(num)
+```
+
+答案：
+
+```js
+'2 + 3'
+5
+```
+
+## 5.3 题目三
+
+```js
+function foo (item) {
+  console.log(item, this.a)
+}
+var obj = {
+  a: 'obj'
+}
+var a = 'window'
+var arr = [1, 2, 3]
+
+// arr.forEach(foo, obj)
+// arr.map(foo, obj)
+arr.filter(function (i) {
+  console.log(i, this.a)
+  return i > 2
+}, obj)
+```
+
+这里的答案为：
+
+```js
+1 "obj"
+2 "obj"
+3 "obj"
+```
+
+如果我们没有传递第二个参数obj的话，this.a打印出来的肯定就是window下的a了，但是传入了之后将obj显示绑定到第一个参数函数上。
+
+(关于arr.filter为什么也会打印出1, 2, 3，那是因为虽然我们使用了return i > 2，不过在执行阶段filter还是把每一项都打印出来)
+
+## 总结
+
+- this 永远指向最后调用它的那个对象
+- 匿名函数的this永远指向window
+- 使用.call()或者.apply()的函数是会直接执行的
+- bind()是创建一个新的函数，需要手动调用才会执行
+- 如果call、apply、bind接收到的第一个参数是空或者null、undefined的话，则会忽略这个参数
+- forEach、map、filter函数的第二个参数也是能显式绑定this的
+
+## 6. new 绑定
+
+使用new来调用一个函数，会构造一个新对象并把这个新对象绑定到调用函数中的this。
+
+## 6.1 题目一
+
+使用new来调用Person，构造了一个新对象person1并把它(person1)绑定到Person调用中的this。
+
+```js
+function Person (name) {
+  this.name = name
+}
+var name = 'window'
+var person1 = new Person('xx')
+console.log(person1.name)
+```
+
+答案：
+
+```js
+'xx'
+```
+
+## 6.2 题目二
+
+构造函数中不仅可以加属性，也可以加方法：
+
+```js
+function Person (name) {
+  this.name = name
+  this.foo1 = function () {
+    console.log(this.name)
+  }
+  this.foo2 = function () {
+    return function () {
+      console.log(this.name)
+    }
+  }
+}
+var person1 = new Person('person1')
+person1.foo1()
+person1.foo2()()
+```
+
+这道题的写法不得不让我想到题目4.9：
+
+```js
+var obj = {
+  a: 'obj',
+  foo: function () {
+    console.log('foo:', this.a)
+    return function () {
+      console.log('inner:', this.a)
+    }
+  }
+}
+```
+
+好像都是函数包裹着函数，没错，其实它们的解法都差不多。😁
+
+所以这道题的结果为：
+
+```js
+'person1'
+''
+```
+
+- 第一个this.name打印的肯定是person1对象中的name，也就是构造person1对象时传递进去的person1字符串。
+- 第二个this.name打印的应该就是window下的name了，但是这里window对象中并不存在name属性，所以打印出的是空。
+
+## 6.3 题目三
+
+```js
+var name = 'window'
+function Person (name) {
+  this.name = name
+  this.foo = function () {
+    console.log(this.name)
+    return function () {
+      console.log(this.name)
+    }
+  }
+}
+var person2 = {
+  name: 'person2',
+  foo: function() {
+    console.log(this.name)
+    return function () {
+      console.log(this.name)
+    }
+  }
+}
+  
+var person1 = new Person('person1')
+person1.foo()()
+person2.foo()()
+```
+
+在这道题中，person1.foo和person2就没有什么区别。
+
+打印出来的结果为：
+
+```js
+'person1'
+'window'
+'person2'
+'window'
+```
+
+## 6.4 题目四
+
+```js
+var name = 'window'
+function Person (name) {
+  this.name = name
+  this.foo = function () {
+    console.log(this.name)
+    return function () {
+      console.log(this.name)
+    }
+  }
+}
+var person1 = new Person('person1')
+var person2 = new Person('person2')
+
+person1.foo.call(person2)()
+person1.foo().call(person2)
+```
+
+所以答案很容易就出来了：
+
+```js
+'person2'
+'window'
+'person1'
+'person2'
+```
+
+## 7. 箭头函数绑定
+
+this 永远指向最后调用它的那个对象。
+
+但是对于箭头函数就不是这样咯，它里面的this是由外层作用域来决定的，且指向函数定义时的this而非执行时。
+
+箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined。
+
+## 7.1 题目一
+
+```js
+var obj = {
+  name: 'obj',
+  foo1: () => {
+    console.log(this.name)
+  },
+  foo2: function () {
+    console.log(this.name)
+    return () => {
+      console.log(this.name)
+    }
+  }
+}
+var name = 'window'
+obj.foo1()
+obj.foo2()()
+```
+
+这道题就非常有代表性，它明确了箭头函数内的this是由外层作用域决定的。
+
+对于obj.foo1()函数的调用，它的外层作用域是window，对象obj当然不属于作用域了(我们知道作用域只有全局作用域window和局部作用域函数)。所以会打印出window
+
+obj.foo2()()，首先会执行obj.foo2()，这不是个箭头函数，所以它里面的this是调用它的obj对象，因此打印出obj，而返回的匿名函数是一个箭头函数，它的this由外层作用域决定，那也就是函数foo2咯，那也就是它的this会和foo2函数里的this一样，就也打印出了obj。
+
+答案：
+
+```js
+'window'
+'obj'
+'obj'
+```
+
+## 7.2 题目二
+
+字面量对象中普通函数与箭头函数的区别: 只有一层函数的题目
+
+```js
+var name = 'window'
+var obj1 = {
+	name: 'obj1',
+	foo: function () {
+		console.log(this.name)
+	}
+}
+
+var obj2 = {
+	name: 'obj2',
+	foo: () => {
+		console.log(this.name)
+	}
+}
+
+obj1.foo()
+obj2.foo()
+```
+
+解题分析：
+
+不使用箭头函数的obj1.foo()是由obj1调用的，所以this.name为obj1。
+
+使用箭头函数的obj2.foo()的外层作用域是window，所以this.name为window。
+
+答案：
+
+```js
+'obj1'
+'window'
+```
+
+## 7.3 题目三
+
+obj1, window obj2, obj2 window, window window window 
+
+```js
+var name = 'window'
+var obj1 = {
+  name: 'obj1',
+  foo: function () {
+    console.log(this.name)
+    return function () {
+      console.log(this.name)
+    }
+  }
+}
+var obj2 = {
+  name: 'obj2',
+  foo: function () {
+    console.log(this.name)
+    return () => {
+      console.log(this.name)
+    }
+  }
+}
+var obj3 = {
+  name: 'obj3',
+  foo: () => {
+    console.log(this.name)
+    return function () {
+      console.log(this.name)
+    }
+  }
+}
+var obj4 = {
+  name: 'obj4',
+  foo: () => {
+    console.log(this.name)
+    return () => {
+      console.log(this.name)
+    }
+  }
+}
+
+obj1.foo()()
+obj2.foo()()
+obj3.foo()()
+obj4.foo()()
+```
+
+解题分析：
+
+- obj1.foo()()两层都是普通函数，类似于题目4.6，分别打印出obj1和window。
+- obj2.foo()()外层为普通函数，内层为箭头，类似于题目7.1，都是打印出obj2。
+- obj3.foo()()外层为箭头函数，内层为普通函数，箭头函数的this由外层作用域决定，因此为window，内层普通函数由调用者决定，调用它的是window，因此也为window。
+- obj4.foo()()两层都是箭头函数，第一个箭头函数的this由外层作用域决定，因此为window，第二个箭头函数的this也由外层作用域决定，它的外层作用域是第一个箭头函数，而第一个箭头函数的this是window，因此内层的this也是window。
+
+## 7.4 题目四
+
+```js
+var name = 'window'
+function Person (name) {
+  this.name = name
+  this.foo1 = function () {
+    console.log(this.name)
+  }
+  this.foo2 = () => {
+    console.log(this.name)
+  }
+}
+var person2 = {
+  name: 'person2',
+  foo2: () => {
+    console.log(this.name)
+  }
+}
+var person1 = new Person('person1')
+person1.foo1()
+person1.foo2()
+person2.foo2()
+```
+
+解题思路：
+
+- person1.foo1()是个普通函数，this由最后调用它的对象决定，即person1。
+- person1.foo2()为箭头函数，this由外层作用域决定，且指向函数定义时的this而非执行时，在这里它的外层作用域是函数Person，且这个是构造函数，并且使用了new来生成了对象person1，所以此时this的指向是为person1。
+- person2.foo2()字面量创建的的对象person2中的foo2是个箭头函数，由于person2是直接在window下创建的，你可以理解为它所在的作用域就是在window下，因此person2.foo2()内的this应该是window。
+
+答案：
+
+```js
+'person1'
+'person1'
+'window'
+```
+
+## 7.5 题目五
+
+```js
+var name = 'window'
+function Person (name) {
+  this.name = name
+  this.foo1 = function () {
+    console.log(this.name)
+    return function () {
+      console.log(this.name)
+    }
+  }
+  this.foo2 = function () {
+    console.log(this.name)
+    return () => {
+      console.log(this.name)
+    }
+  }
+  this.foo3 = () => {
+    console.log(this.name)
+    return function () {
+      console.log(this.name)
+    }
+  }
+  this.foo4 = () => {
+    console.log(this.name)
+    return () => {
+      console.log(this.name)
+    }
+  }
+}
+var person1 = new Person('person1')
+person1.foo1()()
+person1.foo2()()
+person1.foo3()()
+person1.foo4()()
+```
+
+解题分析：
+
+- person1.foo1()()两层都是普通函数，这个不再重复说了，打印出person1和window。(类似题目6.2)
+- person1.foo2()()第一层普通函数，它的this是由最后调用它的对象决定也就是person1，第二层为箭头函数，它的this由外层作用域决定，也就是foo2这个函数，因此也为person1。
+- person1.foo3()()第一层为箭头函数，this由外层作用域决定，因此为person1，第二层为普通函数，由最后调用者决定，因此为window。
+- person1.foo4()()两层都是箭头函数，this由外层作用域决定，所以都是person1。
+
+## 7.6 题目六
+
+箭头函数结合.call的题目
+
+箭头函数的this无法通过bind、call、apply来直接修改，但是可以通过改变作用域中this的指向来间接修改。
+
+```js
+var name = 'window'
+var obj1 = {
+  name: 'obj1',
+  foo1: function () {
+    console.log(this.name)
+    return () => {
+      console.log(this.name)
+    }
+  },
+  foo2: () => {
+    console.log(this.name)
+    return function () {
+      console.log(this.name)
+    }
+  }
+}
+var obj2 = {
+  name: 'obj2'
+}
+obj1.foo1.call(obj2)()
+obj1.foo1().call(obj2)
+obj1.foo2.call(obj2)()
+obj1.foo2().call(obj2)
+```
+
+解题分析：
+
+- obj1.foo1.call(obj2)()第一层为普通函数，并且通过.call改变了this指向为obj2，所以会打印出obj2，第二层为箭头函数，它的this和外层作用域中的this相同，因此也是obj2。
+- obj1.foo().call(obj2)第一层打印出obj1，第二层为箭头函数，使用了.call想要修改this的指向，但是并不能成功，因此.call(obj2)对箭头函数无效，还是打印出obj1。
+- obj1.foo2.call(obj2)()第一层为箭头函数，并且想要通过.call(obj2)改变this指向，但是无效，且它的外层作用域是window，所以会打印出window，第二层为普通函数，this是最后调用者window，所以也会打印出window。
+- obj1.foo2().call(obj2)第一层为箭头函数，外层作用域是window，打印出window，第二层为普通函数，且使用了.call(obj2)来改变this指向，所以打印出了obj2。
+
+## 总结
+
+来总结一下箭头函数需要注意的点吧：
+
+- 它里面的this是由外层作用域来决定的，且指向函数定义时的this而非执行时
+- 字面量创建的对象，作用域是window，如果里面有箭头函数属性的话，this指向的是window
+- 构造函数创建的对象，作用域是可以理解为是这个构造函数，且这个构造函数的this是指向新建的对象的，因此this指向这个对象。
+- 箭头函数的this是无法通过bind、call、apply来直接修改，但是可以通过改变作用域中this的指向来间接修改。
+
+优点
+
+- 箭头函数写代码拥有更加简洁的语法(当然也有人认为这是缺点)
+- this由外层作用域决定，所以在某些场合我们不需要写类似const that = this这样的代码
+
+### 避免使用的场景
+
+根据箭头函数的特性，所以我们应该避免在以下四种场景中使用它：
+
+使用箭头函数定义对象的方法
+
+```js
+let obj = {
+    value: 'xx',
+    getValue: () => console.log(this.value)
+}
+obj.getValue() // undefined
+```
+
+定义原型方法
+
+```js
+function Foo (value) {
+    this.value = value
+}
+Foo.prototype.getValue = () => console.log(this.value)
+
+const foo1 = new Foo(1)
+foo1.getValue() // undefined
+```
+
+构造函数使用箭头函数
+
+```js
+const Foo = (value) => {
+    this.value = value;
+}
+const foo1 = new Foo(1)
+// 事实上直接就报错了 Uncaught TypeError: Foo is not a constructor
+console.log(foo1);
+```
+
+作为事件的回调函数
+
+```js
+const button = document.getElementById('myButton');
+button.addEventListener('click', () => {
+    console.log(this === window); // => true
+    this.innerHTML = 'Clicked button';
+});
+```
+
+## 8. 综合题
+
+## 8.1 题目一
+
+字面量对象中的各种场景
+
+```js
+var name = 'window'
+var person1 = {
+  name: 'person1',
+  foo1: function () {
+    console.log(this.name)
+  },
+  foo2: () => console.log(this.name),
+  foo3: function () {
+    return function () {
+      console.log(this.name)
+    }
+  },
+  foo4: function () {
+    return () => {
+      console.log(this.name)
+    }
+  }
+}
+var person2 = { name: 'person2' }
+
+person1.foo1() // 'person1'
+person1.foo1.call(person2) // 'person2'
+
+person1.foo2() // 'window'
+person1.foo2.call(person2) // 'window'
+
+person1.foo3()() // 'window'
+person1.foo3.call(person2)() // 'window'
+person1.foo3().call(person2) // 'person2'
+
+person1.foo4()() // 'person1'
+person1.foo4.call(person2)() // 'person2'
+person1.foo4().call(person2) // 'person1'
+```
+
+## 8.2 题目二
+
+构造函数中的各种场景
+
+```js
+var name = 'window'
+function Person (name) {
+  this.name = name
+  this.foo1 = function () {
+    console.log(this.name)
+  },
+  this.foo2 = () => console.log(this.name),
+  this.foo3 = function () {
+    return function () {
+      console.log(this.name)
+    }
+  },
+  this.foo4 = function () {
+    return () => {
+      console.log(this.name)
+    }
+  }
+}
+var person1 = new Person('person1')
+var person2 = new Person('person2')
+
+person1.foo1() // 'person1'
+person1.foo1.call(person2) // 'person2'
+
+person1.foo2() // 'person1'
+person1.foo2.call(person2) // 'person1'
+
+person1.foo3()() // 'window'
+person1.foo3.call(person2)() // 'window'
+person1.foo3().call(person2) // 'person2'
+
+person1.foo4()() // 'person1'
+person1.foo4.call(person2)() // 'person2'
+person1.foo4().call(person2) // 'person1'
+```
+
+## 8.3 题目三
+
+```js
+var name = 'window'
+function Person (name) {
+  this.name = name
+  this.obj = {
+    name: 'obj',
+    foo1: function () {
+      return function () {
+        console.log(this.name)
+      }
+    },
+    foo2: function () {
+      return () => {
+        console.log(this.name)
+      }
+    }
+  }
+}
+var person1 = new Person('person1')
+var person2 = new Person('person2')
+
+person1.obj.foo1()() // 'window'
+person1.obj.foo1.call(person2)() // 'window'
+person1.obj.foo1().call(person2) // 'person2'
+
+person1.obj.foo2()() // 'obj'
+person1.obj.foo2.call(person2)() // 'person2'
+person1.obj.foo2().call(person2) // 'obj'
+```
+
+## 8.4 题目四
+
+```js
+function foo() {
+  console.log( this.a );
+}
+var a = 2;
+(function(){
+  "use strict";
+  foo();
+})();
+```
+
+答案并不是undefined，也不会报错，而是打印出了2。
+
+哈哈😄，其实这里是有一个迷惑点的，那就是"use strict"。
+
+我们知道，使用了"use strict"开启严格模式会使得"use strict"以下代码的this为undefined，也就是这里的立即执行函数中的this是undefined。
+
+但是调用foo()函数的依然是window，所以foo()中的this依旧是window，所以会打印出2。
+
+如果你是使用this.foo()调用的话，就会报错了，因为现在立即执行函数中的this是undefined。
+
+或者将"use strict"放到foo()函数里面，也会报错。
