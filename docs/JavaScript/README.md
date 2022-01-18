@@ -17,5 +17,11 @@
 - [40道this](/JavaScript/40道this)
 - [执行上下文](/JavaScript/执行上下文)
 - [闭包](/JavaScript/闭包)
+- [立即执行函数](/JavaScript/立即执行函数)
+
+
+
+
+
 
 

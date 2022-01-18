@@ -1,5 +1,7 @@
 > 点击勘误[issues](https://github.com/webVueBlog/learn-web/issues)，哪吒感谢大家的阅读
 
+[[toc]]
+
 ## 前期准备
 
 event loop它的执行顺序：
