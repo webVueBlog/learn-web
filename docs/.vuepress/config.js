@@ -234,6 +234,10 @@ module.exports = {
 						title: '40道this',
 						path: '40道this'
 					},
+					{
+						title: '闭包',
+						path: '闭包'
+					},
 				]
 			}],
 			'/HTTP/': [{

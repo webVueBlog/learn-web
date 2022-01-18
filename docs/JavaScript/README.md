@@ -15,6 +15,6 @@
 - [作用域](/JavaScript/作用域)
 - [防抖](/JavaScript/防抖)
 - [40道this](/JavaScript/40道this)
-
+- [闭包](/JavaScript/闭包)
 
 
