@@ -233,10 +233,10 @@ module.exports = {
                         title: '防抖',
                         path: '防抖'
                     },
-					{
-					    title: '节流',
-					    path: '节流'
-					},
+                    {
+                        title: '节流',
+                        path: '节流'
+                    },
                     {
                         title: '40道this',
                         path: '40道this'
@@ -252,6 +252,10 @@ module.exports = {
                     {
                         title: '立即执行函数',
                         path: '立即执行函数'
+                    },
+                    {
+                        title: '浅谈instanceof和typeof的实现原理',
+                        path: '浅谈instanceof和typeof的实现原理'
                     },
                 ]
             }],
@@ -317,25 +321,25 @@ module.exports = {
             '/coding/': [{
                 title: '实践操作',
                 collapsable: true,
-				children: [{
-				    title: '实现图片的懒加载',
-				    path: '实现图片的懒加载'
-				}, {
-				    title: '浏览器中实现剪切板复制内容的功能',
-				    path: '浏览器中实现剪切板复制内容的功能'
-				}, {
-				    title: '同一个ip下的多个端口下的cookie是共享的',
-				    path: '同一个ip下的多个端口下的cookie是共享的'
-				}, {
-				    title: 'textarea实现禁止拉伸',
-				    path: 'textarea实现禁止拉伸'
-				}, {
-				    title: '实现大文件上传和断点续传',
-				    path: '实现大文件上传和断点续传'
-				}, {
-				    title: '切片上传和断点续传',
-				    path: '切片上传和断点续传'
-				}, ]
+                children: [{
+                    title: '实现图片的懒加载',
+                    path: '实现图片的懒加载'
+                }, {
+                    title: '浏览器中实现剪切板复制内容的功能',
+                    path: '浏览器中实现剪切板复制内容的功能'
+                }, {
+                    title: '同一个ip下的多个端口下的cookie是共享的',
+                    path: '同一个ip下的多个端口下的cookie是共享的'
+                }, {
+                    title: 'textarea实现禁止拉伸',
+                    path: 'textarea实现禁止拉伸'
+                }, {
+                    title: '实现大文件上传和断点续传',
+                    path: '实现大文件上传和断点续传'
+                }, {
+                    title: '切片上传和断点续传',
+                    path: '切片上传和断点续传'
+                }, ]
             }],
             '/JavaScript-advanced-programming/': [{
                 title: 'JavaScript高级程序设计（第3版）',
@@ -380,10 +384,10 @@ module.exports = {
             '/ALG/': [{
                 title: '算法系列',
                 collapsable: true,
-				children: [{
-				    title: '两数之和',
-				    path: '两数之和'
-				}, ]
+                children: [{
+                    title: '两数之和',
+                    path: '两数之和'
+                }, ]
             }],
         }
     }
