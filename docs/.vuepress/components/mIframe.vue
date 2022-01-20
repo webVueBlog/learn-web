@@ -1,4 +1,3 @@
-<!-- .vuepress/components/mIframe.vue-->
 <template>
   <iframe
     class="m-iframe"

@@ -1,12 +1,11 @@
 {
     "devDependencies": {
         "@vuepress/plugin-back-to-top": "^1.9.5",
-        "@vuepress/plugin-medium-zoom": "^1.9.5",
         "@vuepress/plugin-nprogress": "^1.9.5",
-		"@vue/babel-preset-jsx": "^1.0.0",
+        "@vue/babel-preset-jsx": "^1.0.0",
         "node-sass": "^7.0.1",
         "sass-loader": "^12.4.0",
-		"ts-loader": "^6.0.0",
+        "ts-loader": "^6.0.0",
         "typescript": "^4.5.4",
         "vue-router": "^3.5.3",
         "vuepress": "^1.9.5",

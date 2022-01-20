@@ -1,7 +1,6 @@
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import store from './store/index.js';
-// import router from './router/index.js';
 import User from './views/index'
 
 export default ({

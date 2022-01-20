@@ -37,28 +37,6 @@ module.exports = {
                 ],
             },
         ],
-        [
-            'vuepress-plugin-medium-zoom',
-            {
-                delay: 1000,
-                options: {
-                    margin: 24,
-                    background: '#25272A',
-                    scrollOffset: 0,
-                },
-            },
-        ],
-        [
-            '@vuepress/medium-zoom',
-            {
-                selector: 'img.zoom-custom-imgs',
-                // medium-zoom options here
-                // See: https://github.com/francoischalifour/medium-zoom#options
-                options: {
-                    margin: 16
-                }
-            }
-        ],
         ["photo-swipe"],
         ['@vuepress/nprogress'],
         [
