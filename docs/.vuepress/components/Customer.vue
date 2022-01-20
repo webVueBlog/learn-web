@@ -6,7 +6,7 @@
 		</div>
 		<el-button type="primary" @click="toIndex">跳转</el-button>
 		<MyDialog/>
-		
+		<router-link :to="{ name: 'user' }">User</router-link>
 		<!-- 路由匹配到的组件将渲染在这里 -->
 	</div>
 </template>
@@ -34,7 +34,7 @@
 		},
 		methods: {
 			toIndex() {
-				this.$router.push({ path: 'homepage' })
+				this.$router.push({ name: 'user' })
 			}
 		}
 	}
