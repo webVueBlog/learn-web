@@ -3,12 +3,28 @@
         "@vuepress/plugin-back-to-top": "^1.9.5",
         "@vuepress/plugin-medium-zoom": "^1.9.5",
         "@vuepress/plugin-nprogress": "^1.9.5",
+        "node-sass": "^7.0.1",
+        "sass-loader": "^12.4.0",
+        "typescript": "^4.5.4",
+        "vue-router": "^3.5.3",
+        "vuepress": "^1.9.5",
         "vuepress-plugin-code-copy": "^1.0.6",
+        "vuepress-plugin-dehydrate": "^1.1.5",
         "vuepress-plugin-dynamic-title": "^1.0.0",
-        "vuepress": "^1.9.5"
+        "vuepress-plugin-photo-swipe": "^1.24.0",
+        "vuepress-plugin-social-share": "^1.1.0",
+        "vuepress-plugin-typescript": "^0.3.1",
+        "vuepress-types": "^0.9.4",
+        "vuex": "^3.6.2"
     },
     "scripts": {
         "docs:dev": "vuepress dev docs",
         "docs:build": "vuepress build docs"
+    },
+    "dependencies": {
+        "async-validator": "1.11.5",
+        "element-ui": "^2.15.6",
+        "vuepress-plugin-last-reading": "^1.0.0",
+        "vuepress-plugin-reading-progress": "^1.0.10"
     }
 }
