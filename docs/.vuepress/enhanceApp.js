@@ -16,7 +16,6 @@ export default ({
 		router
 	});
 	// Vue.prototype.$EventBus = new Vue();
-	router.beforeEach((to, from, next) => {})
 	// if (!isServer) {
 	// 	import('xxx/lib/xxxx.min.js').then(module => {
 	// 		Vue.use(module)

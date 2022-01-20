@@ -8,14 +8,14 @@ const routes = [
 	{
 		path: '/homepage',
 		name: 'homepage',
-		component: () => import('@/views/index.vue'),
+		component: () => import('@/public/views/index.vue'),
 		meta: { hidden: true, title: 'home' }
 	}
 ]
 
 //实例化VueRouter并将routes添加进去
 const router = new VueRouter({
-  mode: "history",
+  // mode: "history",
   routes
 })
 //抛出这个这个实例对象方便外部读取以及访问
