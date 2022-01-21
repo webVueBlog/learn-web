@@ -59,6 +59,9 @@ module.exports = {
 		],
 		['vuepress-plugin-code-copy', true]
 	],
+	markdown: {
+		lineNumbers: true
+	},
 	themeConfig: {
 		repo: 'https://github.com/webVueBlog/learn-web',
 		repoLabel: 'Github',
