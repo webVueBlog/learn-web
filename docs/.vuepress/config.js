@@ -37,7 +37,6 @@ module.exports = {
                 ],
             },
         ],
-        ["photo-swipe"],
         ['@vuepress/nprogress'],
         [
             'vuepress-plugin-typescript',
