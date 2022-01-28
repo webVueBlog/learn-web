@@ -20,7 +20,7 @@ export default {
       Object.assign(this.$data, this.$options.data());
       this.container.file = file;
     },
-    async handleUpload() {}
+    // async handleUpload() {}
   }
 };
 </script>

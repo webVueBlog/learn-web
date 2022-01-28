@@ -8,7 +8,6 @@ export default ({
     options, // the options for the root Vue instance
     router, // the router instance for the app
     siteData, // site metadata
-    isServer // 当前应用配置是处于 服务端渲染 或 客户端
 }) => {
     Vue.use(ElementUI);
     Vue.mixin({

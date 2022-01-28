@@ -11,7 +11,6 @@
         "vue-router": "^3.5.3",
         "vuepress": "^1.9.5",
         "vuepress-plugin-code-copy": "^1.0.6",
-        "vuepress-plugin-dehydrate": "^1.1.5",
         "vuepress-plugin-dynamic-title": "^1.0.0",
         "vuepress-plugin-social-share": "^1.1.0",
         "vuepress-plugin-typescript": "^0.3.1",
@@ -25,8 +24,6 @@
     "dependencies": {
         "async-validator": "1.11.5",
         "element-ui": "^2.15.6",
-        "fast-glob": "^3.2.11",
-        "globby": "^13.1.0",
         "vue-property-decorator": "^9.1.2",
         "vuepress-plugin-last-reading": "^1.0.0",
         "vuepress-plugin-reading-progress": "^1.0.10",
@@ -34,7 +31,6 @@
     },
     "name": "learn-web",
     "version": "1.0.0",
-    "main": "index.js",
     "repository": "git@github.com:webVueBlog/learn-web.git",
     "author": "webVueBlog <2979986590@qq.com>",
     "license": "MIT"

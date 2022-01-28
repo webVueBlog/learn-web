@@ -24,19 +24,6 @@ module.exports = {
                 buttonText: '确定'
             },
         }],
-        [
-            'vuepress-plugin-dehydrate',
-            {
-                // 禁用 SSR
-                noSSR: '404.html',
-                // 移除 scripts
-                noScript: [
-                    // 支持 glob patterns
-                    'foo/*.html',
-                    '**/static.html',
-                ],
-            },
-        ],
         ['@vuepress/nprogress'],
         [
             'vuepress-plugin-typescript',
@@ -188,6 +175,12 @@ module.exports = {
                     items: [{
                         text: 'learn-webpack',
                         link: 'https://learn-docs.github.io/learn-webpack/'
+                    }, {
+                        text: 'learn-React',
+                        link: 'https://webvueblog.github.io/learn-React/'
+                    }, {
+                        text: 'learn-TypeScript',
+                        link: 'https://webvueblog.github.io/learn-TypeScript/'
                     }, {
                         text: '1024bibi.com bolg',
                         link: 'https://1024bibi.com/'
