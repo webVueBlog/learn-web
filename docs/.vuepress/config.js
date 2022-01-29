@@ -298,6 +298,10 @@ module.exports = {
                         title: '浅谈instanceof和typeof的实现原理',
                         path: '浅谈instanceof和typeof的实现原理'
                     },
+                    {
+                        title: 'bind的实现',
+                        path: 'bind的实现'
+                    },
                 ]
             }],
             '/HTTP/': [{

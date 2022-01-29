@@ -25,7 +25,7 @@
 - [闭包](/JavaScript/闭包)
 - [立即执行函数](/JavaScript/立即执行函数)
 - [浅谈instanceof和typeof的实现原理](/JavaScript/浅谈instanceof和typeof的实现原理)
-
+- [bind的实现](/JavaScript/bind的实现)
 
 
 
