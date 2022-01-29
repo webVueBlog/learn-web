@@ -295,9 +295,21 @@ this instanceof fBound ? this : context
 
 ```js
 Function.prototype.bind2 = function () {
-  
-}
+  const args = Array.from(arguments);
+  const obj = args.shift();
+  const self = this;
+  const fn = function() {
+    return self.apply(
+      this instanceof fn ? this : obj,
+      args.concat(Array.from(arguments))
+    );
+  };
+
+  fn.prototype = Object.create(this.prototype);
+  return fn;
+};
 ```
 
+`Array.prototype.slice.call(arguments)` 的作用是将 arguments 转为数组形式
 
 - [JavaScript深入之bind的模拟实现](https://github.com/mqyqingfeng/Blog/issues/12)
