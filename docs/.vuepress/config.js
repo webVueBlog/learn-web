@@ -118,7 +118,7 @@ module.exports = {
                 items: [{
                     text: 'JavaScript书籍',
                     items: [{
-                        text: 'JavaScript高级程序设计（第3版）',
+                        text: 'JavaScript高级程序设计（第4版）',
                         link: '/JavaScript-advanced-programming/'
                     }, ]
                 }, {
@@ -390,8 +390,93 @@ module.exports = {
                 }, ]
             }],
             '/JavaScript-advanced-programming/': [{
-                title: 'JavaScript高级程序设计（第3版）',
+                title: 'JavaScript高级程序设计（第4版）',
                 collapsable: true,
+                children: [{
+                    title: '1章-什么是JavaScript',
+                    path: '1章-什么是JavaScript'
+                }, {
+                    title: '2章-HTML中的JavaScript',
+                    path: '2章-HTML中的JavaScript'
+                }, {
+                    title: '3章-语言基础',
+                    path: '3章-语言基础'
+                }, {
+                    title: '4章-变量与作用域与内存',
+                    path: '4章-变量与作用域与内存'
+                }, {
+                    title: '5章-基本引用类型',
+                    path: '5章-基本引用类型'
+                }, {
+                    title: '6章-集合引用类型',
+                    path: '6章-集合引用类型'
+                }, {
+                    title: '7章-迭代器与生成器',
+                    path: '7章-迭代器与生成器'
+                }, {
+                    title: '8章-对象与类与面向对象编程',
+                    path: '8章-对象与类与面向对象编程'
+                }, {
+                    title: '9章-代理与反射',
+                    path: '9章-代理与反射'
+                }, {
+                    title: '10章-函数',
+                    path: '10章-函数'
+                }, {
+                    title: '11章-期约与异步函数',
+                    path: '11章-期约与异步函数'
+                }, {
+                    title: '12章-BOM',
+                    path: '12章-BOM'
+                }, {
+                    title: '13章-客户端检测',
+                    path: '13章-客户端检测'
+                }, {
+                    title: '14章-DOM',
+                    path: '14章-DOM'
+                }, {
+                    title: '15章-DOM扩展',
+                    path: '15章-DOM扩展'
+                }, {
+                    title: '16章-DOM2和DOM3',
+                    path: '16章-DOM2和DOM3'
+                }, {
+                    title: '17章-事件',
+                    path: '17章-事件'
+                }, {
+                    title: '18章-动画与Canvas图形',
+                    path: '18章-动画与Canvas图形'
+                }, {
+                    title: '19章-表单脚本',
+                    path: '19章-表单脚本'
+                }, {
+                    title: '20章-JavaScriptAPI',
+                    path: '20章-JavaScriptAPI'
+                }, {
+                    title: '21章-错误处理与调试',
+                    path: '21章-错误处理与调试'
+                }, {
+                    title: '22章-处理XML',
+                    path: '22章-处理XML'
+                }, {
+                    title: '23章-JSON',
+                    path: '23章-JSON'
+                }, {
+                    title: '24章-网络请求与远程资源',
+                    path: '24章-网络请求与远程资源'
+                }, {
+                    title: '25章-客户端存储',
+                    path: '25章-客户端存储'
+                }, {
+                    title: '26章-模块',
+                    path: '26章-模块'
+                }, {
+                    title: '27章-工作者线程',
+                    path: '27章-工作者线程'
+                }, {
+                    title: '28章-最佳实践',
+                    path: '28章-最佳实践'
+                }, ]
             }],
             '/Webpack-Chinese-guide/': [{
                 title: 'Webpack 中文指南',
