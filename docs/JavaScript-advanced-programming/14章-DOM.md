@@ -443,14 +443,88 @@ div.removeAttribute("class");
 1. Element 类型是唯一使用 attributes 属性的 DOM 节点类型。
 2. 元素的每个属性都表示为一个 Attr 节点，并保存在这个 NamedNodeMap 对象中。
 
+NamedNodeMap 对象包含下列方法：
 
+1. getNamedItem(name)，返回 nodeName 属性等于 name 的节点；
+2. removeNamedItem(name)，删除 nodeName 属性等于 name 的节点；
+3. setNamedItem(node)，向列表中添加 node 节点，以其 nodeName 为索引；
+4. item(pos)，返回索引位置 pos 处的节点。
 
+取得元素 id 属性的值，
 
+```js
+let id = element.attributes.getNamedItem("id").nodeValue;
 
+// 使用中括号访问属性的简写形式
+let id = element.attributes["id"].nodeValue;
+```
 
+设置属性的值
 
+```js
+element.attributes["id"].nodeValue = "someOtherId";
+```
 
+删除属性
 
+```js
+let oldAttr = element.attributes.removeNamedItem("id");
+```
+
+接收一个属性节点，然后给元素添加一个新属性
+
+```js
+element.attributes.setNamedItem(newAttr);
+```
+
+> getAttribute()、removeAttribute()和 setAttribute()方法
+
+:::tip
+attributes 属性最有用的场景是需要迭代元素上所有属性的时候。
+:::
+
+## 创建元素
+
+document.createElement()方法创建新元素,会将其 ownerDocument 属性设置为 document
+
+```js
+let div = document.createElement("div");
+```
+
+## 元素后代
+
+childNodes属性包含元素所有的子节点，这些子节点可能是其他元素、文本节点、注释或处理指令。
+
+检测一下节点的 nodeType：
+
+```js
+for (let i = 0, len = element.childNodes.length; i < len; ++i) {
+ if (element.childNodes[i].nodeType == 1) {
+  // 执行某个操作 Element节点
+ }
+}
+```
+
+## Text 类型
+
+Text 节点由 Text 类型表示
+
+Text 类型的节点具有以下特征：
+
+1. nodeType 等于 3；
+2. nodeName 值为"#text"；
+3. nodeValue 值为节点中包含的文本；
+4. parentNode 值为 Element 对象；
+5. 不支持子节点。
+
+Text 节点中包含的文本可以通过 nodeValue 属性访问，也可以通过 data 属性访问，这两个属性包含相同的值
+
+1. appendData(text)，向节点末尾添加文本 text；
+2. deleteData(offset, count)，从位置 offset 开始删除 count 个字符；
+3. insertData(offset, text)，在位置 offset 插入 text；
+4. replaceData(offset, count, text)，用 text 替换从位置 offset 到 offset + count 的文本；
+5. splitText(offset)，在位置 offset 将当前文本节点拆分为两个文本节点；
+6. substringData(offset, count)，提取从位置 offset 到 offset + count 的文本。
 
 
 
