@@ -70,6 +70,66 @@ if (someNode.nodeType == 1){
 2. NodeList 是一个类数组对象，用于存储可以按位置存取的有序节点。
 3. 注意，NodeList 并不是 Array 的实例，但可以使用中括号访问它的值，而且它也有 length 属性。
 
+:::tip
+NodeList 对象独特的地方在于，它其实是一个对 DOM 结构的查询，因此 DOM 结构的变化会自动地在 NodeList 中反映出来。
+我们通常说 NodeList 是实时的活动对象，而不是第一次访问时所获得内容的快照。
+:::
+
+访问 NodeList 中的元素：
+
+```js
+let firstChild = someNode.childNodes[0]; 
+let secondChild = someNode.childNodes.item(1); 
+let count = someNode.childNodes.length;
+```
+
+转换为数组。比如：
+
+```js
+let arrayOfNodes = Array.prototype.slice.call(someNode.childNodes,0);
+```
+
+使用 ES6 的 Array.from()静态方法
+
+```js
+let arrayOfNodes = Array.from(someNode.childNodes);
+```
+
+1. 每个节点都有一个 parentNode 属性，指向其 DOM 树中的父元素。
+2. childNodes 中的所有节点都有同一个父元素，因此它们的 parentNode 属性都指向同一个节点。
+3. childNodes 列表中的每个节点都是同一列表中其他节点的同胞节点。
+4. 使用 previousSibling 和 nextSibling 可以在这个列表的节点间导航。
+5. 这个列表中第一个节点的 previousSibling 属性是 null，最后一个节点的nextSibling 属性也是 null
+
+:::tip
+注意，如果 childNodes 中只有一个节点，则它的 previousSibling 和 nextSibling 属性都是
+null。
+:::
+
+1. 父节点和它的第一个及最后一个子节点也有专门属性：firstChild 和 lastChild 分别指向childNodes 中的第一个和最后一个子节点。
+2. someNode.firstChild 的值始终等于 someNode.childNodes[0]，而 someNode.lastChild 的值始终等于 someNode.childNodes[someNode.childNodes.length-1]。
+3. 如果只有一个子节点，则 firstChild 和 lastChild 指向同一个节点。
+4. 如果没有子节点，则 firstChild 和 lastChild 都是 null。
+
+## 方法 hasChildNodes()
+
+hasChildNodes()，这个方法如果返回 true 则说明节点有一个或多个子节点。
+
+:::tip
+注意 虽然所有节点类型都继承了 Node，但并非所有节点都有子节点。
+:::
+
+有一个所有节点都共享的关系。ownerDocument 属性是一个指向代表整个文档的文档节点
+的指针。因为一个节点不可能同时存在于两个或者多个文档中。
+
+## 操纵节点
+
+
+
+
+
+
+
 
 
 
