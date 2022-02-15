@@ -124,6 +124,218 @@ hasChildNodes()，这个方法如果返回 true 则说明节点有一个或多�
 
 ## 操纵节点
 
+1. appendChild()，用于在 childNodes 列表末尾添加节点。
+2. appendChild()方法返回新添加的节点。
+
+```js
+let returnedNode = someNode.appendChild(newNode); 
+alert(returnedNode == newNode); // true 
+alert(someNode.lastChild == newNode); // true
+```
+
+3. 如果把文档中已经存在的节点传给 appendChild()，则这个节点会从之前的位置被转移到新位置。
+
+```js
+// 假设 someNode 有多个子节点
+let returnedNode = someNode.appendChild(someNode.firstChild); 
+alert(returnedNode == someNode.firstChild); // false 
+alert(returnedNode == someNode.lastChild); // true
+```
+
+> 把节点放到 childNodes 中的特定位置
+
+使用 insertBefore()方法。这个方法接收两个参数：要插入的节点和参照节点。
+
+```js
+// 作为最后一个子节点插入
+returnedNode = someNode.insertBefore(newNode, null); 
+alert(newNode == someNode.lastChild); // true 
+// 作为新的第一个子节点插入
+returnedNode = someNode.insertBefore(newNode, someNode.firstChild); 
+alert(returnedNode == newNode); // true 
+alert(newNode == someNode.firstChild); // true 
+// 插入最后一个子节点前面
+returnedNode = someNode.insertBefore(newNode, someNode.lastChild); 
+alert(newNode == someNode.childNodes[someNode.childNodes.length - 2]); // true
+```
+
+1. replaceChild()方法接收两个参数：要插入的节点和要替换的节点。
+2. 要替换的节点会被返回并从文档树中完全移除，要插入的节点会取而代之。
+
+```js
+// 替换第一个子节点
+let returnedNode = someNode.replaceChild(newNode, someNode.firstChild); 
+// 替换最后一个子节点
+returnedNode = someNode.replaceChild(newNode, someNode.lastChild);
+```
+
+## 移除节点 使用 removeChild()方法
+
+removeChild()方法。这个方法接收一个参数，即要移除的节点。被移除的节点会被返回
+
+```js
+// 删除第一个子节点
+let formerFirstChild = someNode.removeChild(someNode.firstChild); 
+// 删除最后一个子节点
+let formerLastChild = someNode.removeChild(someNode.lastChild);
+```
+
+1. cloneNode()会返回与调用它的节点一模一样的节点。
+2. cloneNode()方法接收一个布尔值参数，表示是否深复制。
+3. 复制返回的节点属于文档所有，但尚未指定父节点，所以可称为孤儿节点（orphan）。
+
+使用cloneNode()方法的两种方式：
+
+```js
+let deepList = myList.cloneNode(true); 
+alert(deepList.childNodes.length); // 3（IE9 之前的版本）或 7（其他浏览器）
+let shallowList = myList.cloneNode(false); 
+alert(shallowList.childNodes.length); // 0
+```
+
+:::tip
+注意 cloneNode()方法不会复制添加到 DOM 节点的 JavaScript 属性，比如事件处理程
+序。这个方法只复制 HTML 属性，以及可选地复制子节点。除此之外则一概不会复制。
+IE 在很长时间内会复制事件处理程序，这是一个 bug，所以推荐在复制前先删除事件处
+理程序。
+:::
+
+## normalize()
+
+这个方法唯一的任务就是处理文档子树中的文本节点。
+
+在节点上调用 normalize()方法会检测这个节点的所有后代
+
+1. 如果发现空文本节点，则将其删除；
+2. 如果两个同胞节点是相邻的，则将其合并为一个文本节点。
+
+## Document 类型
+
+Document 类型是 JavaScript 中表示文档节点的类型
+
+1. 在浏览器中，文档对象 document 是HTMLDocument 的实例（HTMLDocument 继承 Document），表示整个 HTML 页面。
+2. document 是 window对象的属性，因此是一个全局对象。
+
+Document 类型的节点有以下特征：
+ 
+1.  等于 9；  
+2.  nodeName 值为"#document"；  
+3.  nodeValue 值为 null；  
+4.  parentNode 值为 null；  
+5.  ownerDocument 值为 null；  
+6.  子节点可以是 DocumentType（最多一个）、Element（最多一个）、ProcessingInstruction或 Comment 类型。
+
+## 文档子节点
+
+提供了两个访问子节点的快捷方式
+
+1. 第一个是 documentElement 属性，始终指向 HTML 页面中的`<html>`元素。
+2. 虽然 document.childNodes 中始终有`<html>`元素
+
+`<html>`元素。
+
+这个元素既可以通过documentElement 属性获取，也可以通过 childNodes 列表访问
+
+```js
+let html = document.documentElement; // 取得对<html>的引用
+alert(html === document.childNodes[0]); // true 
+alert(html === document.firstChild); // true
+```
+
+`<body>`元素
+
+```js
+let body = document.body; // 取得对<body>的引用
+```
+
+> 所有主流浏览器都支持 document.documentElement 和 document.body。
+
+Document 类型另一种可能的子节点是 DocumentType。
+`<!doctype>`标签是文档中独立的部分，其信息可以通过 doctype 属性（在浏览器中是 document.doctype）来访问
+
+```js
+let doctype = document.doctype; // 取得对<!doctype>的引用
+```
+
+> 严格来讲出现在`<html>`元素外面的注释也是文档的子节点，它们的类型是 Comment。
+
+## 文档信息
+
+```js
+// 读取文档标题
+let originalTitle = document.title; 
+// 修改文档标题
+document.title = "New page title";
+```
+
+1. URL 包含当前页面的完整 URL（地址栏中的 URL）
+2. domain 包含页面的域名
+3. referrer 包含链接到当前页面的那个页面的 URL(如果当前页面没有来源，则 referrer 属性包含空字符串。)
+
+```js
+// 取得完整的 URL 
+let url = document.URL; 
+// 取得域名
+let domain = document.domain; 
+// 取得来源
+let referrer = document.referrer;
+```
+
+## 定位元素
+
+`getElementById()`和 `getElementsByTagName()`就是 Document 类型提供的两个方法。
+
+1. getElementById()方法接收一个参数，即要获取元素的 ID，如果找到了则返回这个元素，如果没找到则返回 null。
+2. getElementsByTagName()获取元素引用的方法。这个方法接收一个参数，即要获取元素的标签名，返回包含零个或多个元素的 NodeList。
+
+在 HTML 文档中，这个方法返回一个HTMLCollection 对象。
+
+```js
+let images = document.getElementsByTagName("img");
+// 这里把返回的 HTMLCollection 对象保存在了变量 images 中
+```
+
+```js
+alert(images.length); // 图片数量
+alert(images[0].src); // 第一张图片的 src 属性
+alert(images.item(0).src); // 同上
+```
+
+HTMLCollection 对象还有一个额外的方法 namedItem()，可通过标签的 name 属性取得某一项
+的引用。
+
+```js
+<img src="myimage.gif" name="myImage">
+let myImage = images.namedItem("myImage");
+let myImage = images["myImage"];
+```
+
+```js
+要取得文档中的所有元素，可以给 getElementsByTagName()传入*。
+```
+
+getElementsByName()方法会返回具有给定 name 属性的所有元素。
+
+> getElementsByName()方法最常用于单选按钮
+
+## 特殊集合
+
+都是 HTMLCollection 的实例
+
+1. document.anchors 包含文档中所有带 name 属性的`<a>`元素。
+2. document.forms 包含文档中所有`<form>`元素
+3. document.images 包含文档中所有`<img>`元素
+4. document.links 包含文档中所有带 href 属性的`<a>`元素。
+
+## DOM 兼容性检测
+
+- DOM Level 1 在 document.implementation 上只定义了一个方法，即 hasFeature()。
+- 这个方法接收两个参数：特性名称和 DOM 版本。
+- 如果浏览器支持指定的特性和版本，则 hasFeature()方法返回true
+
+```js
+let hasXmlDom = document.implementation.hasFeature("XML", "1.0");
+```
 
 
 
