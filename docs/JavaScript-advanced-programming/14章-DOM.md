@@ -333,27 +333,115 @@ getElementsByName()方法会返回具有给定 name 属性的所有元素。
 - 这个方法接收两个参数：特性名称和 DOM 版本。
 - 如果浏览器支持指定的特性和版本，则 hasFeature()方法返回true
 
+支持指定的特性和版本
+
 ```js
 let hasXmlDom = document.implementation.hasFeature("XML", "1.0");
 ```
 
+hasFeature()目前这个方法已经被废弃
 
+## 文档写入
 
+向网页输出流中写入内容。对应 4 个方法：write()、writeln()、open()和 close()。
 
+1. write()和 writeln()方法都接收一个字符串参数
+2. write()简单地写入文本
+3. writeln()还会在字符串末尾追加一个换行符（\n）
 
+使用了 window.onload 事件处理程序，将调用 document.write()的函数推迟到页面加载完毕后执行。会重写整个页面内容。
 
+open()和 close()方法分别用于打开和关闭网页输出流。
 
+## Element 类型
 
+Element 类型的节点具有以下特征：
 
+1. nodeType 等于 1；
+2. nodeName 值为元素的标签名；
+3. nodeValue 值为 null；
+4. parentNode 值为 Document 或 Element 对象；
+5. 子节点可以是 Element、Text、Comment、ProcessingInstruction、CDATASection、EntityReference 类型
 
+取得这个元素的标签名：
 
+```js
+<div id="myDiv"></div>
 
+let div = document.getElementById("myDiv");
+alert(div.tagName); // "DIV"
+alert(div.tagName == div.nodeName); // true
+```
 
+1. 在 HTML 中，元素标签名始终以全大写表示
+2. 在 XML（包括 XHTML）中，标签名始终与源代码中的大小写一致.
 
+## HTML 元素
 
+1. id，元素在文档中的唯一标识符；
+2. title，包含元素的额外信息，通常以提示条形式展示；
+3. lang，元素内容的语言代码（很少用）；
+4. dir，语言的书写方向（"ltr"表示从左到右，"rtl"表示从右到左，同样很少用）；
+5. className，相当于 class 属性，用于指定元素的 CSS 类
 
+## 取得属性
 
+DOM 方法主要有 3 个：getAttribute()、setAttribute()和 removeAttribute()
 
+```js
+let div = document.getElementById("myDiv");
+alert(div.getAttribute("id")); // "myDiv"
+alert(div.getAttribute("class")); // 如果 不存在，返回null
+```
+
+:::tip
+根据 HTML5 规范的要求，自定义属性名应该前缀 `data-` 以方便验证。
+:::
+
+1. 在使用 getAttribute()访问 style 属性时，返回的是 CSS 字符串。
+2. 在通过 DOM 对象的属性访问时，style 属性返回的是一个（CSSStyleDeclaration）对象。
+3. getAttribute()访问事件属性，则返回的是字符串形式的源代码。
+4. 通过 DOM 对象的属性访问事件属性时返回的则是一个 JavaScript函数（未指定该属性则返回 null）。
+
+> getAttribute()主要用于取得自定义属性的值。
+
+## 设置属性
+
+setAttribute()，这个方法接收两个参数：要设置的属性名和属性的值。
+
+1. 如果属性已经存在，则 setAttribute()会以指定的值替换原来的值；
+2. 如果属性不存在，则 setAttribute()会以指定的值创建该属性。
+3. setAttribute()适用于 HTML 属性，也适用于自定义属性。
+
+```js
+div.setAttribute("id", "someOtherId");
+div.setAttribute("class", "ft");
+div.setAttribute("title", "Some other text");
+div.setAttribute("lang","fr");
+div.setAttribute("dir", "rtl");
+div.id = "someOtherId";
+div.align = "left";
+```
+
+:::tip
+注意，在 DOM 对象上添加自定义属性，如下面的例子所示，不会自动让它变成元素的属性
+:::
+
+```js
+div.mycolor = "red";
+alert(div.getAttribute("mycolor")); // null（IE 除外）
+```
+
+removeAttribute()用于从元素中删除属性
+
+```js
+div.removeAttribute("class");
+```
+
+## attributes 属性
+
+1. Element 类型是唯一使用 attributes 属性的 DOM 节点类型。
+2. 元素的每个属性都表示为一个 Attr 节点，并保存在这个 NamedNodeMap 对象中。
 
 
 
