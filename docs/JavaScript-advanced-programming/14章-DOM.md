@@ -944,16 +944,404 @@ document.body.appendChild(table);
 - deleteRow(pos)，删除给定位置的行；
 - insertRow(pos)，在行集合中给定位置插入一行。
 
-
 `<tbody>`元素添加了以下属性和方法：
  
 - rows，包含`<tbody>`元素中所有行的 HTMLCollection；
 - deleteRow(pos)，删除给定位置的行；
 - insertRow(pos)，在行集合中给定位置插入一行，返回该行的引用。
-- `<tr>`元素添加了以下属性和方法：
+
+`<tr>`元素添加了以下属性和方法：
+
 - cells，包含`<tr>`元素所有表元的 HTMLCollection；  
 - deleteCell(pos)，删除给定位置的表元；
 - insertCell(pos)，在表元集合给定位置插入一个表元，返回该表元的引用
+
+```js
+// 创建表格
+let table = document.createElement("table"); 
+table.border = 1; 
+table.width = "100%"; 
+// 创建表体
+let tbody = document.createElement("tbody"); 
+table.appendChild(tbody); 
+// 创建第一行
+tbody.insertRow(0); 
+tbody.rows[0].insertCell(0); 
+tbody.rows[0].cells[0].appendChild(document.createTextNode("Cell 1,1")); 
+tbody.rows[0].insertCell(1); 
+tbody.rows[0].cells[1].appendChild(document.createTextNode("Cell 2,1")); 
+// 创建第二行
+tbody.insertRow(1); 
+tbody.rows[1].insertCell(0); 
+tbody.rows[1].cells[0].appendChild(document.createTextNode("Cell 1,2")); 
+tbody.rows[1].insertCell(1); 
+tbody.rows[1].cells[1].appendChild(document.createTextNode("Cell 2,2")); 
+// 把表格添加到文档主体
+document.body.appendChild(table);
+```
+
+## 使用 NodeList
+
+NodeList 对象和相关的 NamedNodeMap、HTMLCollection
+
+3 个集合类型都是“实时的”，意味着文档结构的变化会实时地在它们身上反映出来，因此它们的值始终代表最新的状态
+
+```js
+let divs = document.getElementsByTagName("div"); 
+for (let i = 0, len = divs.length; i < len; ++i) { 
+ let div = document.createElement("div"); 
+ document.body.appendChild(div); 
+}
+```
+
+```js
+let divs = document.getElementsByTagName("div"); 
+for (let i = divs.length - 1; i >= 0; --i) { 
+ let div = document.createElement("div"); 
+ document.body.appendChild(div); 
+}
+```
+
+:::tip
+一般来说，最好限制操作 NodeList 的次数。因为每次查询都会搜索整个文档，所以最好把查询到
+的 NodeList 缓存起来。
+:::
+
+## MutationObserver 接口
+
+DOM 规范中的 MutationObserver 接口，可以在 DOM 被修改时异步执行回调。
+
+### 基本用法
+
+MutationObserver 的实例要通过调用 MutationObserver 构造函数并传入一个回调函数来创建：
+
+```js
+let observer = new MutationObserver(() => console.log('DOM was mutated!'));
+```
+
+### observe()方法
+
+新创建的 MutationObserver 实例不会关联 DOM 的任何部分。要把这个 observer 与 DOM 关
+联起来，需要使用 observe()方法。这个方法接收两个必需的参数：要观察其变化的 DOM 节点，以及
+一个 MutationObserverInit 对象。
+
+MutationObserverInit 对象用于控制观察哪些方面的变化，是一个键/值对形式配置选项的字典。
+
+例如，下面的代码会创建一个观察者（observer）并配置它观察`<body>`元素上的属性变化：
+
+```js
+let observer = new MutationObserver(() => console.log('<body> attributes changed')); 
+observer.observe(document.body, { attributes: true });
+```
+
+```js
+let observer = new MutationObserver(() => console.log('<body> attributes changed')); 
+observer.observe(document.body, { attributes: true }); 
+document.body.className = 'foo'; 
+console.log('Changed body class'); 
+// Changed body class 
+// <body> attributes changed
+```
+
+### 回调与 MutationRecord
+
+每个回调都会收到一个 MutationRecord 实例的数组。MutationRecord 实例包含的信息包括发
+生了什么变化，以及 DOM 的哪一部分受到了影响。因为回调执行之前可能同时发生多个满足观察条件
+的事件，所以每次执行回调都会传入一个包含按顺序入队的 MutationRecord 实例的数组。
+下面展示了反映一个属性变化的 MutationRecord 实例的数组：
+
+
+```js
+let observer = new MutationObserver( 
+ (mutationRecords) => console.log(mutationRecords));
+observer.observe(document.body, { attributes: true }); 
+document.body.setAttribute('foo', 'bar'); 
+// [ 
+// { 
+// addedNodes: NodeList [],
+// attributeName: "foo", 
+// attributeNamespace: null, 
+// nextSibling: null, 
+// oldValue: null, 
+// previousSibling: null 
+// removedNodes: NodeList [], 
+// target: body 
+// type: "attributes" 
+// } 
+// ]
+```
+
+涉及命名空间的类似变化：
+
+```js
+let observer = new MutationObserver( 
+ (mutationRecords) => console.log(mutationRecords)); 
+observer.observe(document.body, { attributes: true }); 
+document.body.setAttributeNS('baz', 'foo', 'bar'); 
+// [ 
+// { 
+// addedNodes: NodeList [], 
+// attributeName: "foo", 
+// attributeNamespace: "baz", 
+// nextSibling: null, 
+// oldValue: null, 
+// previousSibling: null 
+// removedNodes: NodeList [], 
+// target: body 
+// type: "attributes" 
+// } 
+// ]
+```
+
+变化事件发生的顺序：
+
+```js
+let observer = new MutationObserver( 
+ (mutationRecords) => console.log(mutationRecords)); 
+observer.observe(document.body, { attributes: true }); 
+document.body.className = 'foo'; 
+document.body.className = 'bar'; 
+document.body.className = 'baz'; 
+// [MutationRecord, MutationRecord, MutationRecord]
+```
+
+MutationRecord 实例的属性。
+
+```js
+target 
+被修改影响的目标节点
+
+type 
+字符串，表示变化的类型："attributes"、"characterData"或"childList"
+
+oldValue 
+如果在 MutationObserverInit 对象中启用（attributeOldValue 或 characterData OldValue
+为 true），"attributes"或"characterData"的变化事件会设置这个属性为被替代的值
+"childList"类型的变化始终将这个属性设置为 null
+
+attributeName 
+对于"attributes"类型的变化，这里保存被修改属性的名字
+其他变化事件会将这个属性设置为 null
+
+attributeNamespace 
+对于使用了命名空间的"attributes"类型的变化，这里保存被修改属性的名字
+其他变化事件会将这个属性设置为 null
+
+addedNodes 
+对于"childList"类型的变化，返回包含变化中添加节点的 NodeList
+默认为空 NodeList
+
+removedNodes 
+对于"childList"类型的变化，返回包含变化中删除节点的 NodeList
+默认为空 NodeList
+
+previousSibling 
+对于"childList"类型的变化，返回变化节点的前一个同胞 Node 
+默认为 null
+
+nextSibling 
+对于"childList"类型的变化，返回变化节点的后一个同胞 Node
+默认为 null
+```
+
+传给回调函数的第二个参数是观察变化的 MutationObserver 的实例，演示如下：
+
+```js
+let observer = new MutationObserver( 
+ (mutationRecords, mutationObserver) => console.log(mutationRecords,
+mutationObserver)); 
+observer.observe(document.body, { attributes: true }); 
+document.body.className = 'foo'; 
+// [MutationRecord], MutationObserver
+```
+
+### disconnect()方法
+
+```js
+let observer = new MutationObserver(() => console.log('<body> attributes changed')); 
+observer.observe(document.body, { attributes: true }); 
+document.body.className = 'foo'; 
+observer.disconnect(); 
+document.body.className = 'bar'; 
+//（没有日志输出）
+```
+
+要想让已经加入任务队列的回调执行，可以使用 setTimeout()让已经入列的回调执行完毕再调用
+disconnect()：
+
+```js
+let observer = new MutationObserver(() => console.log('<body> attributes changed')); 
+observer.observe(document.body, { attributes: true });
+document.body.className = 'foo'; 
+setTimeout(() => { 
+ observer.disconnect(); 
+ document.body.className = 'bar'; 
+}, 0); 
+// <body> attributes changed
+```
+
+### 复用 MutationObserver
+
+多次调用 observe()方法，可以复用一个 MutationObserver 对象观察多个不同的目标节点。
+此时，MutationRecord 的 target 属性可以标识发生变化事件的目标节点。
+
+```js
+let observer = new MutationObserver( 
+ (mutationRecords) => console.log(mutationRecords.map((x) => 
+x.target))); 
+// 向页面主体添加两个子节点
+let childA = document.createElement('div'), 
+ childB = document.createElement('span'); 
+document.body.appendChild(childA); 
+document.body.appendChild(childB); 
+// 观察两个子节点
+observer.observe(childA, { attributes: true }); 
+observer.observe(childB, { attributes: true }); 
+// 修改两个子节点的属性
+childA.setAttribute('foo', 'bar'); 
+childB.setAttribute('foo', 'bar'); 
+// [<div>, <span>] 
+disconnect()方法是一个“一刀切”的方案，调用它会停止观察所有目标：
+let observer = new MutationObserver( 
+ (mutationRecords) => console.log(mutationRecords.map((x) => 
+x.target))); 
+// 向页面主体添加两个子节点
+let childA = document.createElement('div'), 
+ childB = document.createElement('span'); 
+document.body.appendChild(childA); 
+document.body.appendChild(childB); 
+// 观察两个子节点
+observer.observe(childA, { attributes: true }); 
+observer.observe(childB, { attributes: true }); 
+observer.disconnect(); 
+// 修改两个子节点的属性
+childA.setAttribute('foo', 'bar'); 
+childB.setAttribute('foo', 'bar'); 
+// （没有日志输出）
+```
+
+## 重用 MutationObserver
+
+调用 disconnect()并不会结束 MutationObserver 的生命。
+
+先断开然后又恢复了观察者与`<body>`元素的关联：
+
+```js
+let observer = new MutationObserver(() => console.log('<body> attributes 
+changed')); 
+observer.observe(document.body, { attributes: true }); 
+// 这行代码会触发变化事件
+document.body.setAttribute('foo', 'bar'); 
+setTimeout(() => { 
+ observer.disconnect(); 
+ // 这行代码不会触发变化事件
+ document.body.setAttribute('bar', 'baz'); 
+}, 0); 
+setTimeout(() => { 
+ // Reattach 
+ observer.observe(document.body, { attributes: true }); 
+ // 这行代码会触发变化事件
+ document.body.setAttribute('baz', 'qux'); 
+}, 0); 
+// <body> attributes changed 
+// <body> attributes changed
+```
+
+### MutationObserverInit 与观察范围
+
+MutationObserverInit 对象用于控制对目标节点的观察范围。
+
+MutationObserverInit 对象的属性。
+
+```js
+subtree 
+布尔值，表示除了目标节点，是否观察目标节点的子树（后代）
+如果是 false，则只观察目标节点的变化；如果是 true，则观察目标节点及其整个子树
+默认为 false
+
+attributes 
+布尔值，表示是否观察目标节点的属性变化
+默认为 false
+
+attributeFilter 
+字符串数组，表示要观察哪些属性的变化
+把这个值设置为 true 也会将 attributes 的值转换为 true 
+默认为观察所有属性
+
+attributeOldValue 
+布尔值，表示 MutationRecord 是否记录变化之前的属性值
+把这个值设置为 true 也会将 attributes 的值转换为 true 
+默认为 false
+
+characterData 
+布尔值，表示修改字符数据是否触发变化事件
+默认为 false
+
+characterDataOldValue 
+布尔值，表示 MutationRecord 是否记录变化之前的字符数据
+把这个值设置为 true 也会将 characterData 的值转换为 true 
+默认为 false
+
+childList 
+布尔值，表示修改目标节点的子节点是否触发变化事件
+默认为 false
+```
+
+:::tip
+注意 在调用 observe()时，MutationObserverInit 对象中的 attribute、characterData
+和 childList 属性必须至少有一项为 true（无论是直接设置这几个属性，还是通过设置
+attributeOldValue 等属性间接导致它们的值转换为 true）。否则会抛出错误，因为没
+有任何变化事件可能触发回调。
+:::
+
+## 观察属性
+
+1. MutationObserver 可以观察节点属性的添加、移除和修改。
+2. 要为属性变化注册回调，需要在MutationObserverInit 对象中将 attributes 属性设置为 true
+
+```js
+let observer = new MutationObserver( 
+ (mutationRecords) => console.log(mutationRecords)); 
+observer.observe(document.body, { attributes: true }); 
+// 添加属性 
+document.body.setAttribute('foo', 'bar'); 
+// 修改属性
+document.body.setAttribute('foo', 'baz'); 
+// 移除属性
+document.body.removeAttribute('foo'); 
+// 以上变化都被记录下来了
+// [MutationRecord, MutationRecord, MutationRecord]
+```
+
+使用 attributeFilter 属性来设置白名单，即一个属性名字符串数组：
+
+```js
+let observer = new MutationObserver( 
+ (mutationRecords) => console.log(mutationRecords)); 
+observer.observe(document.body, { attributeFilter: ['foo'] }); 
+// 添加白名单属性
+document.body.setAttribute('foo', 'bar'); 
+// 添加被排除的属性
+document.body.setAttribute('baz', 'qux');
+// 只有 foo 属性的变化被记录了
+// [MutationRecord]
+```
+
+如果想在变化记录中保存属性原来的值，可以将 attributeOldValue 属性设置为 true：
+
+```js
+let observer = new MutationObserver( 
+ (mutationRecords) => console.log(mutationRecords.map((x) => x.oldValue))); 
+observer.observe(document.body, { attributeOldValue: true }); 
+document.body.setAttribute('foo', 'bar'); 
+document.body.setAttribute('foo', 'baz'); 
+document.body.setAttribute('foo', 'qux'); 
+// 每次变化都保留了上一次的值
+// [null, 'bar', 'baz']
+```
+
+
+
 
 
 
