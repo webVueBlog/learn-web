@@ -121,18 +121,6 @@ module.exports = {
                         text: 'JavaScript高级程序设计（第4版）',
                         link: '/JavaScript-advanced-programming/'
                     }, ]
-                }, {
-                    text: 'webpack书籍',
-                    items: [{
-                        text: 'Webpack 中文指南',
-                        link: '/Webpack-Chinese-guide/'
-                    }, ]
-                }, {
-                    text: 'TypeScript书籍',
-                    items: [{
-                        text: 'TypeScript入门与实践',
-                        link: '/Getting-started-with-TypeScript/'
-                    }, ]
                 }]
             },
             {
