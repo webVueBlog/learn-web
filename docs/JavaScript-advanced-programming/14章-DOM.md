@@ -697,7 +697,114 @@ ul.appendChild(fragment);
 
 ## Attr 类型
 
-元素数据在 DOM 中通过 Attr 类型表示。
+1. 元素数据在 DOM 中通过 Attr 类型表示。
+2. Attr 类型构造函数和原型在所有浏览器中都可以直接访问。
+
+Attr 节点具有以下特征：
+
+1. nodeType 等于 2；
+2. nodeName 值为属性名；
+3. nodeValue 值为属性值；
+4. parentNode 值为 null；
+5. 在 HTML 中不支持子节点
+6. 在 XML 中子节点可以是 Text 或 EntityReference。
+
+:::tip
+Attr 节点很少直接被引用
+:::
+
+getAttribute()、removeAttribute()和 setAttribute()方法操作属性。
+
+> Attr 对象上有 3 个属性：name、value 和 specified。
+
+1. name 包含属性名（与 nodeName一样）
+2. value 包含属性值（与 nodeValue 一样）
+3. specified 是一个布尔值，表示属性使用的是默认值还是被指定的值。
+
+可以使用 document.createAttribute()方法创建新的 Attr 节点，参数为属性名
+
+```js
+let attr = document.createAttribute("align"); 
+attr.value = "left"; 
+element.setAttributeNode(attr); 
+alert(element.attributes["align"].value); // "left" 
+alert(element.getAttributeNode("align").value); // "left" 
+alert(element.getAttribute("align")); // "left"
+```
+
+## DOM 编程
+
+通过 HTML 代码能实现的，也一样能通过 JavaScript 实现。
+
+### 动态脚本
+
+有两种方式通过`<script>`动态为网页添加脚本：引入外部文件和直接插入源代码。
+
+```js
+let script = document.createElement("script"); 
+script.src = "foo.js"; 
+document.body.appendChild(script);
+```
+
+抽象为一个函数:
+
+```js
+function loadScript(url) {
+	let script = document.createElement("script");
+	script.src = url;
+	document.body.appendChild(script);
+}
+```
+
+> 怎么能知道脚本什么时候加载完？这个问题并没有标准答案。
+
+另一个动态插入 JavaScript 的方式是嵌入源代码
+
+```js
+let script = document.createElement("script"); 
+script.appendChild(document.createTextNode("function sayHi(){alert('hi');}")); 
+document.body.appendChild(script);
+```
+
+IE 对`<script>`元素做了特殊处理
+
+```js
+var script = document.createElement("script"); 
+script.text = "function sayHi(){alert('hi');}"; 
+document.body.appendChild(script);
+```
+
+兼容：
+
+```js
+var script = document.createElement("script"); 
+var code = "function sayHi(){alert('hi');}"; 
+try { 
+ script.appendChild(document.createTextNode("code")); 
+} catch (ex){ 
+ script.text = "code"; 
+} 
+document.body.appendChild(script);
+```
+
+抽象出一个跨浏览器的函数：
+
+```js
+function loadScriptString(code){ 
+ var script = document.createElement("script"); 
+ script.type = "text/javascript"; 
+ try { 
+ script.appendChild(document.createTextNode(code)); 
+ } catch (ex){ 
+ script.text = code; 
+ } 
+ document.body.appendChild(script); 
+}
+```
+
+
+
+
 
 
 
