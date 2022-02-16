@@ -34,7 +34,7 @@ let img = document.body.querySelector("img.button");
 1. 在 Document 上使用 querySelector()方法时，会从文档元素开始搜索；
 2. 在 Element 上使用querySelector()方法时，则只会从当前元素的后代中查询。
 
-
+### querySelectorAll()
 
 
 
