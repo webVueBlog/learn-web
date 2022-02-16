@@ -526,6 +526,12 @@ Text 节点中包含的文本可以通过 nodeValue 属性访问，也可以通�
 5. splitText(offset)，在位置 offset 将当前文本节点拆分为两个文本节点；
 6. substringData(offset, count)，提取从位置 offset 到 offset + count 的文本。
 
+```js
+// 取得文本节点的引用
+let textNode = div.firstChild; // 或 div.childNodes[0]
+div.firstChild.nodeValue = "Some other message";
+```
+
 
 
 
