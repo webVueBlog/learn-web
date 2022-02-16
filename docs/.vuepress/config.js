@@ -350,6 +350,9 @@ module.exports = {
 				}, {
 					title: 'vue-ts项目中Emit的用法',
 					path: 'vue-ts项目中Emit的用法'
+				}, {
+					title: 'vue-ts项目中Model的用法',
+					path: 'vue-ts项目中Model的用法'
 				}]
             }],
             '/React/': [{

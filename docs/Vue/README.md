@@ -4,7 +4,7 @@
 - [vue-ts项目中Prop的用法](/Vue/vue-ts项目中Prop的用法)
 - [vue-ts项目中watch的用法](/Vue/vue-ts项目中watch的用法)
 - [vue-ts项目中Emit的用法](/Vue/vue-ts项目中Emit的用法)
-
+- [vue-ts项目中Model的用法](/Vue/vue-ts项目中Model的用法)
 
 
 
