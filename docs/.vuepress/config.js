@@ -345,8 +345,8 @@ module.exports = {
 					title: 'vue-ts项目中Prop的用法',
 					path: 'vue-ts项目中Prop的用法'
 				}, {
-					title: 'vue-ts项目中Prop的用法',
-					path: 'vue-ts项目中Prop的用法'
+					title: 'vue-ts项目中watch的用法',
+					path: 'vue-ts项目中watch的用法'
 				}]
             }],
             '/React/': [{
