@@ -802,12 +802,158 @@ function loadScriptString(code){
 }
 ```
 
+## 动态样式
+
+1. `<link>`元素用于包含 CSS 外部文件
+2. `<style>`元素用于添加嵌入样式。
+
+```js
+<link rel="stylesheet" type="text/css" href="styles.css">
+```
+
+```js
+let link = document.createElement("link"); 
+link.rel = "stylesheet"; 
+link.type = "text/css"; 
+link.href = "styles.css"; 
+let head = document.getElementsByTagName("head")[0]; 
+head.appendChild(link);
+```
+
+通用函数：
+
+```js
+function loadStyles(url) {
+	let link = document.creatElement("link");
+	link.rel = "stylesheet";
+	link.type = "text/css";
+	link.href = url;
+	let head = document.getElementsByTagName("head")[0];
+	head.appendChild(link);
+}
+```
+
+```js
+let style = document.createElement("style"); 
+style.type = "text/css"; 
+style.appendChild(document.createTextNode("body{background-color:red}")); 
+let head = document.getElementsByTagName("head")[0]; 
+head.appendChild(style);
+```
+
+对于 IE，解决方案是访问元素的 styleSheet 属性，这个属性又有一个 cssText 属性，然后给这个属性添加 CSS 代码：
+
+```js
+let style = document.createElement("style"); 
+style.type = "text/css"; 
+try{ 
+ style.appendChild(document.createTextNode("body{background-color:red}")); 
+} catch (ex){ 
+ style.styleSheet.cssText = "body{background-color:red}"; 
+} 
+let head = document.getElementsByTagName("head")[0]; 
+head.appendChild(style);
+```
+
+通用函数：
+
+```js
+function loadStyleString(css){ 
+ let style = document.createElement("style"); 
+ style.type = "text/css"; 
+ try{ 
+ style.appendChild(document.createTextNode(css)); 
+ } catch (ex){ 
+ style.styleSheet.cssText = css; 
+ } 
+ let head = document.getElementsByTagName("head")[0]; 
+ head.appendChild(style); 
+}
+```
+
+:::tip
+注意 对于 IE，要小心使用 styleSheet.cssText。如果重用同一个`<style>`元素并设
+置该属性超过一次，则可能导致浏览器崩溃。同样，将 cssText 设置为空字符串也可能
+导致浏览器崩溃。
+:::
+
+## 操作表格
+
+创建`<table>`元素,包括表行、表元、表题，等等。
+
+创建以下 HTML 表格：
+
+```js
+<table border="1" width="100%"> 
+ <tbody> 
+	 <tr> 
+		 <td>Cell 1,1</td> 
+		 <td>Cell 2,1</td> 
+	 </tr> 
+	 <tr> 
+		 <td>Cell 1,2</td> 
+		 <td>Cell 2,2</td> 
+	 </tr> 
+ </tbody> 
+</table>
+```
+
+```js
+// 创建表格
+let table = document.createElement("table"); 
+table.border = 1; 
+table.width = "100%"; 
+// 创建表体
+let tbody = document.createElement("tbody"); 
+table.appendChild(tbody); 
+// 创建第一行
+let row1 = document.createElement("tr"); 
+tbody.appendChild(row1); 
+let cell1_1 = document.createElement("td"); 
+cell1_1.appendChild(document.createTextNode("Cell 1,1")); 
+row1.appendChild(cell1_1); 
+let cell2_1 = document.createElement("td"); 
+cell2_1.appendChild(document.createTextNode("Cell 2,1")); 
+row1.appendChild(cell2_1); 
+// 创建第二行
+let row2 = document.createElement("tr"); 
+tbody.appendChild(row2); 
+let cell1_2 = document.createElement("td"); 
+cell1_2.appendChild(document.createTextNode("Cell 1,2")); 
+row2.appendChild(cell1_2); 
+let cell2_2= document.createElement("td"); 
+cell2_2.appendChild(document.createTextNode("Cell 2,2")); 
+row2.appendChild(cell2_2); 
+// 把表格添加到文档主体
+document.body.appendChild(table);
+```
+
+`<table>`元素添加了以下属性和方法：
+
+- caption，指向`<caption>`元素的指针（如果存在）；
+- tBodies，包含`<tbody>`元素的 HTMLCollection；  
+- tFoot，指向`<tfoot>`元素（如果存在）；
+- tHead，指向`<thead>`元素（如果存在）；
+- rows，包含表示所有行的 HTMLCollection；  
+- createTHead()，创建`<thead>`元素，放到表格中，返回引用；
+- createTFoot()，创建`<tfoot>`元素，放到表格中，返回引用；
+- createCaption()，创建`<caption>`元素，放到表格中，返回引用；
+- deleteTHead()，删除`<thead>`元素；
+- deleteTFoot()，删除`<tfoot>`元素；
+- deleteCaption()，删除`<caption>`元素；
+- deleteRow(pos)，删除给定位置的行；
+- insertRow(pos)，在行集合中给定位置插入一行。
 
 
-
-
-
-
+`<tbody>`元素添加了以下属性和方法：
+ 
+- rows，包含`<tbody>`元素中所有行的 HTMLCollection；
+- deleteRow(pos)，删除给定位置的行；
+- insertRow(pos)，在行集合中给定位置插入一行，返回该行的引用。
+- `<tr>`元素添加了以下属性和方法：
+- cells，包含`<tr>`元素所有表元的 HTMLCollection；  
+- deleteCell(pos)，删除给定位置的表元；
+- insertCell(pos)，在表元集合给定位置插入一个表元，返回该表元的引用
 
 
 
