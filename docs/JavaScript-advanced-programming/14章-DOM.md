@@ -530,7 +530,201 @@ Text 节点中包含的文本可以通过 nodeValue 属性访问，也可以通�
 // 取得文本节点的引用
 let textNode = div.firstChild; // 或 div.childNodes[0]
 div.firstChild.nodeValue = "Some other message";
+
+// 输出为"Some &lt;strong&gt;other&lt;/strong&gt; message" 
+div.firstChild.nodeValue = "Some <strong>other</strong> message";
 ```
+
+## 创建文本节点
+
+document.createTextNode()可以用来创建新文本节点，它接收一个参数，即要插入节点的文本。
+
+```js
+let textNode = document.createTextNode("<strong>Hello</strong> world!");
+```
+
+添加了一段文本消息：
+
+```js
+let element = document.createElement("div"); 
+element.className = "message"; 
+let textNode = document.createTextNode("Hello world!"); 
+element.appendChild(textNode); 
+document.body.appendChild(element);
+```
+
+## 规范化文本节点
+
+normalize()，是在 Node 类型中定义的（因此所有类型的节点上都有这个方法）
+
+```js
+let element = document.createElement("div"); 
+element.className = "message"; 
+let textNode = document.createTextNode("Hello world!"); 
+element.appendChild(textNode); 
+let anotherTextNode = document.createTextNode("Yippee!"); 
+element.appendChild(anotherTextNode); 
+document.body.appendChild(element); 
+alert(element.childNodes.length); // 2 
+element.normalize(); 
+alert(element.childNodes.length); // 1 
+alert(element.firstChild.nodeValue); // "Hello world!Yippee!"
+```
+
+## 拆分文本节点
+
+splitText(),可以在指定的偏移位置拆分 nodeValue，将一个文本节点拆分成两个文本节点。
+
+:::tip
+新文本节点包含剩下的文本
+:::
+
+```js
+let element = document.createElement("div"); 
+element.className = "message"; 
+let textNode = document.createTextNode("Hello world!"); 
+element.appendChild(textNode); 
+document.body.appendChild(element); 
+let newNode = element.firstChild.splitText(5); 
+alert(element.firstChild.nodeValue); // "Hello" 
+alert(newNode.nodeValue); // " world!" 
+alert(element.childNodes.length); // 2
+```
+
+## Comment 类型
+
+DOM 中的注释通过 Comment 类型表示。Comment 类型的节点具有以下特征：
+
+1. nodeType 等于 8；
+2. nodeName 值为"#comment"；
+3. nodeValue 值为注释的内容；
+4. parentNode 值为 Document 或 Element 对象；
+5. 不支持子节点。
+
+访问它：
+
+```js
+<div id="myDiv"><!-- A comment --></div>
+let div = document.getElementById("myDiv"); 
+let comment = div.firstChild; 
+alert(comment.data); // "A comment"
+```
+
+可以使用 document.createComment()方法创建注释节点，参数为注释文本
+
+```js
+let comment = document.createComment("A comment");
+```
+
+## CDATASection 类型
+
+1. CDATASection 类型表示 XML 中特有的 CDATA 区块。
+2. CDATASection 类型继承 Text 类型，因此拥有包括 splitText()在内的所有字符串操作方法。
+
+CDATASection 类型的节点具有以下特征：
+
+1. nodeType 等于 4；
+2. nodeName 值为"#cdata-section"；
+3. nodeValue 值为 CDATA 区块的内容；
+4. parentNode 值为 Document 或 Element 对象；
+5. 不支持子节点
+
+CDATA 区块只在 XML 文档中有效
+
+```js
+<div id="myDiv"><![CDATA[This is some content.]]></div>
+```
+
+在真正的 XML 文档中，可以使用 document.createCDataSection()并传入节点内容来创建CDATA 区块。
+
+## DocumentType 类型
+
+DocumentType 类型的节点包含文档的文档类型（doctype）信息，具有以下特征：
+
+1. nodeType 等于 10；
+2. nodeName 值为文档类型的名称；
+3. nodeValue 值为 null；
+4. parentNode 值为 Document 对象；
+5. 不支持子节点。
+
+DocumentType 对象保存在 document.doctype 属性中
+
+DOM Level 1 规定了DocumentType 对象的 3 个属性：name、entities 和 notations。
+
+1. name 是文档类型的名称
+2. entities 是这个文档类型描述的实体的 NamedNodeMap
+3. notations 是这个文档类型描述的表示法的 NamedNodeMap
+
+因为浏览器中的文档通常是 HTML 或 XHTML 文档类型，所以 entities 和notations 列表为空。
+
+```js
+<!DOCTYPE HTML PUBLIC "-// W3C// DTD HTML 4.01// EN" 
+ "http:// www.w3.org/TR/html4/strict.dtd"> 
+对于这个文档类型，name 属性的值是"html"：
+alert(document.doctype.name); // "html"
+```
+
+## DocumentFragment 类型
+
+DocumentFragment 类型是唯一一个在标记中没有对应表示的类型。
+
+DocumentFragment 节点具有以下特征：
+ 
+1. nodeType 等于 11；  
+2. nodeName 值为"#document-fragment"；  
+3. nodeValue 值为 null；  
+4. parentNode 值为 null；  
+5. 子节点可以是 Element、ProcessingInstruction、Comment、Text、CDATASection 或EntityReference。
+
+创建文档片段：
+
+```js
+let fragment = document.createDocumentFragment();
+```
+
+可以通过 appendChild()或 insertBefore()方法将文档片段的内容添加到文档。
+
+```js
+let fragment = document.createDocumentFragment(); 
+let ul = document.getElementById("myList"); 
+for (let i = 0; i < 3; ++i) { 
+ let li = document.createElement("li"); 
+ li.appendChild(document.createTextNode(`Item ${i + 1}`)); 
+ fragment.appendChild(li); 
+} 
+ul.appendChild(fragment);
+```
+
+## Attr 类型
+
+元素数据在 DOM 中通过 Attr 类型表示。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
