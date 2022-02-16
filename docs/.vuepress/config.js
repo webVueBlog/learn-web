@@ -338,6 +338,16 @@ module.exports = {
             '/Vue/': [{
                 title: 'Vue',
                 collapsable: true,
+				children: [{
+				    title: 'vue-ts项目中PropSync的用法',
+				    path: 'vue-ts项目中PropSync的用法'
+				}, {
+					title: 'vue-ts项目中Prop的用法',
+					path: 'vue-ts项目中Prop的用法'
+				}, {
+					title: 'vue-ts项目中Prop的用法',
+					path: 'vue-ts项目中Prop的用法'
+				}]
             }],
             '/React/': [{
                 title: 'React',
