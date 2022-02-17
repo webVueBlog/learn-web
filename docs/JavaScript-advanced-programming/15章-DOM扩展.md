@@ -115,6 +115,57 @@ while (currentChildElement) {
 }
 ```
 
+## HTML5
+
+### 1. getElementsByClassName()
+
+getElementsByClassName()方法接收一个参数，即包含一个或多个类名的字符串，返回类名中包含相应类的元素的 NodeList。
+
+```js
+// 取得所有类名中包含"username"和"current"元素
+// 这两个类名的顺序无关紧要
+let allCurrentUsernames = document.getElementsByClassName("username current"); 
+// 取得 ID 为"myDiv"的元素子树中所有包含"selected"类的元素
+let selected = document.getElementById("myDiv").getElementsByClassName("selected");
+```
+
+### 2. classList 属性
+
+要操作类名，可以通过 className 属性实现添加、删除和替换。
+
+```js
+<div class="bd user disabled">...</div>
+
+// 要删除"user"类
+let targetClass = "user"; 
+// 把类名拆成数组
+let classNames = div.className.split(/\s+/); 
+// 找到要删除类名的索引
+let idx = classNames.indexOf(targetClass); 
+// 如果有则删除
+if (idx > -1) { 
+ classNames.splice(i,1); 
+} 
+// 重新设置类名
+div.className = classNames.join(" ");
+```
+
+classList 是一个新的集合类型 DOMTokenList 的实例。
+
+DOMTokenList也有 length 属性表示自己包含多少项，也可以通过 item()或中括号取得个别的元素
+
+DOMTokenList方法:
+
+
+
+
+
+
+
+
+
+
+
 
 
 
