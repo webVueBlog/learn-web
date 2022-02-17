@@ -15,7 +15,8 @@
 
 ### querySelector()
 
-querySelector()方法接收 CSS 选择符参数，返回匹配该模式的第一个后代元素，如果没有匹配项则返回 null。
+querySelector()方法接收 CSS 选择符参数，返回匹配该模式的第一个后代元素，如果没有匹配
+项则返回 null。
 
 ```js
 // 取得<body>元素
@@ -372,17 +373,38 @@ div.parentNode.replaceChild(p, div);
 
 新的`<p>`元素会取代 `DOM` 树中原来的`<div>`元素。
 
+### 4. insertAdjacentHTML()与 insertAdjacentText()
 
+它们都接收两个参数：要插入标记的位置和要插入的 HTML 或文本
 
+第一个参数必须是下列值中的一个：
 
+- "beforebegin"，插入当前元素前面，作为前一个同胞节点；
+- "afterbegin"，插入当前元素内部，作为新的子节点或放在第一个子节点前面；
+- "beforeend"，插入当前元素内部，作为新的子节点或放在最后一个子节点后面；
+- "afterend"，插入当前元素后面，作为下一个同胞节点。
 
+```js
+假设当前元素是<p>Hello world!</p>，则"beforebegin"和"afterbegin"中的"begin"指开始标签<p>；而
+"afterend"和"beforeend"中的"end"指结束标签</p>。
+```
 
+```js
+// 作为前一个同胞节点插入
+element.insertAdjacentHTML("beforebegin", "<p>Hello world!</p>");
+element.insertAdjacentText("beforebegin", "Hello world!");
+// 作为第一个子节点插入
+element.insertAdjacentHTML("afterbegin", "<p>Hello world!</p>");
+element.insertAdjacentText("afterbegin", "Hello world!");
+// 作为最后一个子节点插入
+element.insertAdjacentHTML("beforeend", "<p>Hello world!</p>");
+element.insertAdjacentText("beforeend", "Hello world!");
+// 作为下一个同胞节点插入
+element.insertAdjacentHTML("afterend", "<p>Hello world!</p>"); element.
+insertAdjacentText("afterend", "Hello world!"); 
+```
 
-
-
-
-
-
+### 5. 内存与性能问题
 
 
 
