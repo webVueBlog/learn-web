@@ -156,12 +156,42 @@ DOMTokenList也有 length 属性表示自己包含多少项，也可以通过 it
 
 DOMTokenList方法:
 
+1. add(value)，向类名列表中添加指定的字符串值 value。如果这个值已经存在，则什么也不做。
+2. contains(value)，返回布尔值，表示给定的 value 是否存在。
+3. remove(value)，从类名列表中删除指定的字符串值 value。
+4. toggle(value)，如果类名列表中已经存在指定的 value，则删除；如果不存在，则添加。
 
+简化
 
+```js
+div.classList.remove("user");
 
+// 删除"disabled"类
+div.classList.remove("disabled"); 
+// 添加"current"类
+div.classList.add("current");
 
+// 切换"user"类
+div.classList.toggle("user"); 
+// 检测类名 
+if (div.classList.contains("bd") && !div.classList.contains("disabled")){ 
+ // 执行操作
+) 
+// 迭代类名
+for (let class of div.classList){ 
+ doStuff(class); 
+}
+```
 
+### 焦点管理
 
+document.activeElement，始终包含当前拥
+有焦点的 DOM 元素。页面加载时，可以通过用户输入（按 Tab 键或代码中使用 focus()方法）让某个
+元素自动获得焦点
+
+```js
+
+```
 
 
 
