@@ -190,8 +190,195 @@ document.activeElement，始终包含当前拥
 元素自动获得焦点
 
 ```js
-
+let button = document.getElementById("myButton"); 
+button.focus(); 
+console.log(document.activeElement === button); // true
 ```
+
+1. 默认情况下，document.activeElement 在页面刚加载完之后会设置为 document.body。
+2. 在页面完全加载之前，document.activeElement 的值为 null。
+
+document.hasFocus()方法，该方法返回布尔值，表示文档是否拥有焦点：
+
+```js
+let button = document.getElementById("myButton"); 
+button.focus(); 
+console.log(document.hasFocus()); // true
+```
+
+## HTMLDocument 扩展
+
+### 1. readyState 属性
+
+document.readyState 属性有两个可能的值：
+
+- loading，表示文档正在加载；
+- complete，表示文档加载完成
+
+通常要依赖 onload 事件处理程序设置一个标记，表示文档加载完了
+
+```js
+if (document.readyState == "complete"){ 
+ // 执行操作
+}
+```
+
+### 2. compatMode 属性
+
+1. 标准模式下 document.compatMode 的值是"CSS1Compat"
+2. 在混杂模式下，document.compatMode 的值是"BackCompat"：
+
+```js
+if (document.compatMode == "CSS1Compat"){ 
+ console.log("Standards mode"); 
+} else { 
+ console.log("Quirks mode"); 
+}
+```
+
+### 3. head 属性
+
+document.head 属性，指向文档的`<head>`元素
+
+### 字符集属性
+
+- characterSet 属性表示文档实际使用的字符集，也可以用来指定新字符集
+- 默认值是"UTF-16"
+
+```js
+console.log(document.characterSet); // "UTF-16" 
+document.characterSet = "UTF-8";
+```
+
+## 自定义数据属性
+
+使用前缀 data-以便告诉浏览器，这些属性既不包含与渲染有关的信息，也不包含元素的语义信息。
+
+```js
+<div id="myDiv" data-appId="12345" data-myname="Nicholas"></div>
+```
+
+- 定义了自定义数据属性后，可以通过元素的 dataset 属性来访问
+- dataset 属性是一个DOMStringMap 的实例，包含一组键/值对映射。
+
+（例如，属性 data-myname、data-myName 可以通过 myname 访问，但要注意 data-my-name、data-My-Name 要通过 myName 来访问）。
+
+```js
+// 本例中使用的方法仅用于示范
+let div = document.getElementById("myDiv"); 
+// 取得自定义数据属性的值
+let appId = div.dataset.appId; 
+let myName = div.dataset.myname; 
+// 设置自定义数据属性的值
+div.dataset.appId = 23456; 
+div.dataset.myname = "Michael"; 
+// 有"myname"吗？
+if (div.dataset.myname){ 
+ console.log(`Hello, ${div.dataset.myname}`); 
+}
+```
+
+## 插入标记
+
+### 1. innerHTML 属性
+
+在读取 innerHTML 属性时，会返回元素所有后代的 HTML 字符串，包括元素、注释和文本节点。
+而在写入 innerHTML 时，则会根据提供的字符串值以新的 DOM 子树替代元素中原来包含的所有节点。
+
+比如下面的 HTML 代码：
+
+```js
+<div id="content"> 
+ <p>This is a <strong>paragraph</strong> with a list following it.</p> 
+ <ul> 
+ <li>Item 1</li> 
+ <li>Item 2</li> 
+ <li>Item 3</li> 
+ </ul> 
+</div> 
+```
+
+对于这里的`<div>`元素而言，其 innerHTML 属性会返回以下字符串：
+
+```js
+<p>This is a <strong>paragraph</strong> with a list following it.</p> 
+<ul> 
+ <li>Item 1</li> 
+ <li>Item 2</li> 
+ <li>Item 3</li> 
+</ul> 
+```
+
+实际返回的文本内容会因浏览器而不同。
+
+在写入模式下，赋给 innerHTML 属性的值会被解析为 DOM 子树，并替代元素之前的所有节点。
+
+### 2. 旧 IE 中的 innerHTML
+
+```js
+// 行不通
+div.innerHTML = "<script defer>console.log('hi');<\/script>";
+```
+
+```js
+// 以下都可行
+div.innerHTML = "_<script defer>console.log('hi');<\/script>"; 
+div.innerHTML = "<div>&nbsp;</div><script defer>console.log('hi');<\/script>"; 
+div.innerHTML = "<input type=\"hidden\"><script defer>console. 
+log('hi');<\/script>";
+```
+
+```js
+div.innerHTML = "<style type=\"text/css\">body {background-color: red; }</style>";
+```
+
+在 IE8 及之前的版本中，`<style>`也被认为是非受控元素，所以必须前置一个受控元素：
+
+```js
+div.innerHTML = "_<style type=\"text/css\">body {background-color: red; }</style>"; 
+div.removeChild(div.firstChild);
+```
+
+### 3. outerHTML 属性
+
+下面的 HTML 代码：
+
+```js
+<div id="content"> 
+ <p>This is a <strong>paragraph</strong> with a list following it.</p> 
+ <ul> 
+ <li>Item 1</li> 
+ <li>Item 2</li> 
+ <li>Item 3</li> 
+ </ul> 
+</div> 
+```
+
+在这个`<div>`元素上调用 outerHTML 会返回相同的字符串，包括`<div>`本身。
+
+如果使用 outerHTML 设置 HTML，比如：
+
+```js
+div.outerHTML = "<p>This is a paragraph.</p>"; 
+```
+
+则会得到与执行以下脚本相同的结果：
+
+```js
+let p = document.createElement("p"); 
+p.appendChild(document.createTextNode("This is a paragraph.")); 
+div.parentNode.replaceChild(p, div); 
+```
+
+新的`<p>`元素会取代 `DOM` 树中原来的`<div>`元素。
+
+
+
+
+
+
+
+
 
 
 
