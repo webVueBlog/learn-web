@@ -406,23 +406,181 @@ insertAdjacentText("afterend", "Hello world!");
 
 ### 5. 内存与性能问题
 
+在使用 innerHTML、
+outerHTML 和 insertAdjacentHTML()之前，最好手动删除要被替换的元素上关联的事件处理程序和
+JavaScript 对象。
 
+> 一般来讲，插入大量的新 HTML 使用innerHTML 比使用多次 DOM 操作创建节点再插入来得更便捷。
 
+```js
+// 只有对 innerHTML 的一次赋值。
+let itemsHtml = "";
+for (let value of values){ 
+ itemsHtml += '<li>${value}</li>'; 
+} 
+ul.innerHTML = itemsHtml;
+```
 
+一行代码
 
+```js
+ul.innerHTML = values.map(value => '<li>${value}</li>').join('');
+```
 
+### 6. 跨站点脚本
 
+innerHTML, 通过它可以毫不费力地创建元素并执行 onclick 之类的属性。
 
+## scrollIntoView()
 
+scrollIntoView()方法存在于所有 HTML 元素上，可以滚动浏览器窗口或容器元素以便包含元
+素进入视口。
 
+这个方法的参数如下：
 
+- alignToTop 是一个布尔值。
+	- true：窗口滚动后元素的顶部与视口顶部对齐。
+	- false：窗口滚动后元素的底部与视口底部对齐。
+- scrollIntoViewOptions 是一个选项对象。
+	- behavior：定义过渡动画，可取的值为"smooth"和"auto"，默认为"auto"。  
+	- block：定义垂直方向的对齐，可取的值为"start"、"center"、"end"和"nearest"，默认为 "start"。  
+	- inline：定义水平方向的对齐，可取的值为"start"、"center"、"end"和"nearest"，默认为 "nearest"。  
 
+不传参数等同于 alignToTop 为 true。
 
+```js
+// 确保元素可见
+document.forms[0].scrollIntoView(); 
+// 同上
+document.forms[0].scrollIntoView(true); 
+document.forms[0].scrollIntoView({block: 'start'}); 
+// 尝试将元素平滑地滚入视口
+document.forms[0].scrollIntoView({behavior: 'smooth', block: 'start'});
+```
 
+## 专有扩展
 
+### children 属性
 
+children 属性是一个 HTMLCollection，只包含元素的 Element 类型的子节点。
 
+如果元素的子节点类型全部是元素类型，那 children 和 childNodes 中包含的节点应该是一样的。
 
+```js
+let childCount = element.children.length; 
+let firstChild = element.children[0];
+```
+
+### contains()方法
+
+contains()方法应该在要搜索的祖先元素上调
+用，参数是待确定的目标节点。
+
+如果目标节点是被搜索节点的后代，contains()返回 true，否则返回 false。下面看一个例子：
+
+```js
+console.log(document.documentElement.contains(document.body)); // true
+```
+
+使用 DOM Level 3 的 compareDocumentPosition()方法也可以确定节点间的关系。
+
+这个方法会返回表示两个节点关系的位掩码。
+
+```js
+0x1 断开（传入的节点不在文档中）
+0x2 领先（传入的节点在 DOM 树中位于参考节点之前）
+0x4 随后（传入的节点在 DOM 树中位于参考节点之后）
+0x8 包含（传入的节点是参考节点的祖先）
+0x10 被包含（传入的节点是参考节点的后代）
+```
+
+```js
+let result = document.documentElement.compareDocumentPosition(document.body); 
+console.log(!!(result & 0x10)); 
+```
+
+以上代码执行后 result 的值为 20（或 0x14，其中 0x4 表示“随后”，加上 0x10“被包含”）。对
+result 和 0x10 应用按位与会返回非零值，而两个叹号将这个值转换成对应的布尔值
+
+## 插入标记
+
+innerText 和 outerText。
+
+innerText 属性对应元素中包含的所有文本内容，无论文本在子树中哪个层级。
+
+1. 在用于读取值时，innerText 会按照深度优先的顺序将子树中所有文本节点的值拼接起来。
+2. 在用于写入值时，innerText 会移除元素的所有后代并插入一个包含该值的文本节点。
+
+```js
+ <p>This is a <strong>paragraph</strong> with a list following it.</p> 
+ <ul> 
+ <li>Item 1</li> 
+ <li>Item 2</li> 
+ <li>Item 3</li> 
+ </ul> 
+</div> 
+对这个例子中的<div>而言，innerText 属性会返回以下字符串：
+This is a paragraph with a list following it. 
+Item 1 
+Item 2 
+Item 3
+```
+
+> 设置 innerText 会移除元素之前所有的后代节点，完全改变 DOM 子树
+
+```js
+div.innerText = "Hello & welcome, <b>\"reader\"!</b>"; 
+执行之后的结果如下：
+<div id="content">Hello &amp; welcome, &lt;b&gt;&quot;reader&quot;!&lt;/b&gt;</div>
+```
+
+去除所有 HTML 标签而只剩文本，如下所示：
+
+```js
+div.innerText = div.innerText;
+```
+
+outerText 属性
+
+1. 要读取文本值时，outerText 与 innerText 实际上会返回同样的内容。
+2. 写入文本值时，outerText 不止会移除所有后代节点，而是会替换整个元素。
+
+```js
+div.outerText = "Hello world!"; 
+这行代码的执行效果就相当于以下两行代码：
+let text = document.createTextNode("Hello world!"); 
+div.parentNode.replaceChild(text, div);
+```
+
+本质上，这相当于用新的文本节点替代 outerText 所在的元素。此时，原来的元素会与文档脱离
+关系，因此也无法访问。
+
+outerText 是一个非标准的属性，而且也没有被标准化的前景。
+
+## 滚动
+
+scrollIntoViewIfNeeded()作 为
+HTMLElement 类型的扩展可以在所有元素上调用。scrollIntoViewIfNeeded(alingCenter)会在
+元素不可见的情况下，将其滚动到窗口或包含窗口中，使其可见；如果已经在视口中可见，则这个方法
+什么也不做。如果将可选的参数 alingCenter 设置为 true，则浏览器会尝试将其放在视口中央
+
+下面使用 scrollIntoViewIfNeeded()方法的一个例子：
+
+```js
+// 如果不可见，则将元素可见
+document.images[0].scrollIntoViewIfNeeded(); 
+```
+
+> 考虑到 scrollIntoView()是唯一一个所有浏览器都支持的方法，所以只用它就可以了。
+
+Selectors API 为基于 CSS 选择符获取 DOM 元素定义了几个方法：querySelector()、
+querySelectorAll()和 matches()。
+
+Element Traversal 在 DOM 元素上定义了额外的属性，以方便对 DOM 元素进行遍历。这个需求
+是因浏览器处理元素间空格的差异而产生的。
+
+HTML5 为标准 DOM 提供了大量扩展。其中包括对 innerHTML 属性等事实标准进行了标准化，
+还有焦点管理、字符集、滚动等特性。
 
 
 
