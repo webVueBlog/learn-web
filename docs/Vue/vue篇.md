@@ -126,6 +126,279 @@ Proxy 在 ES2015 规范中被正式加入，它有以下几个特点：
 - 路由独享守卫
 - 路由组件内的守卫
 
+## 1.全局守卫 
+
+vue-router 全局有三个守卫： 
+
+1. router.beforeEach 全局前置守卫 进入路由之前 
+2. router.beforeResolve 全局解析守卫(2.5.0+) 在 beforeRouteEnter 调用之后调用 
+3. router.afterEach 全局后置钩子 进入路由之后 
+
+使用方法: 
+
+```JS
+// main.js 入口文件
+import router from './router' // 引入路由
+router.beforeEach((to, from, next) => {
+  next()
+})
+router.beforeResolve((to, from, next) => {
+  next()
+})
+router.afterEach((to, from) => {
+  console.log('afterEach 全局后置钩子')
+})
+```
+
+## 2.路由独享守卫 
+
+如果你不想全局配置守卫的话，你可以为某些路由单独配置守卫： 
+
+```js
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/foo',
+      component: Foo,
+      beforeEnter: (to, from, next) => {
+        // 参数用法什么的都一样,调用顺序在全局前置守卫后面，所以不会被全局守卫覆盖
+        // ...
+      },
+    },
+  ],
+}) 
+```
+
+## 3.路由组件内的守卫 
+
+1. beforeRouteEnter 进入路由前, 在路由独享守卫后调用 不能 获取组件实例 this，组件实例还没被创建 
+2. beforeRouteUpdate (2.2) 路由复用同一个组件时, 在当前路由改变，但是该组件被复用时调用 可以访问组件实例 this 
+3. beforeRouteLeave 离开当前路由时, 导航离开该组件的对应路由时调用，可以访问组件实例 this  
+
+## Vue 的路由实现:hash 模式和 history 模式 
+
+### hash 模式： 
+
+在浏览器中符号“#”，#以及#后面的字符称之为 hash，用 window.location.hash 读取；
+特点：hash 虽然在 URL 中，但不被包括在 HTTP 请求中；
+用来指导浏览器动作，对服务端安全无用，hash 不会重加载页面。
+
+hash 模式下，仅 hash 符号之前的内容会被包含在请求中，
+如 `http://www.xx.com`，因此对于后端来说，即使没有做到对路由的全覆盖，
+也不会返回 404 错误。 
+
+### history 模式： 
+
+history 采用 HTML5 的新特性；且提供了两个新方法：pushState（），replaceState（）
+可以对浏览器历史记录栈进行修改，以及 popState 事件的监听到状态变更。
+
+history 模式下，前端的 URL 必须和实际向后端发起请求的 URL 一致，
+如 `http://www.xxx.com/items/id`。后端如果缺少对 /items/id 的路由处理，将返回 404 错误。
+
+Vue-Router 官网里如此描述：“不过这种模式要玩好，还需要后台配置支持……所以呢，
+你要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，
+则应该返回同一个 index.html 页面，这个页面就是你 app 依赖的页面。” 
+
+## 组件之间的传值通信
+
+组件之间通讯分为三种: 父传子、子传父、兄弟组件之间的通讯
+
+### 1.父组件给子组件传值 
+
+使用props，父组件可以使用props向子组件传递数据。 父组件 vue 模板 father.vue: 
+
+```js
+<template>
+  <child :msg="message"></child>
+</template>
+
+<script>
+  import child from './child.vue';
+  export default {
+      components: {
+          child
+      },
+      data () {
+          return {
+              message: 'father message';
+          }
+      }
+  }
+</script>
+```
+
+子组件 vue 模板 child.vue: 
+
+```js
+<template>
+    <div>{{msg}}</div>
+</template>
+
+<script>
+export default {
+    props: {
+        msg: {
+            type: String,
+            required: true
+        }
+    }
+}
+</script> 
+```
+
+### 2.子组件向父组件通信 
+
+父组件向子组件传递事件方法，子组件通过`$emit` 触发事件，回调给父组件。 
+
+父组件 vue 模板 father.vue: 
+
+```js
+<template>
+  <child @msgFunc="func"></child>
+</template>
+
+<script>
+  import child from './child.vue'
+  export default {
+    components: {
+      child,
+    },
+    methods: {
+      func(msg) {
+        console.log(msg)
+      },
+    },
+  }
+</script>
+```
+
+子组件 vue 模板 child.vue: 
+
+```js
+<template>
+  <button @click="handleClick">点我</button>
+</template>
+
+<script>
+  export default {
+      props: {
+          msg: {
+              type: String,
+              required: true
+          }
+      },
+      methods () {
+          handleClick () {
+              //........
+              this.$emit('msgFunc');
+          }
+      }
+  }
+</script>
+```
+
+### 3.非父子,兄弟组件之间通信 
+
+vue2 中废弃了`$dispatch`和`$broadcast` 广播和分发事件的方法。
+
+父子组件中可以用 props 和$emit()。
+
+如何实现非父子组件间的通信，可以通过实例一个 `vue` 实例 `Bus` 作为媒介，
+要相互通信的兄弟组件之中，都引入 Bus，然后通过分别调用 Bus 事件触发和监听来实现通信和参数传递。
+
+Bus.js 可以是这样: 
+
+```js
+import Vue from 'vue'
+export default new Vue()
+```
+
+在需要通信的组件都引入 Bus.js: 
+
+```js
+<template>
+  <button @click="toBus">子组件传给兄弟组件</button>
+</template>
+
+<script>
+  import Bus from '../common/js/bus.js'
+  export default {
+    methods: {
+      toBus() {
+        Bus.$emit('on', '来自兄弟组件')
+      },
+    },
+  }
+</script>
+```
+
+另一个组件也 import Bus.js 在钩子函数中监听 on 事件 
+
+```js
+import Bus from '../common/js/bus.js'
+export default {
+  data() {
+    return {
+      message: '',
+    }
+  },
+  mounted() {
+    Bus.$on('on', (msg) => {
+      this.message = msg
+    })
+  },
+} 
+```
+
+## Vue 与 Angular 以及 React 的区别？ 
+
+版本在不断更新，以下的区别有可能不是很正确。而且工作中只用到 vue，对 angular 和 react 不怎么熟 
+
+### Vue 与 AngularJS 的区别 
+
+- Angular 采用 TypeScript 开发, 而 Vue 可以使用 javascript 也可以使用 TypeScript 
+- AngularJS 依赖对数据做脏检查，所以 Watcher 越多越慢；
+- Vue.js 使用基于依赖追踪的观察并且使用异步队列更新，所有的数据都是独立触发的。 
+- AngularJS 社区完善, Vue 的学习成本较小
+ 
+### Vue 与 React 的区别 
+
+- vue 组件分为全局注册和局部注册，在 react 中都是通过 import 相应组件，然后模版中引用； 
+- props 是可以动态变化的，子组件也实时更新，在 react 中官方建议 props 要像纯函数那样，输入输出一致对应，而且不太建议通过 props 来更改视图； 
+- 子组件一般要显示地调用 props 选项来声明它期待获得的数据。而在 react 中不必需，另两者都有 props 校验机制； 
+- 每个 Vue 实例都实现了事件接口，方便父子组件通信，小型项目中不需要引入状态管理机制，而 react 必需自己实现； 
+- 使用插槽分发内容，使得可以混合父组件的内容与子组件自己的模板； 
+- 多了指令系统，让模版可以实现更丰富的功能，而 React 只能使用 JSX 语法； 
+- Vue 增加的语法糖 computed 和 watch，而在 React 中需要自己写一套逻辑来实现； 
+- react 的思路是 all in js，通过 js 来生成 html，所以设计了 jsx，还有通过 js 来操作 css，社区的 styled-component、jss 等；
+- 而 vue 是把 html，css，js 组合到一起，用各自的处理方式，vue 有单文件组件，可以把 html、css、js 写到一个文件中，html 提供了模板引擎来处理。 
+- react 做的事情很少，很多都交给社区去做，vue 很多东西都是内置的，写起来确实方便一些， 比如 redux 的 combineReducer 就对应 vuex 的 modules， 比如 reselect 就对应 vuex 的 getter 和 vue 组件的 computed， vuex 的 mutation 是直接改变的原始数据，而 redux 的 reducer 是返回一个全新的 state，所以 redux 结合 immutable 来优化性能，vue 不需要。 
+- react 是整体的思路的就是函数式，所以推崇纯组件，数据不可变，单向数据流，当然需要双向的地方也可以做到，比如结合 redux-form，组件的横向拆分一般是通过高阶组件。
+- 而 vue 是数据可变的，双向绑定，声明式的写法，vue 组件的横向拆分很多情况下用 mixin。
+
+### vuex 是什么？怎么使用？哪种功能场景使用它？ 
+
+1. vuex 就是一个仓库，仓库里放了很多对象。
+2. 其中 state 就是数据源存放地，对应于一般 vue 对象里面的 data 
+3. state 里面存放的数据是响应式的，vue 组件从 store 读取数据，
+4. 若是 store 中的数据发生改变，依赖这相数据的组件也会发生更新 
+5. 它通过 mapState 把全局的 state 和 getters 映射到当前组件的 computed 计算属性 
+
+Vuex 有 5 种属性: 分别是 state、getter、mutation、action、module;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
