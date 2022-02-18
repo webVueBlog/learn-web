@@ -353,6 +353,12 @@ module.exports = {
 				}, {
 					title: 'vue-ts项目中Model的用法',
 					path: 'vue-ts项目中Model的用法'
+				}, {
+					title: '对于MVVM的理解',
+					path: '对于MVVM的理解'
+				}, {
+					title: 'vue篇',
+					path: 'vue篇'
 				}]
             }],
             '/React/': [{

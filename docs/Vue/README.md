@@ -5,8 +5,8 @@
 - [vue-ts项目中watch的用法](/Vue/vue-ts项目中watch的用法)
 - [vue-ts项目中Emit的用法](/Vue/vue-ts项目中Emit的用法)
 - [vue-ts项目中Model的用法](/Vue/vue-ts项目中Model的用法)
-
-
+- [对于MVVM的理解](/Vue/对于MVVM的理解)
+- [vue篇](/Vue/vue篇)
 
 
 
