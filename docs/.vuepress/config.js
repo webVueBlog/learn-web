@@ -165,10 +165,10 @@ module.exports = {
                         link: 'https://learn-docs.github.io/learn-webpack/'
                     }, {
                         text: 'learn-React',
-                        link: 'https://webvueblog.github.io/learn-React/'
+                        link: 'https://learn-docs.github.io/learn-React/'
                     }, {
                         text: 'learn-TypeScript',
-                        link: 'https://webvueblog.github.io/learn-TypeScript/'
+                        link: 'https://learn-docs.github.io/learn-TypeScript/'
                     }, {
                         text: '1024bibi.com bolg',
                         link: 'https://1024bibi.com/'
@@ -183,6 +183,7 @@ module.exports = {
             '/HTML/': [{
                 title: 'HTML',
                 collapsable: true,
+                path: '/HTML/',
                 children: [{
                     title: 'HTML基础',
                     path: 'HTML基础'
@@ -191,6 +192,7 @@ module.exports = {
             '/CSS/': [{
                 title: 'CSS',
                 collapsable: true,
+                path: '/CSS/',
                 children: [{
                     title: '盒子模型',
                     path: '盒子模型'
@@ -202,6 +204,7 @@ module.exports = {
             '/JavaScript/': [{
                 title: 'JavaScript',
                 collapsable: true,
+                path: '/JavaScript/',
                 children: [{
                         title: '对象',
                         path: '对象'
@@ -298,6 +301,7 @@ module.exports = {
             '/HTTP/': [{
                 title: 'HTTP',
                 collapsable: true,
+                path: '/HTTP/',
                 children: [{
                     title: 'MDN-HTTP',
                     path: 'MDN-HTTP'
@@ -306,6 +310,7 @@ module.exports = {
             '/front-end-engineering/': [{
                 title: '工程化',
                 collapsable: true,
+                path: '/front-end-engineering/',
                 children: [{
                     title: '三分钟了解AST',
                     path: '三分钟了解AST'
@@ -314,6 +319,7 @@ module.exports = {
             '/browser/': [{
                 title: '浏览器',
                 collapsable: true,
+                path: '/browser/',
                 children: [{
                     title: '浏览器解析渲染页面过程',
                     path: '浏览器解析渲染页面过程'
@@ -322,6 +328,7 @@ module.exports = {
             '/regular-expression/': [{
                 title: '正则表达式',
                 collapsable: true,
+                path: '/regular-expression/',
                 children: [{
                     title: '正则表达式',
                     path: '正则表达式'
@@ -330,44 +337,49 @@ module.exports = {
             '/Programming/': [{
                 title: '编程题',
                 collapsable: true,
+                path: '/Programming/',
             }],
             '/Node/': [{
                 title: 'Node',
                 collapsable: true,
+                path: '/Node/',
             }],
             '/Vue/': [{
                 title: 'Vue',
                 collapsable: true,
-				children: [{
-				    title: 'vue-ts项目中PropSync的用法',
-				    path: 'vue-ts项目中PropSync的用法'
-				}, {
-					title: 'vue-ts项目中Prop的用法',
-					path: 'vue-ts项目中Prop的用法'
-				}, {
-					title: 'vue-ts项目中watch的用法',
-					path: 'vue-ts项目中watch的用法'
-				}, {
-					title: 'vue-ts项目中Emit的用法',
-					path: 'vue-ts项目中Emit的用法'
-				}, {
-					title: 'vue-ts项目中Model的用法',
-					path: 'vue-ts项目中Model的用法'
-				}, {
-					title: '对于MVVM的理解',
-					path: '对于MVVM的理解'
-				}, {
-					title: 'vue篇',
-					path: 'vue篇'
-				}]
+                path: '/Vue/',
+                children: [{
+                    title: 'vue-ts项目中PropSync的用法',
+                    path: 'vue-ts项目中PropSync的用法'
+                }, {
+                    title: 'vue-ts项目中Prop的用法',
+                    path: 'vue-ts项目中Prop的用法'
+                }, {
+                    title: 'vue-ts项目中watch的用法',
+                    path: 'vue-ts项目中watch的用法'
+                }, {
+                    title: 'vue-ts项目中Emit的用法',
+                    path: 'vue-ts项目中Emit的用法'
+                }, {
+                    title: 'vue-ts项目中Model的用法',
+                    path: 'vue-ts项目中Model的用法'
+                }, {
+                    title: '对于MVVM的理解',
+                    path: '对于MVVM的理解'
+                }, {
+                    title: 'vue篇',
+                    path: 'vue篇'
+                }]
             }],
             '/React/': [{
                 title: 'React',
                 collapsable: true,
+                path: '/React/',
             }],
             '/html-css-js-coding/': [{
                 title: 'html-css-js实践',
                 collapsable: true,
+                path: '/html-css-js-coding/',
                 children: [{
                     title: '新年快乐-来一个CSS文字特效',
                     path: '新年快乐-来一个CSS文字特效'
@@ -379,6 +391,7 @@ module.exports = {
             '/coding/': [{
                 title: '实践操作',
                 collapsable: true,
+                path: '/coding/',
                 children: [{
                     title: '实现图片的懒加载',
                     path: '实现图片的懒加载'
@@ -402,6 +415,7 @@ module.exports = {
             '/JavaScript-advanced-programming/': [{
                 title: 'JavaScript高级程序设计（第4版）',
                 collapsable: true,
+                path: '/JavaScript-advanced-programming/',
                 children: [{
                     title: '1章-什么是JavaScript',
                     path: '1章-什么是JavaScript'
@@ -491,42 +505,51 @@ module.exports = {
             '/Webpack-Chinese-guide/': [{
                 title: 'Webpack 中文指南',
                 collapsable: true,
+                path: '/Webpack-Chinese-guide/',
             }],
             '/Getting-started-with-TypeScript/': [{
                 title: 'TypeScript入门与实践',
                 collapsable: true,
+                path: '/Getting-started-with-TypeScript/',
             }],
             '/APIs/': [{
                 title: 'APIs',
                 collapsable: true,
+                path: '/APIs/',
             }],
             '/Browser-Extensions/': [{
                 title: 'Browser-Extensions',
                 collapsable: true,
+                path: '/Browser-Extensions/',
             }],
             '/Graphics/': [{
                 title: 'Graphics',
                 collapsable: true,
-            }],
-            '/MathML/': [{
-                title: 'MathML',
-                collapsable: true,
+                path: '/Graphics/',
             }],
             '/safety/': [{
                 title: '安全系列',
                 collapsable: true,
+                path: '/safety/',
             }],
             '/Performance/': [{
                 title: '性能系列',
                 collapsable: true,
+                path: '/Performance/',
             }],
             '/DataStructure/': [{
                 title: '数据结构系列',
                 collapsable: true,
+                path: '/DataStructure/',
+                children: [{
+                    title: '栈-队列-堆',
+                    path: '栈-队列-堆'
+                }]
             }],
             '/ALG/': [{
                 title: '算法系列',
                 collapsable: true,
+                path: '/ALG/',
                 children: [{
                     title: '1-两数之和',
                     path: '1-两数之和'
