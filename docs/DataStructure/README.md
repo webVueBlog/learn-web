@@ -2,5 +2,5 @@
 
 - [栈-队列-堆](/DataStructure/栈-队列-堆)
 - [链表](/DataStructure/链表)
-- [时间复杂度与空间复杂度上](/DataStructure/时间复杂度与空间复杂度上)
+- [时间复杂度与空间复杂度](/DataStructure/时间复杂度与空间复杂度)
 
