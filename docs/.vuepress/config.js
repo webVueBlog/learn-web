@@ -154,8 +154,8 @@ module.exports = {
                             link: '/Browser-Extensions/'
                         },
                         {
-                            text: 'Graphics',
-                            link: '/Graphics/'
+                            text: 'Java',
+                            link: '/Java/'
                         },
                     ]
                 }, {
@@ -540,10 +540,10 @@ module.exports = {
                 collapsable: true,
                 path: '/Browser-Extensions/',
             }],
-            '/Graphics/': [{
-                title: 'Graphics',
+            '/Java/': [{
+                title: 'Java',
                 collapsable: true,
-                path: '/Graphics/',
+                path: '/Java/',
             }],
             '/safety/': [{
                 title: '安全系列',
