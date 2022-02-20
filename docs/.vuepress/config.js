@@ -544,6 +544,9 @@ module.exports = {
                 children: [{
                     title: '栈-队列-堆',
                     path: '栈-队列-堆'
+                }, {
+                    title: '链表',
+                    path: '链表'
                 }]
             }],
             '/ALG/': [{
