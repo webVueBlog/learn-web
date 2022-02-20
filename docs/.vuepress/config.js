@@ -1,7 +1,7 @@
 module.exports = {
     title: '深入理解前端系列',
     description: '哪吒的深入理解前端系列',
-    base: '/learn-web/',
+    // base: '/learn-web/',
     head: [
         ['link', {
             rel: 'icon',
@@ -13,6 +13,18 @@ module.exports = {
         }]
     ],
     plugins: [
+        [
+            'vuepress-plugin-medium-zoom',
+            {
+                selector: '.my-wrapper .my-img',
+                delay: 1000,
+                options: {
+                    margin: 24,
+                    background: '#BADA55',
+                    scrollOffset: 0,
+                },
+            },
+        ],
         ['social-share'],
         ['@vuepress/back-to-top'],
         [
@@ -43,7 +55,13 @@ module.exports = {
                 recoverTime: 2000,
             },
         ],
-        ['vuepress-plugin-code-copy', true]
+        ['vuepress-plugin-code-copy',
+            {
+                minLength: 10,
+                authorName: "哪吒",
+                clipboardComponent: ".vuepress/components/clipboardComponent.vue"
+            }
+        ]
     ],
     markdown: {
         lineNumbers: true
@@ -547,6 +565,9 @@ module.exports = {
                 }, {
                     title: '链表',
                     path: '链表'
+                }, {
+                    title: '时间复杂度与空间复杂度上',
+                    path: '时间复杂度与空间复杂度上'
                 }]
             }],
             '/ALG/': [{

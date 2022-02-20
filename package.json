@@ -12,6 +12,7 @@
         "vuepress": "^1.9.5",
         "vuepress-plugin-code-copy": "^1.0.6",
         "vuepress-plugin-dynamic-title": "^1.0.0",
+        "vuepress-plugin-medium-zoom": "^1.1.9",
         "vuepress-plugin-social-share": "^1.1.0",
         "vuepress-plugin-typescript": "^0.3.1",
         "vuepress-types": "^0.9.4",
