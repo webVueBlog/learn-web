@@ -1,7 +1,7 @@
 ---
 home: true
 lang: zh-CN
-heroText: 🚀 learn-web官方文档
+heroText: 哪吒的全栈官方文档
 heroImage: /logo.jpg
 actionText: 开始 ->
 actionLink: /HTML/

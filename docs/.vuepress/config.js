@@ -1,6 +1,6 @@
 module.exports = {
-    title: '深入理解前端系列',
-    description: '哪吒的深入理解前端系列',
+    title: '哪吒的深入理解全栈系列',
+    description: '「早起、阅读、运动、写作、冥想」',
     // base: '/learn-web/',
     head: [
         ['link', {
@@ -544,6 +544,16 @@ module.exports = {
                 title: 'Java',
                 collapsable: true,
                 path: '/Java/',
+                children: [{
+                    title: '1-1JDK的下载和安装',
+                    path: '1-1JDK的下载和安装'
+                }, {
+                    title: '1-2环境变量的配置',
+                    path: '1-2环境变量的配置'
+                }, {
+                    title: '1-3Eclipse的下载安装和启动',
+                    path: '1-3Eclipse的下载安装和启动'
+                }]
             }],
             '/safety/': [{
                 title: '安全系列',
