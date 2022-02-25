@@ -553,6 +553,30 @@ module.exports = {
                 }, {
                     title: '1-3Eclipse的下载安装和启动',
                     path: '1-3Eclipse的下载安装和启动'
+                }, {
+                    title: '1-4Java工程创建和目录结构',
+                    path: '1-4Java工程创建和目录结构'
+                }, {
+                    title: '1-5HelloWorld的编写和包的使用',
+                    path: '1-5HelloWorld的编写和包的使用'
+                }, {
+                    title: '1-6编辑器和控制台字体修改',
+                    path: '1-6编辑器和控制台字体修改'
+                }, {
+                    title: '1-7工程名、包名和类名的重命名',
+                    path: '1-7工程名、包名和类名的重命名'
+                }, {
+                    title: '1-8项目的导入和导出',
+                    path: '1-8项目的导入和导出'
+                }, {
+                    title: '1-9工作空间的切换',
+                    path: '1-9工作空间的切换'
+                }, {
+                    title: '1-10HelloWorld的说明',
+                    path: '1-10HelloWorld的说明'
+                }, {
+                    title: '1-11-34',
+                    path: '1-11-34'
                 }]
             }],
             '/safety/': [{
