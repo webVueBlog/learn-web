@@ -577,6 +577,9 @@ module.exports = {
                 }, {
                     title: '1-11-34',
                     path: '1-11-34'
+                }, {
+                    title: '2-第二部分',
+                    path: '2-第二部分'
                 }]
             }],
             '/safety/': [{
