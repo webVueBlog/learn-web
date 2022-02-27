@@ -580,6 +580,9 @@ module.exports = {
                 }, {
                     title: '2-第二部分',
                     path: '2-第二部分'
+                }, {
+                    title: '3-第三部分',
+                    path: '3-第三部分'
                 }]
             }],
             '/safety/': [{
