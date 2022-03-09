@@ -1,7 +1,7 @@
 module.exports = {
     title: '哪吒的深入理解全栈系列',
     description: '「早起、阅读、运动、写作、冥想」',
-    // base: '/learn-web/',
+    base: '/learn-web/',
     head: [
         ['link', {
             rel: 'icon',
