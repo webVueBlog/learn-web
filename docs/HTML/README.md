@@ -2,4 +2,4 @@
 
 ## HTML
 
-- [HTML基础](/HTML/HTML基础)
+- [HTML基础](/HTML/HTML基础.md)
