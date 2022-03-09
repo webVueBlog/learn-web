@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>哪吒的深入理解全栈系列</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/learn-web/logo.jpg">
+    <meta name="description" content="「早起、阅读、运动、写作、冥想」">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/learn-web/assets/css/0.styles.b695ea6c.css" as="style"><link rel="preload" href="/learn-web/assets/js/app.72a02f74.js" as="script"><link rel="preload" href="/learn-web/assets/js/2.a6c2d1f7.js" as="script"><link rel="preload" href="/learn-web/assets/js/18.1d44600d.js" as="script"><link rel="prefetch" href="/learn-web/assets/js/10.aaeca20e.js"><link rel="prefetch" href="/learn-web/assets/js/100.f7f95db7.js"><link rel="prefetch" href="/learn-web/assets/js/101.4ef9fb19.js"><link rel="prefetch" href="/learn-web/assets/js/102.a8fa7673.js"><link rel="prefetch" href="/learn-web/assets/js/103.2af2839e.js"><link rel="prefetch" href="/learn-web/assets/js/104.9e751296.js"><link rel="prefetch" href="/learn-web/assets/js/105.6f63235e.js"><link rel="prefetch" href="/learn-web/assets/js/106.b8d4d6af.js"><link rel="prefetch" href="/learn-web/assets/js/107.91de7f35.js"><link rel="prefetch" href="/learn-web/assets/js/108.09092da0.js"><link rel="prefetch" href="/learn-web/assets/js/109.b003cdf0.js"><link rel="prefetch" href="/learn-web/assets/js/11.d9bf61c5.js"><link rel="prefetch" href="/learn-web/assets/js/110.972614dd.js"><link rel="prefetch" href="/learn-web/assets/js/111.33108f14.js"><link rel="prefetch" href="/learn-web/assets/js/112.70827e82.js"><link rel="prefetch" href="/learn-web/assets/js/113.2fb223e9.js"><link rel="prefetch" href="/learn-web/assets/js/114.0695cb59.js"><link rel="prefetch" href="/learn-web/assets/js/115.ac904829.js"><link rel="prefetch" href="/learn-web/assets/js/116.647d1960.js"><link rel="prefetch" href="/learn-web/assets/js/117.cb088bd8.js"><link rel="prefetch" href="/learn-web/assets/js/118.a87b4044.js"><link rel="prefetch" href="/learn-web/assets/js/119.5ae7379d.js"><link rel="prefetch" href="/learn-web/assets/js/12.67199060.js"><link rel="prefetch" href="/learn-web/assets/js/120.3e5dd68e.js"><link rel="prefetch" href="/learn-web/assets/js/121.1c6720b8.js"><link rel="prefetch" href="/learn-web/assets/js/122.58d871ec.js"><link rel="prefetch" href="/learn-web/assets/js/123.52450eb8.js"><link rel="prefetch" href="/learn-web/assets/js/124.72bfff1d.js"><link rel="prefetch" href="/learn-web/assets/js/125.b367826d.js"><link rel="prefetch" href="/learn-web/assets/js/13.666a623d.js"><link rel="prefetch" href="/learn-web/assets/js/14.9eb30dde.js"><link rel="prefetch" href="/learn-web/assets/js/15.1f3fea0d.js"><link rel="prefetch" href="/learn-web/assets/js/16.7311dc90.js"><link rel="prefetch" href="/learn-web/assets/js/17.c3d8066f.js"><link rel="prefetch" href="/learn-web/assets/js/19.01366c26.js"><link rel="prefetch" href="/learn-web/assets/js/20.903f0ed3.js"><link rel="prefetch" href="/learn-web/assets/js/21.e5e7efdf.js"><link rel="prefetch" href="/learn-web/assets/js/22.1c09ae3a.js"><link rel="prefetch" href="/learn-web/assets/js/23.d7d52d9c.js"><link rel="prefetch" href="/learn-web/assets/js/24.110f3791.js"><link rel="prefetch" href="/learn-web/assets/js/25.cdcc627e.js"><link rel="prefetch" href="/learn-web/assets/js/26.0a33d9a0.js"><link rel="prefetch" href="/learn-web/assets/js/27.5688e4bf.js"><link rel="prefetch" href="/learn-web/assets/js/28.9b3bc35f.js"><link rel="prefetch" href="/learn-web/assets/js/29.7a9f1587.js"><link rel="prefetch" href="/learn-web/assets/js/3.4ad85264.js"><link rel="prefetch" href="/learn-web/assets/js/30.8e259062.js"><link rel="prefetch" href="/learn-web/assets/js/31.4a4cbdc5.js"><link rel="prefetch" href="/learn-web/assets/js/32.69d26ab6.js"><link rel="prefetch" href="/learn-web/assets/js/33.da90182b.js"><link rel="prefetch" href="/learn-web/assets/js/34.5283b3b6.js"><link rel="prefetch" href="/learn-web/assets/js/35.69ad09b2.js"><link rel="prefetch" href="/learn-web/assets/js/36.675454cd.js"><link rel="prefetch" href="/learn-web/assets/js/37.079f4c43.js"><link rel="prefetch" href="/learn-web/assets/js/38.413a26c0.js"><link rel="prefetch" href="/learn-web/assets/js/39.05c8e713.js"><link rel="prefetch" href="/learn-web/assets/js/4.5434103e.js"><link rel="prefetch" href="/learn-web/assets/js/40.e8aac23e.js"><link rel="prefetch" href="/learn-web/assets/js/41.4fe62ded.js"><link rel="prefetch" href="/learn-web/assets/js/42.1dc095df.js"><link rel="prefetch" href="/learn-web/assets/js/43.416de164.js"><link rel="prefetch" href="/learn-web/assets/js/44.941ced0d.js"><link rel="prefetch" href="/learn-web/assets/js/45.abcf4033.js"><link rel="prefetch" href="/learn-web/assets/js/46.738ce4d2.js"><link rel="prefetch" href="/learn-web/assets/js/47.9f1f7cf6.js"><link rel="prefetch" href="/learn-web/assets/js/48.ace0f5b0.js"><link rel="prefetch" href="/learn-web/assets/js/49.05ec783f.js"><link rel="prefetch" href="/learn-web/assets/js/5.592e78f1.js"><link rel="prefetch" href="/learn-web/assets/js/50.3c564ee7.js"><link rel="prefetch" href="/learn-web/assets/js/51.5889851c.js"><link rel="prefetch" href="/learn-web/assets/js/52.ac6e1a2b.js"><link rel="prefetch" href="/learn-web/assets/js/53.706b3e57.js"><link rel="prefetch" href="/learn-web/assets/js/54.639035df.js"><link rel="prefetch" href="/learn-web/assets/js/55.7403f743.js"><link rel="prefetch" href="/learn-web/assets/js/56.2dee655f.js"><link rel="prefetch" href="/learn-web/assets/js/57.b64a6d6c.js"><link rel="prefetch" href="/learn-web/assets/js/58.c770ea8b.js"><link rel="prefetch" href="/learn-web/assets/js/59.704e30b9.js"><link rel="prefetch" href="/learn-web/assets/js/6.daf19e12.js"><link rel="prefetch" href="/learn-web/assets/js/60.0cb848cc.js"><link rel="prefetch" href="/learn-web/assets/js/61.478b6ecd.js"><link rel="prefetch" href="/learn-web/assets/js/62.226b7ec3.js"><link rel="prefetch" href="/learn-web/assets/js/63.a1e93f97.js"><link rel="prefetch" href="/learn-web/assets/js/64.47e06a47.js"><link rel="prefetch" href="/learn-web/assets/js/65.616b074f.js"><link rel="prefetch" href="/learn-web/assets/js/66.8fdb2e03.js"><link rel="prefetch" href="/learn-web/assets/js/67.5cfd0463.js"><link rel="prefetch" href="/learn-web/assets/js/68.1ef8eeb1.js"><link rel="prefetch" href="/learn-web/assets/js/69.ce28eb58.js"><link rel="prefetch" href="/learn-web/assets/js/7.d040c705.js"><link rel="prefetch" href="/learn-web/assets/js/70.b44d988f.js"><link rel="prefetch" href="/learn-web/assets/js/71.dbf935bb.js"><link rel="prefetch" href="/learn-web/assets/js/72.5624555b.js"><link rel="prefetch" href="/learn-web/assets/js/73.2c9d9dfd.js"><link rel="prefetch" href="/learn-web/assets/js/74.17f107fd.js"><link rel="prefetch" href="/learn-web/assets/js/75.9a48455f.js"><link rel="prefetch" href="/learn-web/assets/js/76.2dc8eb1d.js"><link rel="prefetch" href="/learn-web/assets/js/77.85af0b7b.js"><link rel="prefetch" href="/learn-web/assets/js/78.31ef44df.js"><link rel="prefetch" href="/learn-web/assets/js/79.72c1b27a.js"><link rel="prefetch" href="/learn-web/assets/js/8.090e429e.js"><link rel="prefetch" href="/learn-web/assets/js/80.20ab9560.js"><link rel="prefetch" href="/learn-web/assets/js/81.91d0896a.js"><link rel="prefetch" href="/learn-web/assets/js/82.4f44e777.js"><link rel="prefetch" href="/learn-web/assets/js/83.41d6c718.js"><link rel="prefetch" href="/learn-web/assets/js/84.85fe028b.js"><link rel="prefetch" href="/learn-web/assets/js/85.bc78a728.js"><link rel="prefetch" href="/learn-web/assets/js/86.6ec9ca4c.js"><link rel="prefetch" href="/learn-web/assets/js/87.8925b716.js"><link rel="prefetch" href="/learn-web/assets/js/88.7b38907d.js"><link rel="prefetch" href="/learn-web/assets/js/89.a65dfe2a.js"><link rel="prefetch" href="/learn-web/assets/js/9.231751c5.js"><link rel="prefetch" href="/learn-web/assets/js/90.f4b5d07c.js"><link rel="prefetch" href="/learn-web/assets/js/91.9a937d66.js"><link rel="prefetch" href="/learn-web/assets/js/92.774dfff6.js"><link rel="prefetch" href="/learn-web/assets/js/93.1b9fbed3.js"><link rel="prefetch" href="/learn-web/assets/js/94.eea33475.js"><link rel="prefetch" href="/learn-web/assets/js/95.1608b684.js"><link rel="prefetch" href="/learn-web/assets/js/96.77ff819f.js"><link rel="prefetch" href="/learn-web/assets/js/97.b0d7dcc6.js"><link rel="prefetch" href="/learn-web/assets/js/98.b598e00f.js"><link rel="prefetch" href="/learn-web/assets/js/99.b04a0d52.js">
+    <link rel="stylesheet" href="/learn-web/assets/css/0.styles.b695ea6c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/learn-web/" class="home-link router-link-active"><!----> <span class="site-name">哪吒的深入理解全栈系列</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/learn-web/HTML/" class="nav-link">
+  HTML
+</a></div><div class="nav-item"><a href="/learn-web/CSS/" class="nav-link router-link-active">
+  CSS
+</a></div><div class="nav-item"><a href="/learn-web/JavaScript/" class="nav-link">
+  JavaScript
+</a></div><div class="nav-item"><a href="/learn-web/HTTP/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><a href="/learn-web/front-end-engineering/" class="nav-link">
+  工程化
+</a></div><div class="nav-item"><a href="/learn-web/browser/" class="nav-link">
+  浏览器
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大前端" class="dropdown-title"><span class="title">大前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="大前端" class="mobile-dropdown-title"><span class="title">大前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/learn-web/regular-expression/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Programming/" class="nav-link">
+  编程题
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Node/" class="nav-link">
+  Node
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/React/" class="nav-link">
+  React
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实践" class="dropdown-title"><span class="title">实践</span> <span class="arrow down"></span></button> <button type="button" aria-label="实践" class="mobile-dropdown-title"><span class="title">实践</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          html-css-js实践
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/html-css-js-coding/" class="nav-link">
+  html-css-js实践
+</a></li></ul></li><li class="dropdown-item"><h4>
+          实践操作
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/coding/" class="nav-link">
+  实践操作
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="书籍" class="dropdown-title"><span class="title">书籍</span> <span class="arrow down"></span></button> <button type="button" aria-label="书籍" class="mobile-dropdown-title"><span class="title">书籍</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          JavaScript书籍
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/JavaScript-advanced-programming/" class="nav-link">
+  JavaScript高级程序设计（第4版）
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          进阶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/APIs/" class="nav-link">
+  APIs
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Browser-Extensions/" class="nav-link">
+  Browser-Extensions
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Java/" class="nav-link">
+  Java
+</a></li></ul></li><li class="dropdown-item"><h4>
+          高阶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/safety/" class="nav-link">
+  安全系列
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Performance/" class="nav-link">
+  性能系列
+</a></li></ul></li><li class="dropdown-item"><h4>
+          资深
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/DataStructure/" class="nav-link">
+  数据结构系列
+</a></li><li class="dropdown-subitem"><a href="/learn-web/ALG/" class="nav-link">
+  算法系列
+</a></li></ul></li><li class="dropdown-item"><h4>
+          推荐
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-webpack/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-webpack
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-React/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-React
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-TypeScript/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-TypeScript
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://1024bibi.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  1024bibi.com bolg
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/vue-docs/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-docs
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div> <a href="https://github.com/webVueBlog/learn-web" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/learn-web/HTML/" class="nav-link">
+  HTML
+</a></div><div class="nav-item"><a href="/learn-web/CSS/" class="nav-link router-link-active">
+  CSS
+</a></div><div class="nav-item"><a href="/learn-web/JavaScript/" class="nav-link">
+  JavaScript
+</a></div><div class="nav-item"><a href="/learn-web/HTTP/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><a href="/learn-web/front-end-engineering/" class="nav-link">
+  工程化
+</a></div><div class="nav-item"><a href="/learn-web/browser/" class="nav-link">
+  浏览器
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大前端" class="dropdown-title"><span class="title">大前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="大前端" class="mobile-dropdown-title"><span class="title">大前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/learn-web/regular-expression/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Programming/" class="nav-link">
+  编程题
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Node/" class="nav-link">
+  Node
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/React/" class="nav-link">
+  React
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实践" class="dropdown-title"><span class="title">实践</span> <span class="arrow down"></span></button> <button type="button" aria-label="实践" class="mobile-dropdown-title"><span class="title">实践</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          html-css-js实践
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/html-css-js-coding/" class="nav-link">
+  html-css-js实践
+</a></li></ul></li><li class="dropdown-item"><h4>
+          实践操作
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/coding/" class="nav-link">
+  实践操作
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="书籍" class="dropdown-title"><span class="title">书籍</span> <span class="arrow down"></span></button> <button type="button" aria-label="书籍" class="mobile-dropdown-title"><span class="title">书籍</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          JavaScript书籍
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/JavaScript-advanced-programming/" class="nav-link">
+  JavaScript高级程序设计（第4版）
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          进阶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/APIs/" class="nav-link">
+  APIs
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Browser-Extensions/" class="nav-link">
+  Browser-Extensions
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Java/" class="nav-link">
+  Java
+</a></li></ul></li><li class="dropdown-item"><h4>
+          高阶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/safety/" class="nav-link">
+  安全系列
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Performance/" class="nav-link">
+  性能系列
+</a></li></ul></li><li class="dropdown-item"><h4>
+          资深
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/DataStructure/" class="nav-link">
+  数据结构系列
+</a></li><li class="dropdown-subitem"><a href="/learn-web/ALG/" class="nav-link">
+  算法系列
+</a></li></ul></li><li class="dropdown-item"><h4>
+          推荐
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-webpack/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-webpack
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-React/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-React
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-TypeScript/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-TypeScript
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://1024bibi.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  1024bibi.com bolg
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/vue-docs/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-docs
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div> <a href="https://github.com/webVueBlog/learn-web" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/learn-web/CSS/" class="sidebar-heading clickable router-link-active open"><span>CSS</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/learn-web/CSS/盒子模型.html" class="sidebar-link">盒子模型</a></li><li><a href="/learn-web/CSS/CSS选择器.html" class="active sidebar-link">CSS选择器</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/learn-web/CSS/CSS选择器.html#简介" class="sidebar-link">简介</a></li><li class="sidebar-sub-header"><a href="/learn-web/CSS/CSS选择器.html#简单选择器" class="sidebar-link">简单选择器</a></li><li class="sidebar-sub-header"><a href="/learn-web/CSS/CSS选择器.html#伪类和伪元素" class="sidebar-link">伪类和伪元素</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><blockquote><p>点击勘误<a href="https://github.com/webVueBlog/learn-web/issues" target="_blank" rel="noopener noreferrer">issues<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>，哪吒感谢大家的阅读</p></blockquote> <p></p><div class="table-of-contents"><ul><li><a href="#简介">简介</a></li><li><a href="#简单选择器">简单选择器</a><ul><li><a href="#类型选择器-又名-元素选择器">类型选择器（又名：元素选择器）</a></li><li><a href="#类选择器-class-selectors">类选择器（Class selectors）</a></li><li><a href="#id-选择器">ID 选择器</a></li><li><a href="#通用选择器-universal-selector">通用选择器（Universal selector）</a></li><li><a href="#组合器-combinators">组合器（Combinators）</a></li></ul></li><li><a href="#伪类和伪元素">伪类和伪元素</a><ul><li><a href="#伪类-pseudo-class">伪类（Pseudo-class）</a></li><li><a href="#伪元素">伪元素</a></li></ul></li></ul></div><p></p> <h2 id="简介"><a href="#简介" class="header-anchor">#</a> 简介</h2> <p>选择器是 CSS 规则的一部分且位于 CSS 声明块前。</p> <img src="/learn-web/assets/img/343615.b49f5a4a.png" style="display:flex;margin:auto;width:100%;"> <p>选择器可以被分为以下类别：</p> <ul><li>简单选择器（Simple selectors）：通过元素类型、class 或 id 匹配一个或多个元素。</li> <li>属性选择器（Attribute selectors）：通过 属性 / 属性值 匹配一个或多个元素。</li> <li>伪类（Pseudo-classes）：匹配处于确定状态的一个或多个元素，比如被鼠标指针悬停的元素，或当前被选中或未选中的复选框，或元素是 DOM 树中一父节点的第一个子节点。</li> <li>伪元素（Pseudo-elements）:匹配处于相关的确定位置的一个或多个元素，例如每个段落的第一个字，或者某个元素之前生成的内容。</li> <li>组合器（Combinators）：这里不仅仅是选择器本身，还有以有效的方式组合两个或更多的选择器用于非常特定的选择的方法。例如，你可以只选择 divs 的直系子节点的段落，或者直接跟在 headings 后面的段落。</li> <li>多用选择器（Multiple selectors）：这些也不是单独的选择器；这个思路是将以逗号分隔开的多个选择器放在一个 CSS 规则下面， 以将一组声明应用于由这些选择器选择的所有元素。</li></ul> <h2 id="简单选择器"><a href="#简单选择器" class="header-anchor">#</a> 简单选择器</h2> <h3 id="类型选择器-又名-元素选择器"><a href="#类型选择器-又名-元素选择器" class="header-anchor">#</a> 类型选择器（又名：元素选择器）</h3> <p>此选择器只是一个选择器名和指定的HTML元素名的不区分大小写的匹配。这是选择所有指定类型的最简单方式。</p> <h3 id="类选择器-class-selectors"><a href="#类选择器-class-selectors" class="header-anchor">#</a> 类选择器（Class selectors）</h3> <p>类选择器由一个点“.”以及类后面的类名组成。类名是在HTML class文档元素属性中没有空格的任何值。由你自己选择一个名字。同样值得一提的是，文档中的多个元素可以具有相同的类名，而单个元素可以有多个类名(以空格分开多个类名的形式书写)。</p> <h3 id="id-选择器"><a href="#id-选择器" class="header-anchor">#</a> ID 选择器</h3> <p>ID选择器由哈希/磅符号 (#)组成，后面是给定元素的ID名称。 任何元素都可以使用id属性设置唯一的ID名称。 由你自己选择的ID是什么。 这是选择单个元素的最有效的方式。</p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>重要提示：一个ID名称必须在文件中是唯一的。关于重复ID的行为是不可预测的，比如在一些浏览器只是第一个实例计算，其余的将被忽略。</p></div> <h3 id="通用选择器-universal-selector"><a href="#通用选择器-universal-selector" class="header-anchor">#</a> 通用选择器（Universal selector）</h3> <p>通用选择（<code>*</code>）是最终的王牌。它允许选择在一个页面中的所有元素。由于给每个元素应用同样的规则几乎没有什么实际价值，更常见的做法是与其他选择器结合使用。</p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>重要提示：使用通用选择时小心。因为它适用于所有的元素，在大型网页利用它可以对性能有明显的影响：网页可以显示比预期要慢。不会有太多的情况下，您想使用此选择。</p></div> <h3 id="组合器-combinators"><a href="#组合器-combinators" class="header-anchor">#</a> 组合器（Combinators）</h3> <p>在CSS中，组合器允许您将多个选择器组合在一起，这允许您在其他元素中选择元素，或者与其他元素相邻。四种可用的类型是：</p> <ul><li>后代选择器——（空格键）——允许您选择嵌套在另一个元素中的某个元素（不一定是直接的后代;例如，它可以是一个孙子）。</li> <li>子选择器—— &gt; ——允许您选择一个元素，该元素是另一个元素的直接子元素。</li> <li>相邻兄弟选择器—— + ——允许您选择一个元素，它是另一个元素的直接兄弟元素(也就是说，在它的旁边，在层次结构的同一层)。</li> <li>通用兄弟选择器—— ~ — —允许您选择其他元素的兄弟元素(例如，在层次结构中的相同级别，但不一定就在它的旁边)。</li></ul> <div class="language-js line-numbers-mode"><pre class="language-js"><code>Combinators	Select
+<span class="token constant">A</span><span class="token punctuation">,</span><span class="token constant">B</span>	匹配满足<span class="token constant">A</span>（和<span class="token operator">/</span>或）<span class="token constant">B</span>的任意元素<span class="token punctuation">.</span>
+<span class="token constant">A</span> <span class="token constant">B</span>	匹配任意元素，满足条件：<span class="token constant">B</span>是<span class="token constant">A</span>的后代结点（<span class="token constant">B</span>是<span class="token constant">A</span>的子节点，或者<span class="token constant">A</span>的子节点的子节点）
+<span class="token constant">A</span> <span class="token operator">&gt;</span> <span class="token constant">B</span>	匹配任意元素，满足条件：<span class="token constant">B</span>是<span class="token constant">A</span>的直接子节点
+<span class="token constant">A</span> <span class="token operator">+</span> <span class="token constant">B</span>	匹配任意元素，满足条件：<span class="token constant">B</span>是<span class="token constant">A</span>的下一个兄弟节点（<span class="token constant">AB</span>有相同的父结点，并且<span class="token constant">B</span>紧跟在<span class="token constant">A</span>的后面）
+<span class="token constant">A</span> <span class="token operator">~</span> <span class="token constant">B</span>	匹配任意元素，满足条件：<span class="token constant">B</span>是<span class="token constant">A</span>之后的兄弟节点中的任意一个（<span class="token constant">AB</span>有相同的父节点，<span class="token constant">B</span>在<span class="token constant">A</span>之后，但不一定是紧挨着<span class="token constant">A</span>）
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h2 id="伪类和伪元素"><a href="#伪类和伪元素" class="header-anchor">#</a> 伪类和伪元素</h2> <h3 id="伪类-pseudo-class"><a href="#伪类-pseudo-class" class="header-anchor">#</a> 伪类（Pseudo-class）</h3> <p>一个 CSS 伪类（pseudo-class） 是一个以冒号<code>(:)</code>作为前缀的关键字，当你希望样式在特定状态下才被呈现到指定的元素时，你可以往元素的选择器后面加上对应的伪类（pseudo-class）。你可能希望某个元素在处于某种状态下呈现另一种样式，例如当鼠标悬停在元素上面时，或者当一个 <code>checkbox</code> 被禁用或被勾选时，又或者当一个元素是它在 DOM 树中父元素的第一个孩子元素时。</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token operator">:</span>active
+<span class="token operator">:</span>any
+<span class="token operator">:</span>checked
+<span class="token operator">:</span><span class="token keyword">default</span>
+<span class="token operator">:</span><span class="token function">dir</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">:</span>disabled
+<span class="token operator">:</span>empty
+<span class="token operator">:</span>enabled
+<span class="token operator">:</span>first
+<span class="token operator">:</span>first<span class="token operator">-</span>child
+<span class="token operator">:</span>first<span class="token operator">-</span><span class="token keyword">of</span><span class="token operator">-</span>type
+<span class="token operator">:</span>fullscreen
+<span class="token operator">:</span>focus
+<span class="token operator">:</span>hover
+<span class="token operator">:</span>indeterminate
+<span class="token operator">:</span><span class="token keyword">in</span><span class="token operator">-</span>range
+<span class="token operator">:</span>invalid
+<span class="token operator">:</span><span class="token function">lang</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">:</span>last<span class="token operator">-</span>child
+<span class="token operator">:</span>last<span class="token operator">-</span><span class="token keyword">of</span><span class="token operator">-</span>type
+<span class="token operator">:</span>left
+<span class="token operator">:</span>link
+<span class="token operator">:</span><span class="token function">not</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">:</span>nth<span class="token operator">-</span><span class="token function">child</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">:</span>nth<span class="token operator">-</span>last<span class="token operator">-</span><span class="token function">child</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">:</span>nth<span class="token operator">-</span>last<span class="token operator">-</span><span class="token keyword">of</span><span class="token operator">-</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">:</span>nth<span class="token operator">-</span><span class="token keyword">of</span><span class="token operator">-</span><span class="token function">type</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">:</span>only<span class="token operator">-</span>child
+<span class="token operator">:</span>only<span class="token operator">-</span><span class="token keyword">of</span><span class="token operator">-</span>type
+<span class="token operator">:</span>optional
+<span class="token operator">:</span>out<span class="token operator">-</span><span class="token keyword">of</span><span class="token operator">-</span>range
+<span class="token operator">:</span>read<span class="token operator">-</span>only
+<span class="token operator">:</span>read<span class="token operator">-</span>write
+<span class="token operator">:</span>required
+<span class="token operator">:</span>right
+<span class="token operator">:</span>root
+<span class="token operator">:</span>scope
+<span class="token operator">:</span>target
+<span class="token operator">:</span>valid
+<span class="token operator">:</span>visited
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br></div></div><h3 id="伪元素"><a href="#伪元素" class="header-anchor">#</a> 伪元素</h3> <p>伪元素（<code>Pseudo-element</code>）跟伪类很像，但它们又有不同的地方。它们都是关键字 —— 但这次伪元素前缀是两个冒号 <code>(::)</code> —— 同样是添加到选择器后面达到指定某个元素的某个部分。</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token operator">:</span><span class="token operator">:</span>after
+<span class="token operator">:</span><span class="token operator">:</span>before
+<span class="token operator">:</span><span class="token operator">:</span>first<span class="token operator">-</span>letter
+<span class="token operator">:</span><span class="token operator">:</span>first<span class="token operator">-</span>line
+<span class="token operator">:</span><span class="token operator">:</span>selection
+<span class="token operator">:</span><span class="token operator">:</span>backdrop
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><ul><li><a href="https://segmentfault.com/a/1190000013424772" target="_blank" rel="noopener noreferrer">CSS选择器<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/webVueBlog/learn-web/edit/master/CSS/CSS选择器.md" target="_blank" rel="noopener noreferrer">编辑此页</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2/11/2022, 1:17:18 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/learn-web/CSS/盒子模型.html" class="prev">
+        盒子模型
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----><!----><!----><!----><div></div></div></div>
+    <script src="/learn-web/assets/js/app.72a02f74.js" defer></script><script src="/learn-web/assets/js/2.a6c2d1f7.js" defer></script><script src="/learn-web/assets/js/18.1d44600d.js" defer></script>
+  </body>
+</html>

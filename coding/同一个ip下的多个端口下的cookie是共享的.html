@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>哪吒的深入理解全栈系列</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/learn-web/logo.jpg">
+    <meta name="description" content="「早起、阅读、运动、写作、冥想」">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/learn-web/assets/css/0.styles.b695ea6c.css" as="style"><link rel="preload" href="/learn-web/assets/js/app.72a02f74.js" as="script"><link rel="preload" href="/learn-web/assets/js/2.a6c2d1f7.js" as="script"><link rel="preload" href="/learn-web/assets/js/118.a87b4044.js" as="script"><link rel="prefetch" href="/learn-web/assets/js/10.aaeca20e.js"><link rel="prefetch" href="/learn-web/assets/js/100.f7f95db7.js"><link rel="prefetch" href="/learn-web/assets/js/101.4ef9fb19.js"><link rel="prefetch" href="/learn-web/assets/js/102.a8fa7673.js"><link rel="prefetch" href="/learn-web/assets/js/103.2af2839e.js"><link rel="prefetch" href="/learn-web/assets/js/104.9e751296.js"><link rel="prefetch" href="/learn-web/assets/js/105.6f63235e.js"><link rel="prefetch" href="/learn-web/assets/js/106.b8d4d6af.js"><link rel="prefetch" href="/learn-web/assets/js/107.91de7f35.js"><link rel="prefetch" href="/learn-web/assets/js/108.09092da0.js"><link rel="prefetch" href="/learn-web/assets/js/109.b003cdf0.js"><link rel="prefetch" href="/learn-web/assets/js/11.d9bf61c5.js"><link rel="prefetch" href="/learn-web/assets/js/110.972614dd.js"><link rel="prefetch" href="/learn-web/assets/js/111.33108f14.js"><link rel="prefetch" href="/learn-web/assets/js/112.70827e82.js"><link rel="prefetch" href="/learn-web/assets/js/113.2fb223e9.js"><link rel="prefetch" href="/learn-web/assets/js/114.0695cb59.js"><link rel="prefetch" href="/learn-web/assets/js/115.ac904829.js"><link rel="prefetch" href="/learn-web/assets/js/116.647d1960.js"><link rel="prefetch" href="/learn-web/assets/js/117.cb088bd8.js"><link rel="prefetch" href="/learn-web/assets/js/119.5ae7379d.js"><link rel="prefetch" href="/learn-web/assets/js/12.67199060.js"><link rel="prefetch" href="/learn-web/assets/js/120.3e5dd68e.js"><link rel="prefetch" href="/learn-web/assets/js/121.1c6720b8.js"><link rel="prefetch" href="/learn-web/assets/js/122.58d871ec.js"><link rel="prefetch" href="/learn-web/assets/js/123.52450eb8.js"><link rel="prefetch" href="/learn-web/assets/js/124.72bfff1d.js"><link rel="prefetch" href="/learn-web/assets/js/125.b367826d.js"><link rel="prefetch" href="/learn-web/assets/js/13.666a623d.js"><link rel="prefetch" href="/learn-web/assets/js/14.9eb30dde.js"><link rel="prefetch" href="/learn-web/assets/js/15.1f3fea0d.js"><link rel="prefetch" href="/learn-web/assets/js/16.7311dc90.js"><link rel="prefetch" href="/learn-web/assets/js/17.c3d8066f.js"><link rel="prefetch" href="/learn-web/assets/js/18.1d44600d.js"><link rel="prefetch" href="/learn-web/assets/js/19.01366c26.js"><link rel="prefetch" href="/learn-web/assets/js/20.903f0ed3.js"><link rel="prefetch" href="/learn-web/assets/js/21.e5e7efdf.js"><link rel="prefetch" href="/learn-web/assets/js/22.1c09ae3a.js"><link rel="prefetch" href="/learn-web/assets/js/23.d7d52d9c.js"><link rel="prefetch" href="/learn-web/assets/js/24.110f3791.js"><link rel="prefetch" href="/learn-web/assets/js/25.cdcc627e.js"><link rel="prefetch" href="/learn-web/assets/js/26.0a33d9a0.js"><link rel="prefetch" href="/learn-web/assets/js/27.5688e4bf.js"><link rel="prefetch" href="/learn-web/assets/js/28.9b3bc35f.js"><link rel="prefetch" href="/learn-web/assets/js/29.7a9f1587.js"><link rel="prefetch" href="/learn-web/assets/js/3.4ad85264.js"><link rel="prefetch" href="/learn-web/assets/js/30.8e259062.js"><link rel="prefetch" href="/learn-web/assets/js/31.4a4cbdc5.js"><link rel="prefetch" href="/learn-web/assets/js/32.69d26ab6.js"><link rel="prefetch" href="/learn-web/assets/js/33.da90182b.js"><link rel="prefetch" href="/learn-web/assets/js/34.5283b3b6.js"><link rel="prefetch" href="/learn-web/assets/js/35.69ad09b2.js"><link rel="prefetch" href="/learn-web/assets/js/36.675454cd.js"><link rel="prefetch" href="/learn-web/assets/js/37.079f4c43.js"><link rel="prefetch" href="/learn-web/assets/js/38.413a26c0.js"><link rel="prefetch" href="/learn-web/assets/js/39.05c8e713.js"><link rel="prefetch" href="/learn-web/assets/js/4.5434103e.js"><link rel="prefetch" href="/learn-web/assets/js/40.e8aac23e.js"><link rel="prefetch" href="/learn-web/assets/js/41.4fe62ded.js"><link rel="prefetch" href="/learn-web/assets/js/42.1dc095df.js"><link rel="prefetch" href="/learn-web/assets/js/43.416de164.js"><link rel="prefetch" href="/learn-web/assets/js/44.941ced0d.js"><link rel="prefetch" href="/learn-web/assets/js/45.abcf4033.js"><link rel="prefetch" href="/learn-web/assets/js/46.738ce4d2.js"><link rel="prefetch" href="/learn-web/assets/js/47.9f1f7cf6.js"><link rel="prefetch" href="/learn-web/assets/js/48.ace0f5b0.js"><link rel="prefetch" href="/learn-web/assets/js/49.05ec783f.js"><link rel="prefetch" href="/learn-web/assets/js/5.592e78f1.js"><link rel="prefetch" href="/learn-web/assets/js/50.3c564ee7.js"><link rel="prefetch" href="/learn-web/assets/js/51.5889851c.js"><link rel="prefetch" href="/learn-web/assets/js/52.ac6e1a2b.js"><link rel="prefetch" href="/learn-web/assets/js/53.706b3e57.js"><link rel="prefetch" href="/learn-web/assets/js/54.639035df.js"><link rel="prefetch" href="/learn-web/assets/js/55.7403f743.js"><link rel="prefetch" href="/learn-web/assets/js/56.2dee655f.js"><link rel="prefetch" href="/learn-web/assets/js/57.b64a6d6c.js"><link rel="prefetch" href="/learn-web/assets/js/58.c770ea8b.js"><link rel="prefetch" href="/learn-web/assets/js/59.704e30b9.js"><link rel="prefetch" href="/learn-web/assets/js/6.daf19e12.js"><link rel="prefetch" href="/learn-web/assets/js/60.0cb848cc.js"><link rel="prefetch" href="/learn-web/assets/js/61.478b6ecd.js"><link rel="prefetch" href="/learn-web/assets/js/62.226b7ec3.js"><link rel="prefetch" href="/learn-web/assets/js/63.a1e93f97.js"><link rel="prefetch" href="/learn-web/assets/js/64.47e06a47.js"><link rel="prefetch" href="/learn-web/assets/js/65.616b074f.js"><link rel="prefetch" href="/learn-web/assets/js/66.8fdb2e03.js"><link rel="prefetch" href="/learn-web/assets/js/67.5cfd0463.js"><link rel="prefetch" href="/learn-web/assets/js/68.1ef8eeb1.js"><link rel="prefetch" href="/learn-web/assets/js/69.ce28eb58.js"><link rel="prefetch" href="/learn-web/assets/js/7.d040c705.js"><link rel="prefetch" href="/learn-web/assets/js/70.b44d988f.js"><link rel="prefetch" href="/learn-web/assets/js/71.dbf935bb.js"><link rel="prefetch" href="/learn-web/assets/js/72.5624555b.js"><link rel="prefetch" href="/learn-web/assets/js/73.2c9d9dfd.js"><link rel="prefetch" href="/learn-web/assets/js/74.17f107fd.js"><link rel="prefetch" href="/learn-web/assets/js/75.9a48455f.js"><link rel="prefetch" href="/learn-web/assets/js/76.2dc8eb1d.js"><link rel="prefetch" href="/learn-web/assets/js/77.85af0b7b.js"><link rel="prefetch" href="/learn-web/assets/js/78.31ef44df.js"><link rel="prefetch" href="/learn-web/assets/js/79.72c1b27a.js"><link rel="prefetch" href="/learn-web/assets/js/8.090e429e.js"><link rel="prefetch" href="/learn-web/assets/js/80.20ab9560.js"><link rel="prefetch" href="/learn-web/assets/js/81.91d0896a.js"><link rel="prefetch" href="/learn-web/assets/js/82.4f44e777.js"><link rel="prefetch" href="/learn-web/assets/js/83.41d6c718.js"><link rel="prefetch" href="/learn-web/assets/js/84.85fe028b.js"><link rel="prefetch" href="/learn-web/assets/js/85.bc78a728.js"><link rel="prefetch" href="/learn-web/assets/js/86.6ec9ca4c.js"><link rel="prefetch" href="/learn-web/assets/js/87.8925b716.js"><link rel="prefetch" href="/learn-web/assets/js/88.7b38907d.js"><link rel="prefetch" href="/learn-web/assets/js/89.a65dfe2a.js"><link rel="prefetch" href="/learn-web/assets/js/9.231751c5.js"><link rel="prefetch" href="/learn-web/assets/js/90.f4b5d07c.js"><link rel="prefetch" href="/learn-web/assets/js/91.9a937d66.js"><link rel="prefetch" href="/learn-web/assets/js/92.774dfff6.js"><link rel="prefetch" href="/learn-web/assets/js/93.1b9fbed3.js"><link rel="prefetch" href="/learn-web/assets/js/94.eea33475.js"><link rel="prefetch" href="/learn-web/assets/js/95.1608b684.js"><link rel="prefetch" href="/learn-web/assets/js/96.77ff819f.js"><link rel="prefetch" href="/learn-web/assets/js/97.b0d7dcc6.js"><link rel="prefetch" href="/learn-web/assets/js/98.b598e00f.js"><link rel="prefetch" href="/learn-web/assets/js/99.b04a0d52.js">
+    <link rel="stylesheet" href="/learn-web/assets/css/0.styles.b695ea6c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/learn-web/" class="home-link router-link-active"><!----> <span class="site-name">哪吒的深入理解全栈系列</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/learn-web/HTML/" class="nav-link">
+  HTML
+</a></div><div class="nav-item"><a href="/learn-web/CSS/" class="nav-link">
+  CSS
+</a></div><div class="nav-item"><a href="/learn-web/JavaScript/" class="nav-link">
+  JavaScript
+</a></div><div class="nav-item"><a href="/learn-web/HTTP/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><a href="/learn-web/front-end-engineering/" class="nav-link">
+  工程化
+</a></div><div class="nav-item"><a href="/learn-web/browser/" class="nav-link">
+  浏览器
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大前端" class="dropdown-title"><span class="title">大前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="大前端" class="mobile-dropdown-title"><span class="title">大前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/learn-web/regular-expression/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Programming/" class="nav-link">
+  编程题
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Node/" class="nav-link">
+  Node
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/React/" class="nav-link">
+  React
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实践" class="dropdown-title"><span class="title">实践</span> <span class="arrow down"></span></button> <button type="button" aria-label="实践" class="mobile-dropdown-title"><span class="title">实践</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          html-css-js实践
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/html-css-js-coding/" class="nav-link">
+  html-css-js实践
+</a></li></ul></li><li class="dropdown-item"><h4>
+          实践操作
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/coding/" class="nav-link router-link-active">
+  实践操作
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="书籍" class="dropdown-title"><span class="title">书籍</span> <span class="arrow down"></span></button> <button type="button" aria-label="书籍" class="mobile-dropdown-title"><span class="title">书籍</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          JavaScript书籍
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/JavaScript-advanced-programming/" class="nav-link">
+  JavaScript高级程序设计（第4版）
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          进阶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/APIs/" class="nav-link">
+  APIs
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Browser-Extensions/" class="nav-link">
+  Browser-Extensions
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Java/" class="nav-link">
+  Java
+</a></li></ul></li><li class="dropdown-item"><h4>
+          高阶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/safety/" class="nav-link">
+  安全系列
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Performance/" class="nav-link">
+  性能系列
+</a></li></ul></li><li class="dropdown-item"><h4>
+          资深
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/DataStructure/" class="nav-link">
+  数据结构系列
+</a></li><li class="dropdown-subitem"><a href="/learn-web/ALG/" class="nav-link">
+  算法系列
+</a></li></ul></li><li class="dropdown-item"><h4>
+          推荐
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-webpack/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-webpack
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-React/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-React
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-TypeScript/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-TypeScript
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://1024bibi.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  1024bibi.com bolg
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/vue-docs/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-docs
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div> <a href="https://github.com/webVueBlog/learn-web" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/learn-web/HTML/" class="nav-link">
+  HTML
+</a></div><div class="nav-item"><a href="/learn-web/CSS/" class="nav-link">
+  CSS
+</a></div><div class="nav-item"><a href="/learn-web/JavaScript/" class="nav-link">
+  JavaScript
+</a></div><div class="nav-item"><a href="/learn-web/HTTP/" class="nav-link">
+  HTTP
+</a></div><div class="nav-item"><a href="/learn-web/front-end-engineering/" class="nav-link">
+  工程化
+</a></div><div class="nav-item"><a href="/learn-web/browser/" class="nav-link">
+  浏览器
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="大前端" class="dropdown-title"><span class="title">大前端</span> <span class="arrow down"></span></button> <button type="button" aria-label="大前端" class="mobile-dropdown-title"><span class="title">大前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/learn-web/regular-expression/" class="nav-link">
+  正则表达式
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Programming/" class="nav-link">
+  编程题
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Node/" class="nav-link">
+  Node
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/Vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/learn-web/React/" class="nav-link">
+  React
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="实践" class="dropdown-title"><span class="title">实践</span> <span class="arrow down"></span></button> <button type="button" aria-label="实践" class="mobile-dropdown-title"><span class="title">实践</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          html-css-js实践
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/html-css-js-coding/" class="nav-link">
+  html-css-js实践
+</a></li></ul></li><li class="dropdown-item"><h4>
+          实践操作
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/coding/" class="nav-link router-link-active">
+  实践操作
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="书籍" class="dropdown-title"><span class="title">书籍</span> <span class="arrow down"></span></button> <button type="button" aria-label="书籍" class="mobile-dropdown-title"><span class="title">书籍</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          JavaScript书籍
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/JavaScript-advanced-programming/" class="nav-link">
+  JavaScript高级程序设计（第4版）
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="其他" class="dropdown-title"><span class="title">其他</span> <span class="arrow down"></span></button> <button type="button" aria-label="其他" class="mobile-dropdown-title"><span class="title">其他</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          进阶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/APIs/" class="nav-link">
+  APIs
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Browser-Extensions/" class="nav-link">
+  Browser-Extensions
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Java/" class="nav-link">
+  Java
+</a></li></ul></li><li class="dropdown-item"><h4>
+          高阶
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/safety/" class="nav-link">
+  安全系列
+</a></li><li class="dropdown-subitem"><a href="/learn-web/Performance/" class="nav-link">
+  性能系列
+</a></li></ul></li><li class="dropdown-item"><h4>
+          资深
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/learn-web/DataStructure/" class="nav-link">
+  数据结构系列
+</a></li><li class="dropdown-subitem"><a href="/learn-web/ALG/" class="nav-link">
+  算法系列
+</a></li></ul></li><li class="dropdown-item"><h4>
+          推荐
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-webpack/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-webpack
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-React/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-React
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/learn-TypeScript/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  learn-TypeScript
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://1024bibi.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  1024bibi.com bolg
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://learn-docs.github.io/vue-docs/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-docs
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div> <a href="https://github.com/webVueBlog/learn-web" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/learn-web/coding/" class="sidebar-heading clickable router-link-active open"><span>实践操作</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/learn-web/coding/实现图片的懒加载.html" class="sidebar-link">实现图片的懒加载</a></li><li><a href="/learn-web/coding/浏览器中实现剪切板复制内容的功能.html" class="sidebar-link">浏览器中实现剪切板复制内容的功能</a></li><li><a href="/learn-web/coding/同一个ip下的多个端口下的cookie是共享的.html" class="active sidebar-link">同一个ip下的多个端口下的cookie是共享的</a></li><li><a href="/learn-web/coding/textarea实现禁止拉伸.html" class="sidebar-link">textarea实现禁止拉伸</a></li><li><a href="/learn-web/coding/实现大文件上传和断点续传.html" class="sidebar-link">实现大文件上传和断点续传</a></li><li><a href="/learn-web/coding/切片上传和断点续传.html" class="sidebar-link">切片上传和断点续传</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><blockquote><p>点击勘误<a href="https://github.com/webVueBlog/learn-web/issues" target="_blank" rel="noopener noreferrer">issues<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>，哪吒感谢大家的阅读</p></blockquote> <p>根据同源策略，cookie 是区分端口的，但是浏览器实现来说，“cookie 区分域，而不区分端口，也就是说，同一个 ip 下的多个端口下的 cookie 是共享的！</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/webVueBlog/learn-web/edit/master/coding/同一个ip下的多个端口下的cookie是共享的.md" target="_blank" rel="noopener noreferrer">编辑此页</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">1/19/2022, 5:46:58 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/learn-web/coding/浏览器中实现剪切板复制内容的功能.html" class="prev">
+        浏览器中实现剪切板复制内容的功能
+      </a></span> <span class="next"><a href="/learn-web/coding/textarea实现禁止拉伸.html">
+        textarea实现禁止拉伸
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----><!----><!----><div></div></div></div>
+    <script src="/learn-web/assets/js/app.72a02f74.js" defer></script><script src="/learn-web/assets/js/2.a6c2d1f7.js" defer></script><script src="/learn-web/assets/js/118.a87b4044.js" defer></script>
+  </body>
+</html>
